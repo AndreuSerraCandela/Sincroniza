@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Sincroniza">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 2226433818 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Synchronize Setup (Field)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Field) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2226433818 - Field 404491802 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exclude</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Field) - Field Exclude - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2226433818 - Field 823559016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Caption</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Field) - Field Field Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2226433818 - Field 3531868071 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Field) - Field Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2226433818 - Field 1393533604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Caption</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Field) - Field Table Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2226433818 - Field 3017471043 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Field) - Field Table No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1917319910 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Synchronize Setup (Table)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Table) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1917319910 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You have changed the %1 field to no longer be %2. Do you want to remove the field selections?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Table) - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Table 1917319910 - Field 2202288478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Excluded Fields</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Table) - Field Log Modification - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1917319910 - Field 1393533604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Caption</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Table) - Field Table Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1917319910 - Field 3017471043 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Table) - Field Table No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4166145734 - NamedType 3194217980" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rename is not allowed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType Rename</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4166145734 - NamedType 1645458416" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This is not master company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType Subsidiarie</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Copy Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - NamedType 1685306214" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The company does not exist</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - NamedType LableErrorCompanyDoesNotExist</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You have changed the %1 field to no longer be %2. Do you want to remove the field selections?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - Control 978850662 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that any modification of data is logged.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - Control LogModification - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - Control 978850662 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Excluded Fields</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - Control LogModification - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - Control 3811799877 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the table.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - Control Object Caption - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - Control 3811799877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Caption</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - Control Object Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - Control 3711240756 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the ID of the table. </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - Control Object ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1560973654 - Control 3711240756 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Copy Company - Control Object ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1504328208 - Control 1257812925 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Date Dialog - Control Inicio - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Synchronize Fields List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - NamedType 2304510912" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You cannot change this column.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - NamedType CannotChangeColumnErr</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Control 1859394888 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether to log the insertion for the selected line on the change log.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Control Excluir - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Control 1859394888 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exclude</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Control Excluir - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Control 823559016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the caption of the field, that is, the name that will be shown in the user interface.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Control Field Caption - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Control 823559016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Control Field Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Control 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of the field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Control No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Control 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Control No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4136963817 - Control 419003418 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Notes</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr Log Setup (Field) List - Control Control1905767507 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Synchronize Tables List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You have changed the %1 field to no longer be %2. Do you want to remove the field selections?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 978850662 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that any modification of data is logged.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control LogModification - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 978850662 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Log Modification</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control LogModification - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 3811799877 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the table.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Object Caption - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 3811799877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Object Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 3711240756 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the ID of the table. </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Object ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 3711240756 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Object ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New,Process,Reports,Configuration</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Property PromotedActionCategories</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Synchronize Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - NamedType 2376807663" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Turning on the Change Log might slow things down, especially if you are monitoring entities that often change. Do you want to log changes?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - NamedType ActivateChangeLogQst</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - NamedType 1211427489" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Changes are displayed on the Change Log Entries page after the user's session has restarted. Do you want to restart the session now?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - NamedType RestartSessionQst</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Control 3260569077 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the change log is active.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Master Company - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Control 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Master Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Master Company - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Control 419003418 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Notes</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Control1905767507 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Action 3237504299 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Tables Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action &amp;Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Action 1061736343 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View what must be logged for each table.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action Tables - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1041655975 - Action 1061736343 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action Tables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3460046866 - Control 4166145734 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source>Synchronize</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CompanyInf - Control Synchronize - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3877399259 - Field 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Master Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Master Company - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3165268738 - Action 1560973654 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2669461019">
+          <source>Copy Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Empresas - Action Copy Company - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

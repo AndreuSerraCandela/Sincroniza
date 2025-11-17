@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario - Sincroniza</title>
+    <style>
+        body {
+            font-family: 'Calibri', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2.5cm;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2E86AB;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2E86AB;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #2E86AB;
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #E8F4F8;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #2E86AB;
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            color: #2E86AB;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .version-info {
+            background-color: #F8F9FA;
+            padding: 15px;
+            border-left: 4px solid #2E86AB;
+            margin-bottom: 20px;
+        }
+        .toc {
+            background-color: #F8F9FA;
+            padding: 20px;
+            border: 1px solid #E8F4F8;
+            margin-bottom: 30px;
+        }
+        .toc h3 {
+            margin-top: 0;
+            color: #2E86AB;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .toc li:before {
+            content: "▶";
+            color: #2E86AB;
+            position: absolute;
+            left: 0;
+        }
+        .highlight-box {
+            background-color: #E8F4F8;
+            border: 1px solid #2E86AB;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .warning-box {
+            background-color: #FFF3CD;
+            border: 1px solid #FFEAA7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .step-box {
+            background-color: #F8F9FA;
+            border-left: 4px solid #2E86AB;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #DDD;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2E86AB;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #F8F9FA;
+        }
+        .code {
+            background-color: #F4F4F4;
+            border: 1px solid #DDD;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #E8F4F8;
+            color: #666;
+            font-size: 12px;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MANUAL DE USUARIO</h1>
+        <div class="subtitle">APLICACIÓN DE SINCRONIZACIÓN DE DATOS</div>
+        <div class="subtitle">Sincroniza v1.0.0.3</div>
+    </div>
+
+    <div class="version-info">
+        <strong>Desarrollado por:</strong> Andreu by MayBeCloud<br>
+        <strong>Versión:</strong> 1.0.0.3<br>
+        <strong>Fecha:</strong> 2024<br>
+        <strong>Plataforma:</strong> Microsoft Dynamics 365 Business Central
+    </div>
+
+    <div class="toc">
+        <h3>ÍNDICE</h3>
+        <ul>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#requisitos">2. Requisitos del Sistema</a></li>
+            <li><a href="#instalacion">3. Instalación y Configuración</a></li>
+            <li><a href="#configuracion-inicial">4. Configuración Inicial</a></li>
+            <li><a href="#configuracion-tablas">5. Configuración de Tablas</a></li>
+            <li><a href="#configuracion-campos">6. Configuración de Campos</a></li>
+            <li><a href="#proceso-sincronizacion">7. Proceso de Sincronización</a></li>
+            <li><a href="#copia-empresa">8. Copia de Empresa</a></li>
+            <li><a href="#solucion-problemas">9. Solución de Problemas</a></li>
+            <li><a href="#preguntas-frecuentes">10. Preguntas Frecuentes</a></li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="introduccion">1. INTRODUCCIÓN</h2>
+
+    <h3>1.1 ¿Qué es Sincroniza?</h3>
+    <p>Sincroniza es una aplicación para Microsoft Dynamics 365 Business Central que permite sincronizar datos entre diferentes empresas dentro del mismo entorno. La aplicación facilita la gestión de datos maestros y la replicación de información entre empresas filiales y la empresa principal.</p>
+
+    <h3>1.2 Características Principales</h3>
+    <ul>
+        <li><strong>Sincronización Automática:</strong> Los datos se sincronizan automáticamente cuando se realizan cambios</li>
+        <li><strong>Configuración Flexible:</strong> Permite seleccionar qué tablas y campos sincronizar</li>
+        <li><strong>Gestión de Empresa Maestra:</strong> Identifica y gestiona la empresa principal del sistema</li>
+        <li><strong>Copia de Empresa:</strong> Facilita la creación de nuevas empresas con datos predefinidos</li>
+        <li><strong>Interfaz Intuitiva:</strong> Páginas fáciles de usar para la configuración</li>
+    </ul>
+
+    <h3>1.3 Beneficios</h3>
+    <ul>
+        <li><strong>Consistencia de Datos:</strong> Mantiene la información sincronizada entre empresas</li>
+        <li><strong>Reducción de Errores:</strong> Elimina la necesidad de entrada manual duplicada</li>
+        <li><strong>Eficiencia Operativa:</strong> Ahorra tiempo en la gestión de datos</li>
+        <li><strong>Flexibilidad:</strong> Permite personalizar qué datos sincronizar</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2 id="requisitos">2. REQUISITOS DEL SISTEMA</h2>
+
+    <h3>2.1 Requisitos Mínimos</h3>
+    <table>
+        <tr>
+            <th>Componente</th>
+            <th>Versión Mínima</th>
+            <th>Descripción</th>
+        </tr>
+        <tr>
+            <td>Microsoft Dynamics 365 Business Central</td>
+            <td>26.0</td>
+            <td>Versión base del sistema</td>
+        </tr>
+        <tr>
+            <td>Plataforma</td>
+            <td>1.0.0.0</td>
+            <td>Plataforma de desarrollo</td>
+        </tr>
+        <tr>
+            <td>Runtime</td>
+            <td>14.0</td>
+            <td>Entorno de ejecución</td>
+        </tr>
+        <tr>
+            <td>Permisos</td>
+            <td>Administrador</td>
+            <td>Para configuración inicial</td>
+        </tr>
+    </table>
+
+    <h3>2.2 Permisos Requeridos</h3>
+    <p>La aplicación requiere el conjunto de permisos <strong>SINCRONIZA</strong> que incluye:</p>
+    <ul>
+        <li>Lectura, inserción, modificación y eliminación de registros de configuración</li>
+        <li>Ejecución de codeunits de sincronización</li>
+        <li>Acceso a páginas de configuración</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2 id="instalacion">3. INSTALACIÓN Y CONFIGURACIÓN</h2>
+
+    <h3>3.1 Instalación</h3>
+    <div class="step-box">
+        <h4>Paso 1: Descargar la Aplicación</h4>
+        <p>Obtener el archivo <code>.app</code> de la aplicación Sincroniza</p>
+    </div>
+
+    <div class="step-box">
+        <h4>Paso 2: Instalar en Business Central</h4>
+        <ol>
+            <li>Ir a <strong>Configuración</strong> > <strong>Extensiones</strong></li>
+            <li>Seleccionar <strong>Cargar</strong> y elegir el archivo de la aplicación</li>
+            <li>Seguir las instrucciones del asistente de instalación</li>
+        </ol>
+    </div>
+
+    <div class="step-box">
+        <h4>Paso 3: Verificar Instalación</h4>
+        <p>Confirmar que la aplicación aparece en la lista de extensiones instaladas</p>
+    </div>
+
+    <h3>3.2 Configuración Inicial</h3>
+    <ol>
+        <li><strong>Asignar Permisos:</strong> Asegurar que los usuarios tengan el conjunto de permisos SINCRONIZA</li>
+        <li><strong>Acceder a la Configuración:</strong> Navegar a la página de configuración de sincronización</li>
+        <li><strong>Configurar Empresa Maestra:</strong> Establecer qué empresa será la principal</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <h2 id="configuracion-inicial">4. CONFIGURACIÓN INICIAL</h2>
+
+    <h3>4.1 Página de Configuración de Sincronización</h3>
+    <p><strong>Ubicación:</strong> Configuración > Sincronización > Configuración de Sincronización</p>
+
+    <h4>4.1.1 Configuración General</h4>
+    
+    <div class="highlight-box">
+        <h4>Empresa Maestra</h4>
+        <ul>
+            <li><strong>Descripción:</strong> Especifica si la empresa actual es la empresa maestra</li>
+            <li><strong>Uso:</strong> Solo una empresa debe estar marcada como maestra</li>
+            <li><strong>Importante:</strong> Los cambios en esta configuración pueden afectar el rendimiento del sistema</li>
+        </ul>
+    </div>
+
+    <div class="highlight-box">
+        <h4>Notas</h4>
+        <ul>
+            <li>Campo opcional para documentar configuraciones especiales</li>
+            <li>Útil para mantener un registro de cambios importantes</li>
+        </ul>
+    </div>
+
+    <h4>4.1.2 Acciones Disponibles</h4>
+    
+    <table>
+        <tr>
+            <th>Acción</th>
+            <th>Propósito</th>
+            <th>Acceso</th>
+            <th>Funcionalidad</th>
+        </tr>
+        <tr>
+            <td>Configuración de Tablas</td>
+            <td>Gestionar qué tablas se sincronizarán</td>
+            <td>Botón "Configuración de Tablas"</td>
+            <td>Permite seleccionar tablas y configurar campos específicos</td>
+        </tr>
+        <tr>
+            <td>Tablas</td>
+            <td>Ver qué debe registrarse para cada tabla</td>
+            <td>Botón "Tablas"</td>
+            <td>Muestra la configuración actual de sincronización</td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2 id="configuracion-tablas">5. CONFIGURACIÓN DE TABLAS</h2>
+
+    <h3>5.1 Lista de Tablas de Sincronización</h3>
+    <p><strong>Ubicación:</strong> Configuración > Sincronización > Lista de Tablas de Sincronización</p>
+
+    <h4>5.1.1 Campos Principales</h4>
+    
+    <table>
+        <tr>
+            <th>Campo</th>
+            <th>Descripción</th>
+            <th>Tipo</th>
+            <th>Uso</th>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td>Identificador único de la tabla</td>
+            <td>Número entero</td>
+            <td>Referencia interna del sistema</td>
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td>Nombre descriptivo de la tabla</td>
+            <td>Texto</td>
+            <td>Identificación visual de la tabla</td>
+        </tr>
+        <tr>
+            <td>Registrar Modificación</td>
+            <td>Especifica si los cambios en esta tabla se registran</td>
+            <td>Sí/No</td>
+            <td>Controla si la tabla participa en la sincronización</td>
+        </tr>
+    </table>
+
+    <h4>5.1.2 Configuración de Campos Excluidos</h4>
+    <p>Para cada tabla configurada, puede especificar qué campos NO deben sincronizarse:</p>
+    
+    <div class="step-box">
+        <ol>
+            <li><strong>Seleccionar Tabla:</strong> Elegir la tabla de la lista</li>
+            <li><strong>Acceder a Campos:</strong> Hacer clic en el botón de asistencia para campos</li>
+            <li><strong>Configurar Exclusión:</strong> Marcar los campos que no deben sincronizarse</li>
+            <li><strong>Guardar Configuración:</strong> Los cambios se aplican automáticamente</li>
+        </ol>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="configuracion-campos">6. CONFIGURACIÓN DE CAMPOS</h2>
+
+    <h3>6.1 Lista de Campos de Sincronización</h3>
+    <p><strong>Ubicación:</strong> Configuración > Sincronización > Lista de Campos de Sincronización</p>
+
+    <h4>6.1.1 Campos de Configuración</h4>
+    
+    <table>
+        <tr>
+            <th>Campo</th>
+            <th>Descripción</th>
+            <th>Tipo</th>
+            <th>Uso</th>
+        </tr>
+        <tr>
+            <td>Núm.</td>
+            <td>Número del campo dentro de la tabla</td>
+            <td>Número entero</td>
+            <td>Referencia interna del campo</td>
+        </tr>
+        <tr>
+            <td>Nombre del Campo</td>
+            <td>Nombre descriptivo del campo</td>
+            <td>Texto</td>
+            <td>Identificación visual del campo</td>
+        </tr>
+        <tr>
+            <td>Excluir</td>
+            <td>Especifica si el campo debe excluirse de la sincronización</td>
+            <td>Sí/No</td>
+            <td>Controla si el campo participa en la sincronización</td>
+        </tr>
+        <tr>
+            <td>Notas</td>
+            <td>Campo opcional para documentación</td>
+            <td>Texto</td>
+            <td>Registrar información adicional sobre la configuración</td>
+        </tr>
+    </table>
+
+    <h4>6.1.2 Gestión de Campos</h4>
+    
+    <div class="step-box">
+        <h4>Agregar Campo</h4>
+        <ol>
+            <li>Seleccionar la tabla correspondiente</li>
+            <li>Hacer clic en "Nuevo"</li>
+            <li>Especificar el número y nombre del campo</li>
+            <li>Configurar si debe excluirse</li>
+            <li>Guardar el registro</li>
+        </ol>
+    </div>
+
+    <div class="step-box">
+        <h4>Modificar Campo</h4>
+        <ol>
+            <li>Localizar el campo en la lista</li>
+            <li>Hacer clic en "Editar"</li>
+            <li>Realizar los cambios necesarios</li>
+            <li>Guardar los cambios</li>
+        </ol>
+    </div>
+
+    <div class="step-box">
+        <h4>Eliminar Campo</h4>
+        <ol>
+            <li>Seleccionar el campo a eliminar</li>
+            <li>Hacer clic en "Eliminar"</li>
+            <li>Confirmar la eliminación</li>
+        </ol>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="proceso-sincronizacion">7. PROCESO DE SINCRONIZACIÓN</h2>
+
+    <h3>7.1 Funcionamiento Automático</h3>
+    <p>La sincronización funciona automáticamente cuando:</p>
+    <ul>
+        <li><strong>Se Modifica un Registro:</strong> Cualquier cambio en una tabla configurada</li>
+        <li><strong>Se Inserta un Registro:</strong> Nuevos registros en tablas configuradas</li>
+        <li><strong>Se Elimina un Registro:</strong> Eliminación de registros en tablas configuradas</li>
+        <li><strong>Se Renombra un Registro:</strong> Cambios de nombre en registros</li>
+    </ul>
+
+    <h3>7.2 Flujo de Sincronización</h3>
+    <div class="code">
+        Cambio en Empresa A (Maestra)
+            ↓
+        Detección Automática
+            ↓
+        Verificación de Configuración
+            ↓
+        Aplicación en Empresa B (Filial)
+            ↓
+        Confirmación de Sincronización
+    </div>
+
+    <h3>7.3 Tipos de Sincronización</h3>
+    
+    <table>
+        <tr>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Comportamiento</th>
+        </tr>
+        <tr>
+            <td>Inserción</td>
+            <td>Nuevos registros</td>
+            <td>Se crean en empresas filiales manteniendo la integridad referencial</td>
+        </tr>
+        <tr>
+            <td>Modificación</td>
+            <td>Cambios en registros existentes</td>
+            <td>Se propagan actualizando información desactualizada</td>
+        </tr>
+        <tr>
+            <td>Eliminación</td>
+            <td>Eliminación de registros</td>
+            <td>Se replican en empresas filiales manteniendo consistencia</td>
+        </tr>
+        <tr>
+            <td>Renombrado</td>
+            <td>Cambios de nombre</td>
+            <td>Se sincronizan preservando referencias entre registros</td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2 id="copia-empresa">8. COPIA DE EMPRESA</h2>
+
+    <h3>8.1 Funcionalidad de Copia</h3>
+    <p>La función de copia de empresa permite:</p>
+    <ul>
+        <li><strong>Crear Nuevas Empresas:</strong> Con datos predefinidos</li>
+        <li><strong>Replicar Configuraciones:</strong> Mantener consistencia entre empresas</li>
+        <li><strong>Sincronizar Datos Maestros:</strong> Asegurar datos iniciales correctos</li>
+    </ul>
+
+    <h3>8.2 Proceso de Copia</h3>
+    <p><strong>Ubicación:</strong> Configuración > Sincronización > Copiar Empresa</p>
+
+    <h4>8.2.1 Configuración de Copia</h4>
+    
+    <table>
+        <tr>
+            <th>Campo</th>
+            <th>Descripción</th>
+            <th>Validación</th>
+            <th>Uso</th>
+        </tr>
+        <tr>
+            <td>Nueva Empresa</td>
+            <td>Nombre de la empresa destino</td>
+            <td>Debe existir en el sistema</td>
+            <td>Especifica dónde se copiarán los datos</td>
+        </tr>
+        <tr>
+            <td>Lista de Tablas</td>
+            <td>Muestra todas las tablas disponibles</td>
+            <td>N/A</td>
+            <td>Selección de tablas a copiar</td>
+        </tr>
+        <tr>
+            <td>ID del Objeto</td>
+            <td>Identificador de la tabla</td>
+            <td>N/A</td>
+            <td>Referencia interna</td>
+        </tr>
+        <tr>
+            <td>Leyenda del Objeto</td>
+            <td>Nombre descriptivo de la tabla</td>
+            <td>N/A</td>
+            <td>Identificación visual</td>
+        </tr>
+        <tr>
+            <td>Campos Excluidos</td>
+            <td>Configuración de campos a excluir</td>
+            <td>N/A</td>
+            <td>Control de campos específicos</td>
+        </tr>
+    </table>
+
+    <h4>8.2.2 Ejecución de Copia</h4>
+    
+    <div class="step-box">
+        <ol>
+            <li><strong>Seleccionar Empresa Destino:</strong> Especificar la empresa donde copiar</li>
+            <li><strong>Configurar Tablas:</strong> Marcar las tablas a copiar</li>
+            <li><strong>Configurar Campos:</strong> Especificar campos a excluir si es necesario</li>
+            <li><strong>Ejecutar Copia:</strong> Hacer clic en "Copiar Empresa"</li>
+            <li><strong>Verificar Resultado:</strong> Confirmar que la copia se completó correctamente</li>
+        </ol>
+    </div>
+
+    <h4>8.2.3 Consideraciones Importantes</h4>
+    
+    <div class="warning-box">
+        <h4>Rendimiento</h4>
+        <ul>
+            <li>El proceso puede tomar tiempo dependiendo del volumen de datos</li>
+            <li>Se recomienda ejecutar durante horarios de bajo uso</li>
+        </ul>
+    </div>
+
+    <div class="warning-box">
+        <h4>Integridad de Datos</h4>
+        <ul>
+            <li>Verificar que la empresa destino esté correctamente configurada</li>
+            <li>Asegurar que no haya conflictos de datos</li>
+        </ul>
+    </div>
+
+    <div class="warning-box">
+        <h4>Permisos</h4>
+        <ul>
+            <li>El usuario debe tener permisos de escritura en la empresa destino</li>
+            <li>Verificar permisos de sincronización</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="solucion-problemas">9. SOLUCIÓN DE PROBLEMAS</h2>
+
+    <h3>9.1 Problemas Comunes</h3>
+
+    <h4>9.1.1 Sincronización No Funciona</h4>
+    <p><strong>Síntomas:</strong></p>
+    <ul>
+        <li>Los cambios no se reflejan en otras empresas</li>
+        <li>No aparecen mensajes de confirmación</li>
+    </ul>
+    
+    <p><strong>Soluciones:</strong></p>
+    <div class="step-box">
+        <ol>
+            <li>Verificar que la empresa esté marcada como maestra</li>
+            <li>Comprobar la configuración de tablas</li>
+            <li>Revisar permisos de usuario</li>
+            <li>Verificar que las empresas destino existan</li>
+        </ol>
+    </div>
+
+    <h4>9.1.2 Errores de Permisos</h4>
+    <p><strong>Síntomas:</strong></p>
+    <ul>
+        <li>Mensajes de acceso denegado</li>
+        <li>No se pueden realizar cambios en la configuración</li>
+    </ul>
+    
+    <p><strong>Soluciones:</strong></p>
+    <div class="step-box">
+        <ol>
+            <li>Verificar que el usuario tenga el conjunto de permisos SINCRONIZA</li>
+            <li>Contactar al administrador del sistema</li>
+            <li>Revisar la configuración de seguridad</li>
+        </ol>
+    </div>
+
+    <h4>9.1.3 Datos Inconsistentes</h4>
+    <p><strong>Síntomas:</strong></p>
+    <ul>
+        <li>Información diferente entre empresas</li>
+        <li>Registros duplicados o faltantes</li>
+    </ul>
+    
+    <p><strong>Soluciones:</strong></p>
+    <div class="step-box">
+        <ol>
+            <li>Revisar la configuración de campos excluidos</li>
+            <li>Verificar que la sincronización esté activa</li>
+            <li>Ejecutar una sincronización manual si es necesario</li>
+        </ol>
+    </div>
+
+    <h3>9.2 Logs y Monitoreo</h3>
+    
+    <div class="highlight-box">
+        <h4>Registro de Cambios</h4>
+        <ul>
+            <li>La aplicación mantiene un registro de todas las sincronizaciones</li>
+            <li>Accesible desde la configuración de tablas</li>
+        </ul>
+    </div>
+
+    <div class="highlight-box">
+        <h4>Mensajes de Error</h4>
+        <ul>
+            <li>Los errores se registran en el log de aplicación</li>
+            <li>Revisar el visor de eventos para detalles</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="preguntas-frecuentes">10. PREGUNTAS FRECUENTES</h2>
+
+    <h3>10.1 Configuración</h3>
+    
+    <div class="highlight-box">
+        <h4>P: ¿Puedo cambiar qué empresa es la maestra?</h4>
+        <p><strong>R:</strong> Sí, pero solo debe haber una empresa maestra a la vez. Cambiar esta configuración puede afectar el rendimiento.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h4>P: ¿Cómo sé si una tabla está configurada para sincronizar?</h4>
+        <p><strong>R:</strong> En la lista de tablas de sincronización, la columna "Registrar Modificación" indica si la tabla está activa.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h4>P: ¿Puedo excluir campos específicos de la sincronización?</h4>
+        <p><strong>R:</strong> Sí, en la configuración de campos puede marcar qué campos excluir.</p>
+    </div>
+
+    <h3>10.2 Funcionamiento</h3>
+    
+    <div class="highlight-box">
+        <h4>P: ¿Cuándo se sincronizan los datos?</h4>
+        <p><strong>R:</strong> La sincronización es automática y ocurre inmediatamente cuando se realizan cambios en tablas configuradas.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h4>P: ¿Qué pasa si hay un error durante la sincronización?</h4>
+        <p><strong>R:</strong> El error se registra en el log y la sincronización se detiene. Debe revisar y corregir el problema antes de continuar.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h4>P: ¿Puedo deshacer una sincronización?</h4>
+        <p><strong>R:</strong> No, la sincronización es irreversible. Se recomienda hacer respaldos antes de cambios importantes.</p>
+    </div>
+
+    <h3>10.3 Rendimiento</h3>
+    
+    <div class="highlight-box">
+        <h4>P: ¿La sincronización afecta el rendimiento del sistema?</h4>
+        <p><strong>R:</strong> Puede haber un impacto mínimo durante la sincronización, especialmente con grandes volúmenes de datos.</p>
+    </div>
+
+    <div class="highlight-box">
+        <h4>P: ¿Cuántas empresas puedo sincronizar?</h4>
+        <p><strong>R:</strong> No hay límite técnico, pero el rendimiento puede verse afectado con muchas empresas.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="footer">
+        <h3>CONTACTO Y SOPORTE</h3>
+        <p><strong>Desarrollador:</strong> Andreu by MayBeCloud<br>
+        <strong>Versión:</strong> 1.0.0.3<br>
+        <strong>Plataforma:</strong> Microsoft Dynamics 365 Business Central</p>
+        
+        <p>Para soporte técnico o consultas sobre la aplicación, contacte al administrador del sistema o al equipo de desarrollo.</p>
+        
+        <p><em>Este manual está sujeto a actualizaciones. Consulte la versión más reciente en el sistema.</em></p>
+        
+        <p><strong>© 2024 Andreu by MayBeCloud. Todos los derechos reservados.</strong></p>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,40 @@
+INSTRUCCIONES PARA CONVERTIR A FORMATO WORD
+============================================
+
+El archivo "Manual_Usuario_Sincroniza.html" está creado con formato HTML que se puede convertir fácilmente a Microsoft Word.
+
+PASOS PARA CONVERTIR A WORD:
+
+1. ABRIR EL ARCHIVO HTML:
+   - Hacer doble clic en "Manual_Usuario_Sincroniza.html"
+   - Se abrirá en el navegador web
+
+2. CONVERTIR A WORD:
+   - Presionar Ctrl+A para seleccionar todo el contenido
+   - Presionar Ctrl+C para copiar
+   - Abrir Microsoft Word
+   - Presionar Ctrl+V para pegar
+   - Guardar como "Manual_Usuario_Sincroniza.docx"
+
+3. ALTERNATIVA - ABRIR DIRECTAMENTE EN WORD:
+   - Abrir Microsoft Word
+   - Ir a Archivo > Abrir
+   - Seleccionar "Manual_Usuario_Sincroniza.html"
+   - Word lo convertirá automáticamente
+   - Guardar como .docx
+
+4. FORMATO INCLUIDO:
+   - Estilos de encabezados
+   - Tablas con formato
+   - Cajas de texto destacadas
+   - Colores corporativos
+   - Saltos de página
+   - Índice navegable
+
+5. PERSONALIZACIÓN ADICIONAL:
+   - Ajustar márgenes si es necesario
+   - Modificar fuentes según preferencias
+   - Agregar logo de la empresa
+   - Ajustar espaciado entre secciones
+
+El archivo HTML mantiene todo el formato y estructura del manual profesional.
