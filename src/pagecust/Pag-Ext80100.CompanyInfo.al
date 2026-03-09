@@ -15,6 +15,14 @@ pageextension 90302 CompanyInf extends "Company Information"
                 {
                     ApplicationArea = All;
                 }
+                field("Subsidiarie"; Rec."Subsidiarie")
+                {
+                    ApplicationArea = All;
+                }
+                field("Master Company Name"; Rec."Master Company Name")
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }

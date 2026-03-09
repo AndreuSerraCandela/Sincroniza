@@ -4,6 +4,8 @@
 codeunit 90302 Synchronize
 {
     SingleInstance = true;
+    Permissions = tabledata "Company Information" = RIMD, tabledata Company = RIMD,
+    tabledata "Synchronize Setup (Table)" = RIMD, tabledata "Synchronize Setup (Field)" = RIMD;
 
     var
         Tablas: Record "Synchronize Setup (Table)";
@@ -28,23 +30,26 @@ codeunit 90302 Synchronize
     var
 
         Companies: Record Company;
+        rInf: Record "Company Information";
     begin
         //Companies.SetRange("Table No.", TableId);
         //Companies.SetRange("Company Name", Empresa());
+        rInf.Get();
+        if (not rInf."Subsidiarie") and (not rInf."Master Company") then exit;
         ErrorEmpresa := false;
-        If Companies.FindFirst() then
-            repeat
-                if GetExecutionContext() = ExecutionContext::Normal then
-                    Tablas.ChangeCompany(Companies.Name);
-                If Tablas.get(TableId) then begin
-                    OnDatabaseDelete := true;
-                    OnDatabaseInsert := true;
-                    OnDatabaseModify := true;
-                    OnDatabaseRename := true;
-                    Campos.ChangeCompany(Companies.Name);
-                    exit;
-                end;
-            until Companies.Next() = 0;
+        If Companies.Get(rInf."Master Company Name") then begin
+
+            if GetExecutionContext() = ExecutionContext::Normal then
+                Tablas.ChangeCompany(Companies.Name);
+            If Tablas.get(TableId) then begin
+                OnDatabaseDelete := true;
+                OnDatabaseInsert := true;
+                OnDatabaseModify := true;
+                OnDatabaseRename := true;
+                Campos.ChangeCompany(Companies.Name);
+                exit;
+            end;
+        end;
         OnDatabaseDelete := false;
         OnDatabaseInsert := false;
         OnDatabaseModify := false;
@@ -57,7 +62,8 @@ codeunit 90302 Synchronize
         Company: Record Company;
         RecRef2: RecordRef;
         rInf: Record "Company Information";
-        Companies: Record Company;
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
 
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
@@ -66,9 +72,12 @@ codeunit 90302 Synchronize
             if CopiandoEmpresa then exit;
             rInf.Get();
             //if rInf."Empresa para maestros" = false then Error('Subsidiarie');
-            If Company.FindFirst() then begin
-                enuso := true;
-                repeat
+            rInf.ChangeCompany(rInf."Master Company Name");
+            SubsidiarieList := rInf.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                if Company.Get(Subsidiarie) then begin
+                    enuso := true;
+
 
                     If Empresa <> Company.Name Then begin
                         RecRef2.Open(RecRef.Number, false, Company.Name);
@@ -81,8 +90,8 @@ codeunit 90302 Synchronize
                         RecRef2.Close();
                     end;
 
-                until Company.Next() = 0;
-                enuso := false;
+                    enuso := false;
+                end;
             end;
         end;
     end;
@@ -94,17 +103,22 @@ codeunit 90302 Synchronize
         RecRef2: RecordRef;
         RecRefTemp: RecordRef;
         rInf: Record "Company Information";
-
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
             rInf.Get();
+            rInf.ChangeCompany(rInf."Master Company Name");
+            SubsidiarieList := rInf.GetSubsidiarieList();
+
             if enuso Then exit;
             if CopiandoEmpresa then exit;
             //if rInf."Empresa para maestros" = false then Error('Subsidiarie');
-            If Company.FindFirst() then begin
-                enuso := true;
-                repeat
+            foreach Subsidiarie in SubsidiarieList do begin
+                if Company.Get(Subsidiarie) then begin
+                    enuso := true;
+
                     If Empresa <> Company.Name Then begin
                         RecRef2.Open(RecRef.Number, false, Company.Name);
                         RecRefTemp.Open(RecRef.Number, true, Company.Name);
@@ -133,9 +147,11 @@ codeunit 90302 Synchronize
                             RecRef2.Close();
                             RecRefTemp.Close();
                         end;
+
                     end;
-                until Company.Next() = 0;
-                enuso := false;
+
+                    enuso := false;
+                end;
             end;
         end;
     end;
@@ -146,15 +162,19 @@ codeunit 90302 Synchronize
         Company: Record Company;
         RecRef2: RecordRef;
         rInf: Record "Company Information";
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
             rInf.Get();
             if enuso Then exit;
             if CopiandoEmpresa then exit;
-            If Company.FindFirst() then begin
-                enuso := true;
-                repeat
+            rInf.ChangeCompany(rInf."Master Company Name");
+            SubsidiarieList := rInf.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                if Company.Get(Subsidiarie) then begin
+                    enuso := true;
                     If Empresa <> Company.Name Then begin
                         RecRef2.Open(RecRef.Number, false, Company.Name);
                         if RecRef2.Get(RecRef.RecordId) Then begin
@@ -163,8 +183,8 @@ codeunit 90302 Synchronize
                         end;
                         RecRef2.Close();
                     end;
-                until Company.Next() = 0;
-                enuso := false;
+                    enuso := false;
+                end;
             end;
         end;
     end;
