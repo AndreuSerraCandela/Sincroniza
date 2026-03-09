@@ -228,15 +228,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control General - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1041655975 - Control 982926049 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 1041655975 - Control 3260569077 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies that the change log is active.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Empresa para maestros - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Master Company - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 1041655975 - Control 982926049 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 1041655975 - Control 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Master Company</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Empresa para maestros - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Master Company - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1041655975 - Control 419003418 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Notes</source>
@@ -258,21 +258,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action Tables - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3460046866 - Action 330259563 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
-          <source>Copia el stock actual de productos no bloqueados como entrada positiva en otra empresa</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CompanyInf - Action Copy Stock to Company - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3460046866 - Action 330259563 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
-          <source>Copiar Stock a Empresa</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CompanyInf - Action Copy Stock to Company - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3460046866 - Action 1041655975 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
-          <source>Synchronize Setup</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CompanyInf - Action Synchronize Setup - Property Caption</note>
-        </trans-unit>
         <trans-unit id="PageExtension 3460046866 - Control 4166145734 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
           <source>Synchronize</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -283,25 +268,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Empresas - Action Copy Company - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 1149918667 - Action 629816503 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 734185571">
-          <source>Borra todas las ofertas de venta actuales y las copia desde otra empresa (incluyendo líneas)</source>
+        <trans-unit id="TableExtension 3877399259 - Field 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Master Company</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SalesQuotes - Action Copy Quotes from Company - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Master Company - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 1149918667 - Action 629816503 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 734185571">
-          <source>Copiar Ofertas desde Empresa</source>
+        <trans-unit id="TableExtension 3877399259 - Field 1947991584 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Master Company Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension SalesQuotes - Action Copy Quotes from Company - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Master Company Name - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 3877399259 - Field 982926049 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
-          <source>Empresa</source>
+        <trans-unit id="TableExtension 3877399259 - Field 1645458416 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Subsidiarie</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Empresa para maestros - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Subsidiarie - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 3877399259 - Field 1538997091 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
-          <source>Sincornizacion Bidireccional</source>
+        <trans-unit id="TableExtension 3877399259 - Field 1724642530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Subsidiarie List</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Sincornizacion Bidireccional - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Subsidiarie List - Property Caption</note>
         </trans-unit>
       </group>
     </body>

@@ -1,178 +1,180 @@
-/// <summary>
-/// Page Sincroniza. Setup (ID 80092).
-/// </summary>
-page 90392 "Synchronize Setup"
-{
-    ApplicationArea = Basic, Suite;
-    Caption = 'Synchronize Setup';
-    DeleteAllowed = false;
-    InsertAllowed = false;
-    PageType = Card;
-    PromotedActionCategories = 'New,Process,Reports,Configuration';
-    SourceTable = "Company Information";
-    UsageCategory = Administration;
+// /// <summary>
+// /// Page Sincroniza. Setup (ID 80092).
+// /// </summary>
+// page 90392 "Synchronize Setup"
+// {
+//     ApplicationArea = Basic, Suite;
+//     Caption = 'Synchronize Setup';
+//     DeleteAllowed = false;
+//     InsertAllowed = false;
+//     PageType = Card;
+//     PromotedActionCategories = 'New,Process,Reports,Configuration';
+//     SourceTable = "Company Information";
+//     UsageCategory = Administration;
 
-    layout
-    {
-        area(content)
-        {
-            group(General)
-            {
-                Caption = 'General';
-                grid(GeneralGrid)
-                {
-                    group(GeneralColumn)
-                    {
-                        ShowCaption = false;
-                        field("Empresa para maestros"; Rec."Empresa para maestros")
-                        {
-                            ApplicationArea = Basic, Suite;
-                            ToolTip = 'Specifies that the change log is active.';
-                            Caption = 'Master Company';
+//     layout
+//     {
+//         area(content)
+//         {
+//             group(General)
+//             {
+//                 Caption = 'General';
+//                 grid(GeneralGrid)
+//                 {
+//                     group(GeneralColumn)
+//                     {
+//                         ShowCaption = false;
+//                         field("Master Company"; Rec."Master Company")
+//                         {
+//                             ApplicationArea = Basic, Suite;
+//                             ToolTip = 'Specifies that the change log is active.';
+//                             Caption = 'Master Company';
 
-                            trigger OnValidate()
-                            begin
-                                ConfirmActivationOfChangeLog;
-                                ChangeLogSettingsUpdated := true;
-                            end;
-                        }
-                        // label(ChangeLogWarning)
-                        // {
-                        //     ApplicationArea = Basic, Suite;
-                        //     Caption = 'IMPORTANT';
-                        //     Style = Strong;
-                        // }
-                        // label(ChangeLogWarningDescription)
-                        // {
-                        //     ApplicationArea = Basic, Suite;
-                        //     Caption = 'Tracking changes can impact performance, which can cost you time, and increase the size of your database, which might cost you money. To reduce those costs, consider the following:';
-                        // }
-                        // label(ChangeLogWarningDescPt1)
-                        // {
-                        //     ApplicationArea = Basic, Suite;
-                        //     Caption = '- Use caution when choosing the tables and operations.';
-                        // }
-                        // label(ChangeLogWarningDescPt2)
-                        // {
-                        //     ApplicationArea = Basic, Suite;
-                        //     Caption = '- Do not add ledger entries and posted documents. Instead, prioritize system fields such as Created By and Created Date.';
-                        // }
-                        // label(ChangeLogWarningDescPt3)
-                        // {
-                        //     ApplicationArea = Basic, Suite;
-                        //     Caption = '- Do not use the All Fields tracking type. Instead, choose Some Fields and track only the most important fields.';
-                        // }
-                    }
-                }
-            }
-        }
-        area(factboxes)
-        {
-            systempart(Control1900383207; Links)
-            {
-                ApplicationArea = RecordLinks;
-                Visible = false;
-            }
-            systempart(Control1905767507; Notes)
-            {
-                Caption = 'Notes';
-                ApplicationArea = Notes;
-                Visible = false;
-            }
-        }
-    }
+//                             trigger OnValidate()
+//                             begin
+//                                 ConfirmActivationOfChangeLog;
+//                                 ChangeLogSettingsUpdated := true;
+//                             end;
+//                         }
+//                         // label(ChangeLogWarning)
+//                         // {
+//                         //     ApplicationArea = Basic, Suite;
+//                         //     Caption = 'IMPORTANT';
+//                         //     Style = Strong;
+//                         // }
+//                         // label(ChangeLogWarningDescription)
+//                         // {
+//                         //     ApplicationArea = Basic, Suite;
+//                         //     Caption = 'Tracking changes can impact performance, which can cost you time, and increase the size of your database, which might cost you money. To reduce those costs, consider the following:';
+//                         // }
+//                         // label(ChangeLogWarningDescPt1)
+//                         // {
+//                         //     ApplicationArea = Basic, Suite;
+//                         //     Caption = '- Use caution when choosing the tables and operations.';
+//                         // }
+//                         // label(ChangeLogWarningDescPt2)
+//                         // {
+//                         //     ApplicationArea = Basic, Suite;
+//                         //     Caption = '- Do not add ledger entries and posted documents. Instead, prioritize system fields such as Created By and Created Date.';
+//                         // }
+//                         // label(ChangeLogWarningDescPt3)
+//                         // {
+//                         //     ApplicationArea = Basic, Suite;
+//                         //     Caption = '- Do not use the All Fields tracking type. Instead, choose Some Fields and track only the most important fields.';
+//                         // }
+//                     }
+//                 }
+//             }
+//         }
+//         area(factboxes)
+//         {
+//             systempart(Control1900383207; Links)
+//             {
+//                 ApplicationArea = RecordLinks;
+//                 Visible = false;
+//             }
+//             systempart(Control1905767507; Notes)
+//             {
+//                 Caption = 'Notes';
+//                 ApplicationArea = Notes;
+//                 Visible = false;
+//             }
+//         }
+//     }
 
-    actions
-    {
-        area(processing)
-        {
-            group("&Setup")
-            {
-                Caption = '&Tables Setup';
-                Image = Setup;
-                action(Tables)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Tables';
-                    Image = "Table";
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedOnly = true;
-                    ToolTip = 'View what must be logged for each table.';
+//     actions
+//     {
+//         area(processing)
+//         {
+//             group("&Setup")
+//             {
+//                 Caption = '&Tables Setup';
+//                 Image = Setup;
+//                 action(Tables)
+//                 {
+//                     ApplicationArea = Basic, Suite;
+//                     Caption = 'Tables';
+//                     Image = "Table";
+//                     Promoted = true;
+//                     PromotedCategory = Category4;
+//                     PromotedOnly = true;
+//                     ToolTip = 'View what must be logged for each table.';
 
-                    trigger OnAction()
-                    var
-                        ChangeLogSetupList: Page "Sincr. Log Setup (Table) List";
-                    begin
-                        ChangeLogSetupList.SetSource;
-                        ChangeLogSetupList.RunModal;
-                        ChangeLogSettingsUpdated := ChangeLogSetupList.IsChangeLogSettingsUpdated();
-                    end;
-                }
-                // action(RetentionPolicy)
-                // {
-                //     ApplicationArea = All;
-                //     Caption = 'Retention Policy';
-                //     Tooltip = 'View or Edit the retention policy.';
-                //     Image = Delete;
-                //     RunObject = Page "Retention Policy Setup Card";
-                //     RunPageLink = "Table Id" = Filter(405); // Database::"Change Log Entry";
-                //     AccessByPermission = tabledata "Retention Policy Setup" = R;
-                //     RunPageMode = View;
-                //     Ellipsis = true;
-                // }
-            }
-        }
-    }
+//                     trigger OnAction()
+//                     var
+//                         ChangeLogSetupList: Page "Sincr. Log Setup (Table) List";
+//                     begin
+//                         ChangeLogSetupList.SetSource;
+//                         ChangeLogSetupList.RunModal;
+//                         ChangeLogSettingsUpdated := ChangeLogSetupList.IsChangeLogSettingsUpdated();
+//                     end;
+//                 }
+//                 // action(RetentionPolicy)
+//                 // {
+//                 //     ApplicationArea = All;
+//                 //     Caption = 'Retention Policy';
+//                 //     Tooltip = 'View or Edit the retention policy.';
+//                 //     Image = Delete;
+//                 //     RunObject = Page "Retention Policy Setup Card";
+//                 //     RunPageLink = "Table Id" = Filter(405); // Database::"Change Log Entry";
+//                 //     AccessByPermission = tabledata "Retention Policy Setup" = R;
+//                 //     RunPageMode = View;
+//                 //     Ellipsis = true;
+//                 // }
+//             }
+//         }
+//     }
 
-    trigger OnOpenPage()
-    begin
-        Rec.Reset;
-        if not Rec.Get then begin
-            Rec.Init;
-            Rec.Insert;
-        end;
-    end;
+//     trigger OnOpenPage()
+//     begin
+//         Rec.Reset;
+//         if not Rec.Get then begin
+//             Rec.Init;
+//             Rec.Insert;
+//         end;
+//     end;
 
-    trigger OnClosePage()
-    begin
-        if ChangeLogSettingsUpdated then
-            if Confirm(RestartSessionQst) then
-                RestartSession();
-    end;
+//     trigger OnClosePage()
+//     begin
+//         if ChangeLogSettingsUpdated then
+//             if Confirm(RestartSessionQst) then
+//                 RestartSession();
+//     end;
 
-    var
-        ActivateChangeLogQst: Label 'Turning on the Change Log might slow things down, especially if you are monitoring entities that often change. Do you want to log changes?';
-        RestartSessionQst: Label 'Changes are displayed on the Change Log Entries page after the user''s session has restarted. Do you want to restart the session now?';
-        ChangeLogSettingsUpdated: Boolean;
+//     var
+//         ActivateChangeLogQst: Label 'Turning on the Change Log might slow things down, especially if you are monitoring entities that often change. Do you want to log changes?';
+//         RestartSessionQst: Label 'Changes are displayed on the Change Log Entries page after the user''s session has restarted. Do you want to restart the session now?';
+//         ChangeLogSettingsUpdated: Boolean;
 
-    local procedure ConfirmActivationOfChangeLog()
-    var
-        EnvironmentInfo: Codeunit "Environment Information";
-        ConfirmManagement: Codeunit "Confirm Management";
-    begin
-        if Rec."Empresa para maestros" = '' then
-            exit;
-        if not EnvironmentInfo.IsSaaS then
-            exit;
-        if not ConfirmManagement.GetResponseOrDefault(ActivateChangeLogQst, true) then
-            Error('');
-    end;
+//     local procedure ConfirmActivationOfChangeLog()
+//     var
+//         EnvironmentInfo: Codeunit "Environment Information";
+//         ConfirmManagement: Codeunit "Confirm Management";
+//     begin
+//         if not Rec."Master Company" then
+//             exit;
+//         if not EnvironmentInfo.IsSaaS then
+//             exit;
+//         if not ConfirmManagement.GetResponseOrDefault(ActivateChangeLogQst, true) then
+//             Error('');
+//     end;
 
-    local procedure RestartSession()
-    var
-        SessionSetting: SessionSettings;
-    begin
-        SessionSetting.Init();
-        SessionSetting.RequestSessionUpdate(false);
-    end;
+//     local procedure RestartSession()
+//     var
+//         SessionSetting: SessionSettings;
+//     begin
+//         SessionSetting.Init();
+//         SessionSetting.RequestSessionUpdate(false);
+//     end;
 
-}
+// }
 page 90393 "Sincr. Log Setup (Table) List"
 {
     Caption = 'Synchronize Tables List';
     DeleteAllowed = false;
     InsertAllowed = false;
+    //UsageCategory = Administration;
+    //ApplicationArea = All;
     LinksAllowed = true;
     PageType = List;
     SourceTable = AllObjWithCaption;
@@ -645,3 +647,182 @@ page 90394 "Sincr Log Setup (Field) List"
 
 
 }
+/// <summary>
+/// Page Sincroniza. Setup (ID 80092).
+/// </summary>
+page 90392 "Synchronize Setup"
+{
+    ApplicationArea = Basic, Suite;
+    Caption = 'Synchronize Setup';
+    DeleteAllowed = false;
+    InsertAllowed = false;
+    PageType = Card;
+    PromotedActionCategories = 'New,Process,Reports,Configuration';
+    SourceTable = "Company Information";
+    UsageCategory = Administration;
+
+    layout
+    {
+        area(content)
+        {
+            group(General)
+            {
+                Caption = 'General';
+                grid(GeneralGrid)
+                {
+                    group(GeneralColumn)
+                    {
+                        ShowCaption = false;
+                        field("Master Company"; Rec."Master Company")
+                        {
+                            ApplicationArea = Basic, Suite;
+                            ToolTip = 'Specifies that the change log is active.';
+                            Caption = 'Master Company';
+
+                            trigger OnValidate()
+                            begin
+                                ConfirmActivationOfChangeLog;
+                                ChangeLogSettingsUpdated := true;
+                            end;
+                        }
+                        field("Subsidiarie"; Rec."Subsidiarie")
+                        {
+                            ApplicationArea = All;
+                        }
+                        field("Master Company Name"; Rec."Master Company Name")
+                        {
+                            ApplicationArea = All;
+                        }
+                        // label(ChangeLogWarning)
+                        // {
+                        //     ApplicationArea = Basic, Suite;
+                        //     Caption = 'IMPORTANT';
+                        //     Style = Strong;
+                        // }
+                        // label(ChangeLogWarningDescription)
+                        // {
+                        //     ApplicationArea = Basic, Suite;
+                        //     Caption = 'Tracking changes can impact performance, which can cost you time, and increase the size of your database, which might cost you money. To reduce those costs, consider the following:';
+                        // }
+                        // label(ChangeLogWarningDescPt1)
+                        // {
+                        //     ApplicationArea = Basic, Suite;
+                        //     Caption = '- Use caution when choosing the tables and operations.';
+                        // }
+                        // label(ChangeLogWarningDescPt2)
+                        // {
+                        //     ApplicationArea = Basic, Suite;
+                        //     Caption = '- Do not add ledger entries and posted documents. Instead, prioritize system fields such as Created By and Created Date.';
+                        // }
+                        // label(ChangeLogWarningDescPt3)
+                        // {
+                        //     ApplicationArea = Basic, Suite;
+                        //     Caption = '- Do not use the All Fields tracking type. Instead, choose Some Fields and track only the most important fields.';
+                        // }
+                    }
+                }
+            }
+        }
+        area(factboxes)
+        {
+            systempart(Control1900383207; Links)
+            {
+                ApplicationArea = RecordLinks;
+                Visible = false;
+            }
+            systempart(Control1905767507; Notes)
+            {
+                Caption = 'Notes';
+                ApplicationArea = Notes;
+                Visible = false;
+            }
+        }
+    }
+
+    actions
+    {
+        area(processing)
+        {
+            group("&Setup")
+            {
+                Caption = '&Tables Setup';
+                Image = Setup;
+                action(Tables)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Tables';
+                    Image = "Table";
+                    Promoted = true;
+                    PromotedCategory = Category4;
+                    PromotedOnly = true;
+                    ToolTip = 'View what must be logged for each table.';
+
+                    trigger OnAction()
+                    var
+                        ChangeLogSetupList: Page "Sincr. Log Setup (Table) List";
+                    begin
+                        ChangeLogSetupList.SetSource;
+                        ChangeLogSetupList.RunModal;
+                        ChangeLogSettingsUpdated := ChangeLogSetupList.IsChangeLogSettingsUpdated();
+                    end;
+                }
+                // action(RetentionPolicy)
+                // {
+                //     ApplicationArea = All;
+                //     Caption = 'Retention Policy';
+                //     Tooltip = 'View or Edit the retention policy.';
+                //     Image = Delete;
+                //     RunObject = Page "Retention Policy Setup Card";
+                //     RunPageLink = "Table Id" = Filter(405); // Database::"Change Log Entry";
+                //     AccessByPermission = tabledata "Retention Policy Setup" = R;
+                //     RunPageMode = View;
+                //     Ellipsis = true;
+                // }
+            }
+        }
+    }
+
+    trigger OnOpenPage()
+    begin
+        Rec.Reset;
+        if not Rec.Get then begin
+            Rec.Init;
+            Rec.Insert;
+        end;
+    end;
+
+    trigger OnClosePage()
+    begin
+        if ChangeLogSettingsUpdated then
+            if Confirm(RestartSessionQst) then
+                RestartSession();
+    end;
+
+    var
+        ActivateChangeLogQst: Label 'Turning on the Change Log might slow things down, especially if you are monitoring entities that often change. Do you want to log changes?';
+        RestartSessionQst: Label 'Changes are displayed on the Change Log Entries page after the user''s session has restarted. Do you want to restart the session now?';
+        ChangeLogSettingsUpdated: Boolean;
+
+    local procedure ConfirmActivationOfChangeLog()
+    var
+        EnvironmentInfo: Codeunit "Environment Information";
+        ConfirmManagement: Codeunit "Confirm Management";
+    begin
+        if not Rec."Master Company" then
+            exit;
+        if not EnvironmentInfo.IsSaaS then
+            exit;
+        if not ConfirmManagement.GetResponseOrDefault(ActivateChangeLogQst, true) then
+            Error('');
+    end;
+
+    local procedure RestartSession()
+    var
+        SessionSetting: SessionSettings;
+    begin
+        SessionSetting.Init();
+        SessionSetting.RequestSessionUpdate(false);
+    end;
+
+}
+

@@ -4,6 +4,8 @@
 codeunit 90302 Synchronize
 {
     SingleInstance = true;
+    Permissions = tabledata "Company Information" = RIMD, tabledata Company = RIMD,
+    tabledata "Synchronize Setup (Table)" = RIMD, tabledata "Synchronize Setup (Field)" = RIMD;
 
     var
         Tablas: Record "Synchronize Setup (Table)";
@@ -33,6 +35,7 @@ codeunit 90302 Synchronize
     begin
         //Companies.SetRange("Table No.", TableId);
         //Companies.SetRange("Company Name", Empresa());
+///Aqui
         if enuso then exit;
         ErrorEmpresa := false;
         CambioenSubsidiaria := false;
@@ -56,6 +59,26 @@ codeunit 90302 Synchronize
             exit;
         end;
         //           until Companies.Next() = 0;
+//=======
+//Nuevo
+        rInf.Get();
+        if (not rInf."Subsidiarie") and (not rInf."Master Company") then exit;
+        ErrorEmpresa := false;
+        if rInf."Master Company" then rInf."Master Company Name" := CompanyName;
+        If Companies.Get(rInf."Master Company Name") then begin
+
+            if GetExecutionContext() = ExecutionContext::Normal then
+                Tablas.ChangeCompany(Companies.Name);
+            If Tablas.get(TableId) then begin
+                OnDatabaseDelete := true;
+                OnDatabaseInsert := true;
+                OnDatabaseModify := true;
+                OnDatabaseRename := true;
+                Campos.ChangeCompany(Companies.Name);
+                exit;
+            end;
+        end;
+//>>>>>>> 1d73a14ae962ee653cee67035444550596a2fa47
         OnDatabaseDelete := false;
         OnDatabaseInsert := false;
         OnDatabaseModify := false;
@@ -68,13 +91,15 @@ codeunit 90302 Synchronize
         Company: Record Company;
         RecRef2: RecordRef;
         rInf: Record "Company Information";
-        Companies: Record Company;
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
 
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if enuso Then exit;
             if CopiandoEmpresa then exit;
+///Aqui
             if CambioenSubsidiaria then begin
                 rInf.Get();
                 Tablas.ChangeCompany(rInf."Empresa para maestros");
@@ -121,11 +146,28 @@ codeunit 90302 Synchronize
                                 Commit();
                                 RecRef2.Close();
                             end;
+//=======
+            rInf.Get();
+            if rInf.Subsidiarie then
+                rInf.ChangeCompany(rInf."Master Company Name");
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+
+            foreach Subsidiarie in SubsidiarieList do begin
+                if Company.Get(Subsidiarie) then begin
+                    enuso := true;
+
+
+                    If Empresa <> Company.Name Then begin
+                        RecRef2.Open(RecRef.Number, false, Company.Name);
+                        if RecRef2.Get(RecRef.RecordId) Then begin
+                            RecRef2.Delete();
+//>>>>>>> 1d73a14ae962ee653cee67035444550596a2fa47
                         end;
                     end;
 
-                until Company.Next() = 0;
-                enuso := false;
+                    enuso := false;
+                end;
             end;
         end;
     end;
@@ -137,11 +179,17 @@ codeunit 90302 Synchronize
         RecRef2: RecordRef;
         RecRefTemp: RecordRef;
         rInf: Record "Company Information";
-
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
             rInf.Get();
+            if rInf.Subsidiarie then
+                rInf.ChangeCompany(rInf."Master Company Name");
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+
             if enuso Then exit;
             if CopiandoEmpresa then exit;
             if CambioenSubsidiaria then begin
@@ -183,6 +231,7 @@ codeunit 90302 Synchronize
                 end;
             end;
             //if rInf."Empresa para maestros" = false then Error('Subsidiarie');
+///Aqui<<<<<<< HEAD
             If Company.FindFirst() then begin
                 enuso := true;
                 repeat
@@ -205,6 +254,27 @@ codeunit 90302 Synchronize
                                     repeat
                                         RecRef2.Field(Campos."Field No.").Value := RecRefTemp.Field(Campos."Field No.").Value;
                                     //RecRef2.Field(Campos."Field No.").Validate();
+//=======
+            foreach Subsidiarie in SubsidiarieList do begin
+                if Company.Get(Subsidiarie) then begin
+                    enuso := true;
+
+                    If Empresa <> Company.Name Then begin
+                        RecRef2.Open(RecRef.Number, false, Company.Name);
+                        RecRefTemp.Open(RecRef.Number, true, Company.Name);
+                        if RecRef2.Get(RecRef.RecordId) Then begin
+                            RecRefTemp := RecRef2.Duplicate();
+                            RecRef2.Delete();
+                            RecRef2 := RecRef.Duplicate();
+                            RecRef2.ChangeCompany(Company.Name);
+                            RecRef2.Insert();
+                            Campos.SetRange("Table No.", RecRef.Number);
+                            Campos.SetRange(Exclude, true);
+                            if Campos.FindFirst() then begin
+                                repeat
+                                    RecRef2.Field(Campos."Field No.").Value := RecRefTemp.Field(Campos."Field No.").Value;
+                                //RecRef2.Field(Campos."Field No.").Validate();
+//Nuevo>>>>>>> 1d73a14ae962ee653cee67035444550596a2fa47
 
                                     until Campos.Next() = 0;
                                     RecRef2.Modify(false);
@@ -221,9 +291,11 @@ codeunit 90302 Synchronize
                                 RecRefTemp.Close();
                             end;
                         end;
+
                     end;
-                until Company.Next() = 0;
-                enuso := false;
+
+                    enuso := false;
+                end;
             end;
         end;
     end;
@@ -259,12 +331,14 @@ codeunit 90302 Synchronize
         Company: Record Company;
         RecRef2: RecordRef;
         rInf: Record "Company Information";
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
-            rInf.Get();
             if enuso Then exit;
             if CopiandoEmpresa then exit;
+///Aqui<<<<<<< HEAD
             if CambioenSubsidiaria then begin
                 rInf.Get();
                 Tablas.ChangeCompany(rInf."Empresa para maestros");
@@ -288,13 +362,27 @@ codeunit 90302 Synchronize
                             RecRef2.Open(RecRef.Number, false, Company.Name);
                             if RecRef2.Get(RecRef.RecordId) Then begin
                                 RecRef2.Delete(false);
+//=======
+            rInf.Get();
+            if rInf.Subsidiarie then
+                rInf.ChangeCompany(rInf."Master Company Name");
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                if Company.Get(Subsidiarie) then begin
+                    enuso := true;
+                    If Empresa <> Company.Name Then begin
+                        RecRef2.Open(RecRef.Number, false, Company.Name);
+                        if RecRef2.Get(RecRef.RecordId) Then begin
+                            RecRef2.Delete();
+//Nuevo>>>>>>> 1d73a14ae962ee653cee67035444550596a2fa47
 
                             end;
                             RecRef2.Close();
                         end;
                     end;
-                until Company.Next() = 0;
-                enuso := false;
+                    enuso := false;
+                end;
             end;
         end;
     end;
@@ -304,17 +392,7 @@ codeunit 90302 Synchronize
         CopiandoEmpresa := false;
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Global Triggers", 'OnDatabaseRename', '', false, false)]
-    local procedure OnDatabaseRename(RecRef: RecordRef; xRecRef: RecordRef)
-    var
 
-    begin
-        // We don't want to allow anyone to disable change log management in normal execution context
-        if GetExecutionContext() = ExecutionContext::Normal then begin
-            Error(Rename);
-        end;
-
-    end;
     /// <summary>
     /// Empresa.
     /// </summary>
