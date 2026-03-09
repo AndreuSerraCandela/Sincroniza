@@ -8,8 +8,8 @@ codeunit 90302 Synchronize
     tabledata "Synchronize Setup (Table)" = RIMD, tabledata "Synchronize Setup (Field)" = RIMD;
 
     var
-    // Tablas: Record "Synchronize Setup (Table)";
-    // Campos: Record "Synchronize Setup (Field)";
+        Tablas: Record "Synchronize Setup (Table)";
+        Campos: Record "Synchronize Setup (Field)";
 
     trigger OnRun()
     begin
@@ -37,6 +37,7 @@ codeunit 90302 Synchronize
         rInf.Get();
         if (not rInf."Subsidiarie") and (not rInf."Master Company") then exit;
         ErrorEmpresa := false;
+        if rInf."Master Company" then rInf."Master Company Name" := CompanyName;
         If Companies.Get(rInf."Master Company Name") then begin
 
             if GetExecutionContext() = ExecutionContext::Normal then
@@ -71,9 +72,11 @@ codeunit 90302 Synchronize
             if enuso Then exit;
             if CopiandoEmpresa then exit;
             rInf.Get();
-            //if rInf."Empresa para maestros" = false then Error('Subsidiarie');
-            rInf.ChangeCompany(rInf."Master Company Name");
+            if rInf.Subsidiarie then
+                rInf.ChangeCompany(rInf."Master Company Name");
+            rInf.Get();
             SubsidiarieList := rInf.GetSubsidiarieList();
+
             foreach Subsidiarie in SubsidiarieList do begin
                 if Company.Get(Subsidiarie) then begin
                     enuso := true;
@@ -109,7 +112,9 @@ codeunit 90302 Synchronize
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
             rInf.Get();
-            rInf.ChangeCompany(rInf."Master Company Name");
+            if rInf.Subsidiarie then
+                rInf.ChangeCompany(rInf."Master Company Name");
+            rInf.Get();
             SubsidiarieList := rInf.GetSubsidiarieList();
 
             if enuso Then exit;
@@ -167,10 +172,12 @@ codeunit 90302 Synchronize
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
-            rInf.Get();
             if enuso Then exit;
             if CopiandoEmpresa then exit;
-            rInf.ChangeCompany(rInf."Master Company Name");
+            rInf.Get();
+            if rInf.Subsidiarie then
+                rInf.ChangeCompany(rInf."Master Company Name");
+            rInf.Get();
             SubsidiarieList := rInf.GetSubsidiarieList();
             foreach Subsidiarie in SubsidiarieList do begin
                 if Company.Get(Subsidiarie) then begin

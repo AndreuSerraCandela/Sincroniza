@@ -28,21 +28,55 @@ tableextension 90324 CompanyInfo extends "Company Information"
                 SubsidiarieList: List of [Text];
                 rInf: Record "Company Information";
             begin
+
                 if xRec."Master Company Name" <> "Master Company Name" then begin
-                    rInf.ChangeCompany(xRec."Master Company Name");
-                    if Companies.Get(xRec."Master Company Name") then begin
-                        SubsidiarieList := rInf.GetSubsidiarieList();
-                        SubsidiarieList.Remove(CompanyName);
-                        rInf.SetSubsidiarieList(SubsidiarieList);
+                    If xRec."Master Company Name" <> '' then begin
+                        rInf.ChangeCompany(xRec."Master Company Name");
+                        if Companies.Get(xRec."Master Company Name") then begin
+                            SubsidiarieList := rInf.GetSubsidiarieList();
+                            SubsidiarieList.Remove(CompanyName);
+                            rInf.SetSubsidiarieList(SubsidiarieList);
+                            commit();
+                        end;
                     end;
                 end;
-                if Companies.Get("Master Company Name") then begin
-                    rInf.ChangeCompany("Master Company Name");
-                    SubsidiarieList := rInf.GetSubsidiarieList();
+                If "Master Company Name" = CompanyName Then begin
+                    SubsidiarieList := GetSubsidiarieList();
                     SubsidiarieList.Add(CompanyName);
-                    rInf.SetSubsidiarieList(SubsidiarieList);
-                end;
+                    SetSubsidiarieList(SubsidiarieList);
+                    commit();
+                end else
+                    if Companies.Get("Master Company Name") then begin
+                        rInf.ChangeCompany("Master Company Name");
+                        SubsidiarieList := rInf.GetSubsidiarieList();
+                        SubsidiarieList.Add(CompanyName);
+                        rInf.SetSubsidiarieList(SubsidiarieList);
+                        commit();
+                    end;
 
+            end;
+
+            trigger OnLookup()
+            var
+                Companies: Record Company;
+                CompanyList: Page Companies;
+                CompanyTemp: Record Company temporary;
+                Info: Record "Company Information";
+            begin
+                If Companies.FindFirst() then
+                    repeat
+                        Info.changecompany(Companies.Name);
+                        Info.Get();
+                        if Info."Master Company" then begin
+                            CompanyTemp := Companies;
+                            CompanyTemp.Insert();
+                        end;
+
+                    until Companies.Next() = 0;
+
+                If Page.RunModal(Page::Companies, CompanyTemp) = Action::LookupOK then begin
+                    Validate("Master Company Name", CompanyTemp.Name);
+                end;
             end;
         }
         //lista de empresas subordinadas
