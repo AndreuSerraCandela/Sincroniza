@@ -34,7 +34,7 @@ codeunit 90302 Synchronize
     begin
         //Companies.SetRange("Table No.", TableId);
         //Companies.SetRange("Company Name", Empresa());
-        rInf.Get();
+        if rInf.Get() then Exit;
         if (not rInf."Subsidiarie") and (not rInf."Master Company") then exit;
         ErrorEmpresa := false;
         If Companies.Get(rInf."Master Company Name") then begin
@@ -70,7 +70,7 @@ codeunit 90302 Synchronize
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if enuso Then exit;
             if CopiandoEmpresa then exit;
-            rInf.Get();
+            if rInf.Get() then Exit;
             //if rInf."Empresa para maestros" = false then Error('Subsidiarie');
             rInf.ChangeCompany(rInf."Master Company Name");
             SubsidiarieList := rInf.GetSubsidiarieList();
@@ -108,7 +108,7 @@ codeunit 90302 Synchronize
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
-            rInf.Get();
+            if rInf.Get() then Exit;
             rInf.ChangeCompany(rInf."Master Company Name");
             SubsidiarieList := rInf.GetSubsidiarieList();
 
@@ -167,7 +167,7 @@ codeunit 90302 Synchronize
     begin
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
-            rInf.Get();
+            if rInf.Get() then Exit;
             if enuso Then exit;
             if CopiandoEmpresa then exit;
             rInf.ChangeCompany(rInf."Master Company Name");

@@ -20,12 +20,13 @@
             "type": "al",
             "tenant": "2ced0470-8346-4f24-97da-ec029d56d980",
             "environmentType": "Sandbox",
-            "environmentName": "sandbox",
+            "environmentName": "Sandbox",
             "breakOnError": "All",
             "launchBrowser": true,
-            "schemaUpdateMode": "Synchronize",
+            "schemaUpdateMode": "ForceSync",
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true
-        }
+        },
+        
     ]
 }
