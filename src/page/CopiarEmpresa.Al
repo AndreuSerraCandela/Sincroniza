@@ -101,14 +101,40 @@ page 90395 "Copy Company"
                 var
                     Sincroniza: Codeunit Synchronize;
                     Comapnies: Record Company;
+                    AllObjWithCaption: Record AllObjWithCaption;
+                    TablaActual: Integer;
+                    TotalTablas: Integer;
+                    NombreTabla: Text[250];
                 begin
                     ChangeLogSetupTable.SetRange("Log Modification", true);
                     if not ChangeLogSetupTable.FindFirst() Then Error('No table selected');
-                    If ChangeLogSetupTable.FindFirst() Then
+
+                    // Contar total de tablas a copiar
+                    TotalTablas := ChangeLogSetupTable.Count;
+                    TablaActual := 0;
+
+                    If ChangeLogSetupTable.FindSet() Then
                         repeat
+                            TablaActual += 1;
+
+                            // Obtener nombre de la tabla
+                            AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
+                            AllObjWithCaption.SetRange("Object ID", ChangeLogSetupTable."Table No.");
+                            If AllObjWithCaption.FindFirst() Then
+                                NombreTabla := AllObjWithCaption."Object Caption"
+                            Else
+                                NombreTabla := Format(ChangeLogSetupTable."Table No.");
+
+                            // Mostrar progreso
+                            Message('Copiando tabla %1 de %2: %3 (ID: %4)',
+                                TablaActual, TotalTablas, NombreTabla, ChangeLogSetupTable."Table No.");
+
+                            // Copiar la tabla
                             Sincroniza.CopiaEmpresa(ChangeLogSetupTable."Table No.", "New Company");
                         until ChangeLogSetupTable.Next() = 0;
+
                     Sincroniza.TerminaCopiado();
+                    Message('Proceso completado. Se han copiado %1 tablas a la empresa %2.', TotalTablas, "New Company");
                 end;
             }
         }

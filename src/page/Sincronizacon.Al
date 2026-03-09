@@ -24,7 +24,7 @@ page 90392 "Synchronize Setup"
                     group(GeneralColumn)
                     {
                         ShowCaption = false;
-                        field("Master Company"; Rec."Master Company")
+                        field("Empresa para maestros"; Rec."Empresa para maestros")
                         {
                             ApplicationArea = Basic, Suite;
                             ToolTip = 'Specifies that the change log is active.';
@@ -151,7 +151,7 @@ page 90392 "Synchronize Setup"
         EnvironmentInfo: Codeunit "Environment Information";
         ConfirmManagement: Codeunit "Confirm Management";
     begin
-        if not Rec."Master Company" then
+        if Rec."Empresa para maestros" = '' then
             exit;
         if not EnvironmentInfo.IsSaaS then
             exit;

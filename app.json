@@ -1,32 +1,34 @@
 {
-  "id": "c16b67b7-858e-4436-95b4-d05fbe502341",
-  "name": "Sincroniza",
-  "publisher": "Andreu by MayBeCloud",
-  "version": "1.0.0.3",
-  "brief": "",
-  "description": "",
-  "privacyStatement": "",
-  "EULA": "",
-  "help": "",
-  "url": "",
-  "logo": "",
-  "dependencies": [],
-  "screenshots": [],
-  "platform": "1.0.0.0",
-  "application": "26.0.0.0",
-  "idRanges": [
-    {
-      "from": 90300,
-      "to": 91400
-    }
-  ],
-  "resourceExposurePolicy": {
-    "allowDebugging": true,
-    "allowDownloadingSource": false,
-    "includeSourceInSymbolFile": false
-  },
-  "features": [
-    "TranslationFile"
-  ],
-  "runtime": "14.0"
+    "id": "c16b67b7-858e-4436-95b4-d05fbe502341",
+    "name": "Sincroniza",
+    "publisher": "Andreu by Tip Data",
+    "version": "1.0.1.1",
+    "brief": "",
+    "description": "",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "logo": "",
+    "dependencies": [
+       
+    ],
+    "screenshots": [],
+    "platform": "26.0.0.0",
+    "application": "27.2.42879.45093",
+    "idRanges": [
+        {
+            "from": 90300,
+            "to": 91400
+        }
+    ],
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": false,
+        "includeSourceInSymbolFile": false
+    },
+    "features": [
+        "TranslationFile"
+    ],
+    "runtime": "16.0"
 }

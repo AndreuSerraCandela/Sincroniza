@@ -4,7 +4,6 @@
 table 90344 "Synchronize Setup (Field)"
 {
     Caption = 'Synchronize Setup (Field)';
-    DataPerCompany = false;
     fields
     {
         field(1; "Table No."; Integer)
@@ -36,6 +35,7 @@ table 90344 "Synchronize Setup (Field)"
         {
 
         }
+
     }
 
     keys
@@ -55,7 +55,6 @@ table 90344 "Synchronize Setup (Field)"
 table 90343 "Synchronize Setup (Table)"
 {
     Caption = 'Synchronize Setup (Table)';
-    ReplicateData = true;
 
     fields
     {
