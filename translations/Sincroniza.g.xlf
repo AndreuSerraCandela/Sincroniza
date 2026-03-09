@@ -203,75 +203,55 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Object ID - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1041655975 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
-          <source>New,Process,Reports,Configuration</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Property PromotedActionCategories</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Synchronize Setup</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - NamedType 2376807663" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Turning on the Change Log might slow things down, especially if you are monitoring entities that often change. Do you want to log changes?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - NamedType ActivateChangeLogQst</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - NamedType 1211427489" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Changes are displayed on the Change Log Entries page after the user's session has restarted. Do you want to restart the session now?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - NamedType RestartSessionQst</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>General</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control General - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Control 3260569077 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies that the change log is active.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Master Company - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Control 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Master Company</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Master Company - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Control 419003418 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Notes</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Control Control1905767507 - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Action 3237504299 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>&amp;Tables Setup</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action &amp;Setup - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Action 1061736343 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>View what must be logged for each table.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action Tables - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1041655975 - Action 1061736343 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Tables</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action Tables - Property Caption</note>
-        </trans-unit>
         <trans-unit id="PageExtension 3460046866 - Control 4166145734 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
           <source>Synchronize</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension CompanyInf - Control Synchronize - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3165268738 - Action 1560973654 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 339591043">
+          <source>Copy Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Empresas - Action Copy Company - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1301162578 - NamedType 1230735092" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 1301162578">
+          <source>Se han actualizado %1 producto(s).</source>
+          <note from="Developer" annotates="general" priority="2">%1 = número de productos</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt - NamedType OcurrenciasRellenadasMsg</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1301162578 - NamedType 1809430305" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 1301162578">
+          <source>Seleccione al menos un producto.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt - NamedType SeleccioneAlMenosUnProductoErr</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1301162578 - Action 984218296 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
+          <source>Calcula y rellena el número de ocurrencias (palabras) en la descripción de los productos seleccionados.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt - Action RellenarNoOcurrencias - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1301162578 - Action 984218296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
+          <source>Rellenar nº de ocurrencias</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt - Action RellenarNoOcurrencias - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1301162578 - Control 1876275095 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
+          <source>Número de ocurrencias (palabras) en la descripción.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt - Control No. Ocurrencias - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="TableExtension 3877399259 - Field 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Master Company</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Master Company - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3165268738 - Action 1560973654 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2669461019">
-          <source>Copy Company</source>
+        <trans-unit id="TableExtension 2950218440 - Field 1876275095 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Número de ocurrencias (palabras) en la descripción. Use la acción Rellenar nº de ocurrencias para calcularlo.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Empresas - Action Copy Company - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemExt - Field No. Ocurrencias - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2950218440 - Field 1876275095 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>No. de ocurrencias</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemExt - Field No. Ocurrencias - Property Caption</note>
         </trans-unit>
       </group>
     </body>
