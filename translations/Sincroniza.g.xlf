@@ -238,20 +238,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt - Control No. Ocurrencias - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3165268738 - Action 1560973654 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 339591043">
+          <source>Copy Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Empresas - Action Copy Company - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3165268738 - Action 1560973654 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 339591043">
+          <source>Copy Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Empresas - Action Copy Company - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 3877399259 - Field 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Master Company</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Master Company - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 2950218440 - Field 1876275095 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
-          <source>Número de ocurrencias (palabras) en la descripción. Use la acción Rellenar nº de ocurrencias para calcularlo.</source>
+        <trans-unit id="TableExtension 3877399259 - Field 1947991584 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Master Company Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemExt - Field No. Ocurrencias - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Master Company Name - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 2950218440 - Field 1876275095 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
-          <source>No. de ocurrencias</source>
+        <trans-unit id="TableExtension 3877399259 - Field 1645458416 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Subsidiarie</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension ItemExt - Field No. Ocurrencias - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Subsidiarie - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3877399259 - Field 1724642530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Subsidiarie List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Subsidiarie List - Property Caption</note>
         </trans-unit>
       </group>
     </body>
