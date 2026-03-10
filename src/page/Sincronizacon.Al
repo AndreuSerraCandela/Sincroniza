@@ -693,6 +693,10 @@ page 90392 "Synchronize Setup"
                         {
                             ApplicationArea = All;
                         }
+                        field("Sincornizacion Bidireccional"; Rec."Sincornizacion Bidireccional")
+                        {
+                            ApplicationArea = All;
+                        }
                         // label(ChangeLogWarning)
                         // {
                         //     ApplicationArea = Basic, Suite;

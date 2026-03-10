@@ -152,3 +152,32 @@ table 90343 "Synchronize Setup (Table)"
         ChangeLogSetupField.DeleteAll();
     end;
 }
+table 90345 "Synchronize Changes"
+{
+    Caption = 'Synchronize Changes';
+    DataPerCompany = false;
+    fields
+    {
+        field(1; "Company Origen"; Text[30])
+        {
+            Caption = 'Company Origen';
+        }
+        field(2; RecordIdDet; RecordId)
+        {
+            Caption = 'RecordId';
+        }
+        field(3; Operation; Option)
+        {
+            Caption = 'Operation';
+            OptionMembers = Insert,Modify,Delete;
+        }
+
+    }
+    keys
+    {
+        key(Key1; "Company Origen", RecordIdDet, Operation)
+        {
+            Clustered = true;
+        }
+    }
+}

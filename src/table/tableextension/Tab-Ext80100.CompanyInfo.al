@@ -11,14 +11,14 @@ tableextension 90324 CompanyInfo extends "Company Information"
 
             Caption = 'Master Company';
             DataClassification = ToBeClassified;
-            ObsoleteState = Removed;
-            ObsoleteReason = 'Use "Empresa para maestros" instead';
+
         }
         field(80101; "Empresa para maestros"; Text[30])
         {
             Caption = 'Empresa';
             DataClassification = ToBeClassified;
             TableRelation = Company;
+            ObsoleteState = Removed;
         }
         //Sincornizacion Bidireccional
         field(80102; "Sincornizacion Bidireccional"; Boolean)
@@ -26,12 +26,12 @@ tableextension 90324 CompanyInfo extends "Company Information"
             Caption = 'Sincornizacion Bidireccional';
             DataClassification = ToBeClassified;
         }
-        field(80101; "Subsidiarie"; Boolean)
+        field(80103; "Subsidiarie"; Boolean)
         {
             Caption = 'Subsidiarie';
             DataClassification = ToBeClassified;
         }
-        field(80102; "Master Company Name"; Text[30])
+        field(80104; "Master Company Name"; Text[30])
         {
             Caption = 'Master Company Name';
             DataClassification = ToBeClassified;
@@ -94,7 +94,7 @@ tableextension 90324 CompanyInfo extends "Company Information"
             end;
         }
         //lista de empresas subordinadas
-        field(80103; "Subsidiarie List"; Blob)
+        field(80105; "Subsidiarie List"; Blob)
         {
             Caption = 'Subsidiarie List';
             DataClassification = ToBeClassified;
@@ -121,11 +121,28 @@ tableextension 90324 CompanyInfo extends "Company Information"
         InStream: InStream;
         SubsidiarieText: Text;
         SubsidiarieList: List of [Text];
+        SubsidiarieList2: List of [Text];
+        Company: Record Company;
+        CommpanyTemp: Record Company temporary;
+        Empresa: Text;
     begin
         CalcFields("Subsidiarie List");
         "Subsidiarie List".CreateInStream(InStream, TEXTENCODING::UTF8);
         SubsidiarieText := (TypeHelper.TryReadAsTextWithSepAndFieldErrMsg(InStream, TypeHelper.LFSeparator(), FieldName("Subsidiarie List")));
         SubsidiarieList := SubsidiarieText.Split(TypeHelper.LFSeparator());
-        exit(SubsidiarieList);
+        foreach Empresa in SubsidiarieList do begin
+            If Company.Get(Empresa) then begin
+                If not CommpanyTemp.Get(Empresa) then begin
+                    CommpanyTemp := Company;
+                    CommpanyTemp.Insert()
+                end;
+            end;
+        end;
+        If CommpanyTemp.FindFirst() then begin
+            repeat
+                SubsidiarieList2.Add(CommpanyTemp.Name);
+            until CommpanyTemp.Next() = 0;
+        end;
+        exit(SubsidiarieList2);
     end;
 }
