@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual - Cómo Copiar una Empresa</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        
+        h1 {
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        h2 {
+            color: #004499;
+            margin-top: 30px;
+            border-left: 4px solid #0066cc;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #0066cc;
+            margin-top: 20px;
+        }
+        
+        .step {
+            background-color: #f5f5f5;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c7254e;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #0066cc;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .step {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Manual de Usuario: Cómo Copiar una Empresa</h1>
+    
+    <div class="info">
+        <strong>Versión:</strong> 1.0<br>
+        <strong>Fecha:</strong> 2024<br>
+        <strong>Aplicación:</strong> Business Central - Extensión Sincroniza
+    </div>
+    
+    <h2>1. Introducción</h2>
+    <p>
+        Este manual le guiará paso a paso en el proceso de copiar una empresa en Business Central 
+        utilizando la funcionalidad "Copy Company" (Copiar Empresa). Esta herramienta permite 
+        duplicar datos de tablas específicas desde la empresa actual hacia una empresa destino.
+    </p>
+    
+    <h2>2. Requisitos Previos</h2>
+    <ul>
+        <li>Acceso a Business Central con permisos suficientes para gestionar empresas</li>
+        <li>La empresa destino debe existir previamente en el sistema</li>
+        <li>Conocimiento básico de la navegación en Business Central</li>
+    </ul>
+    
+    <h2>3. Proceso Paso a Paso</h2>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Acceder a la página de Empresas</strong>
+        <p>
+            Navegue hasta la página de gestión de empresas en Business Central. 
+            Esta página muestra todas las empresas disponibles en el sistema.
+        </p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Localizar la acción "Copy Company"</strong>
+        <p>
+            En la página de empresas, busque la acción <strong>"Copy Company"</strong> en el menú de acciones. 
+            Esta acción aparece antes de la opción "Create New Company" y tiene un icono de copia.
+        </p>
+        <p>
+            <em>Nota:</em> Si no ve esta opción, verifique que la extensión esté correctamente instalada 
+            y que tenga los permisos necesarios.
+        </p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Abrir la página "Copy Company"</strong>
+        <p>
+            Haga clic en la acción <strong>"Copy Company"</strong>. Se abrirá una nueva página modal 
+            llamada "Copy Company" que le permitirá configurar la copia de datos.
+        </p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">4</span>
+        <strong>Seleccionar la Empresa Destino</strong>
+        <p>
+            En la parte superior de la página, encontrará el campo <strong>"New Company"</strong> 
+            (Nueva Empresa). Este campo es obligatorio y debe contener el nombre de la empresa 
+            destino a la cual se copiarán los datos.
+        </p>
+        <p>Puede ingresar el nombre de la empresa de dos formas:</p>
+        <ul>
+            <li><strong>Escribir directamente:</strong> Escriba el nombre exacto de la empresa destino</li>
+            <li><strong>Usar el lookup:</strong> Haga clic en el botón de búsqueda (🔍) para abrir 
+                una lista de empresas disponibles y seleccionar una</li>
+        </ul>
+        <div class="warning">
+            <strong>⚠️ Importante:</strong> La empresa destino debe existir previamente en el sistema. 
+            Si ingresa un nombre de empresa que no existe, recibirá un error: 
+            <em>"The company does not exist"</em>.
+        </div>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">5</span>
+        <strong>Seleccionar las Tablas a Copiar</strong>
+        <p>
+            En la parte inferior de la página, encontrará una lista de todas las tablas disponibles 
+            en el sistema. Esta lista muestra:
+        </p>
+        <table>
+            <tr>
+                <th>Campo</th>
+                <th>Descripción</th>
+            </tr>
+            <tr>
+                <td><strong>Object ID</strong></td>
+                <td>El identificador numérico único de la tabla (no editable)</td>
+            </tr>
+            <tr>
+                <td><strong>Object Caption</strong></td>
+                <td>El nombre descriptivo de la tabla (no editable)</td>
+            </tr>
+            <tr>
+                <td><strong>Excluded Fields</strong></td>
+                <td>Checkbox que indica si la tabla será incluida en la copia. 
+                    <strong>Marque este campo</strong> para incluir la tabla en el proceso de copia</td>
+            </tr>
+        </table>
+        <p>
+            Para cada tabla que desee copiar:
+        </p>
+        <ol>
+            <li>Localice la tabla en la lista (puede usar el filtro o desplazarse)</li>
+            <li>Marque el checkbox en la columna <strong>"Excluded Fields"</strong> para las tablas 
+                que desea incluir en la copia</li>
+            <li>Si necesita excluir campos específicos de una tabla, haga clic en el botón 
+                de asistencia (🔧) junto al checkbox para configurar campos individuales</li>
+        </ol>
+        <div class="note">
+            <strong>💡 Nota:</strong> El nombre del campo "Excluded Fields" puede ser confuso. 
+            En realidad, cuando marca este campo, está <strong>incluyendo</strong> la tabla en la copia, 
+            no excluyéndola. Es un checkbox que indica si la tabla participará en el proceso.
+        </div>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">6</span>
+        <strong>Ejecutar la Copia</strong>
+        <p>
+            Una vez que haya:
+        </p>
+        <ul>
+            <li>✅ Seleccionado la empresa destino en el campo "New Company"</li>
+            <li>✅ Marcado al menos una tabla para copiar</li>
+        </ul>
+        <p>
+            Haga clic en el botón <strong>"Copy Company"</strong> en el área de procesamiento 
+            (parte superior de la página, con icono de copia).
+        </p>
+        <div class="warning">
+            <strong>⚠️ Advertencia:</strong> Si intenta ejecutar la copia sin haber seleccionado 
+            ninguna tabla, recibirá el error: <em>"No table selected"</em>.
+        </div>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">7</span>
+        <strong>Proceso de Copia</strong>
+        <p>
+            El sistema comenzará a copiar los datos de las tablas seleccionadas desde la empresa 
+            actual hacia la empresa destino. Este proceso puede tomar varios minutos dependiendo 
+            de la cantidad de datos y tablas seleccionadas.
+        </p>
+        <p>
+            El sistema procesará cada tabla marcada de forma secuencial y al finalizar ejecutará 
+            el proceso de finalización de la copia.
+        </p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">8</span>
+        <strong>Verificación</strong>
+        <p>
+            Una vez completado el proceso, verifique que los datos se hayan copiado correctamente 
+            accediendo a la empresa destino y revisando las tablas correspondientes.
+        </p>
+    </div>
+    
+    <h2>4. Descripción de Campos</h2>
+    
+    <h3>4.1 Campo "New Company"</h3>
+    <ul>
+        <li><strong>Tipo:</strong> Texto (máximo 30 caracteres)</li>
+        <li><strong>Obligatorio:</strong> Sí</li>
+        <li><strong>Descripción:</strong> Nombre de la empresa destino donde se copiarán los datos</li>
+        <li><strong>Validación:</strong> El sistema verifica que la empresa exista antes de permitir continuar</li>
+    </ul>
+    
+    <h3>4.2 Lista de Tablas</h3>
+    <ul>
+        <li><strong>Object ID:</strong> Identificador numérico de la tabla (solo lectura)</li>
+        <li><strong>Object Caption:</strong> Nombre descriptivo de la tabla (solo lectura)</li>
+        <li><strong>Excluded Fields:</strong> Checkbox para incluir/excluir la tabla del proceso de copia</li>
+    </ul>
+    
+    <h2>5. Configuración Avanzada de Campos</h2>
+    <p>
+        Si necesita excluir campos específicos dentro de una tabla (en lugar de copiar toda la tabla), 
+        puede hacer clic en el botón de asistencia (🔧) junto al campo "Excluded Fields" de la tabla 
+        correspondiente. Esto abrirá una página donde podrá seleccionar campos individuales a excluir.
+    </p>
+    
+    <h2>6. Solución de Problemas</h2>
+    
+    <h3>Error: "The company does not exist"</h3>
+    <p><strong>Causa:</strong> El nombre de empresa ingresado no existe en el sistema.</p>
+    <p><strong>Solución:</strong> Verifique que el nombre de la empresa sea correcto y que la empresa 
+    haya sido creada previamente. Use el lookup para seleccionar de la lista de empresas disponibles.</p>
+    
+    <h3>Error: "No table selected"</h3>
+    <p><strong>Causa:</strong> Intentó ejecutar la copia sin haber marcado ninguna tabla.</p>
+    <p><strong>Solución:</strong> Marque al menos una tabla en la lista antes de ejecutar la copia.</p>
+    
+    <h3>La acción "Copy Company" no aparece</h3>
+    <p><strong>Causa:</strong> La extensión no está instalada o no tiene permisos suficientes.</p>
+    <p><strong>Solución:</strong> Verifique que la extensión esté correctamente instalada y que su 
+    perfil de usuario tenga los permisos necesarios para acceder a esta funcionalidad.</p>
+    
+    <h2>7. Mejores Prácticas</h2>
+    <ul>
+        <li>Realice una copia de seguridad antes de ejecutar el proceso de copia</li>
+        <li>Verifique que la empresa destino esté en un estado adecuado para recibir los datos</li>
+        <li>Seleccione solo las tablas necesarias para evitar copiar datos innecesarios</li>
+        <li>Ejecute el proceso durante períodos de baja actividad del sistema</li>
+        <li>Verifique los datos copiados después de completar el proceso</li>
+        <li>Documente qué tablas fueron copiadas para referencia futura</li>
+    </ul>
+    
+    <h2>8. Consideraciones Importantes</h2>
+    <div class="warning">
+        <ul>
+            <li>El proceso de copia puede tomar tiempo dependiendo del volumen de datos</li>
+            <li>Los datos copiados sobrescribirán cualquier dato existente en las tablas de la empresa destino</li>
+            <li>Algunas tablas pueden tener dependencias que requieren ser copiadas en un orden específico</li>
+            <li>Revise cuidadosamente qué tablas selecciona para evitar copiar datos sensibles o innecesarios</li>
+        </ul>
+    </div>
+    
+    <h2>9. Resumen del Flujo</h2>
+    <ol>
+        <li>Acceder a la página de Empresas</li>
+        <li>Hacer clic en "Copy Company"</li>
+        <li>Seleccionar la empresa destino en "New Company"</li>
+        <li>Marcar las tablas a copiar en la lista</li>
+        <li>Hacer clic en el botón "Copy Company" para ejecutar</li>
+        <li>Esperar a que se complete el proceso</li>
+        <li>Verificar los datos copiados en la empresa destino</li>
+    </ol>
+    
+    <div class="footer">
+        <p><strong>Manual de Usuario - Copy Company</strong></p>
+        <p>Extensión Sincroniza - Business Central</p>
+        <p>Para soporte adicional, contacte al administrador del sistema</p>
+    </div>
+</body>
+</html>
+

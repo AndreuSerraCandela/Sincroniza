@@ -4,7 +4,6 @@
 table 90344 "Synchronize Setup (Field)"
 {
     Caption = 'Synchronize Setup (Field)';
-    DataPerCompany = false;
     fields
     {
         field(1; "Table No."; Integer)
@@ -36,6 +35,7 @@ table 90344 "Synchronize Setup (Field)"
         {
 
         }
+
     }
 
     keys
@@ -55,7 +55,6 @@ table 90344 "Synchronize Setup (Field)"
 table 90343 "Synchronize Setup (Table)"
 {
     Caption = 'Synchronize Setup (Table)';
-    ReplicateData = true;
 
     fields
     {
@@ -152,4 +151,33 @@ table 90343 "Synchronize Setup (Table)"
         ChangeLogSetupField.SetRange("Table No.", "Table No.");
         ChangeLogSetupField.DeleteAll();
     end;
+}
+table 90345 "Synchronize Changes"
+{
+    Caption = 'Synchronize Changes';
+    DataPerCompany = false;
+    fields
+    {
+        field(1; "Company Origen"; Text[30])
+        {
+            Caption = 'Company Origen';
+        }
+        field(2; RecordIdDet; RecordId)
+        {
+            Caption = 'RecordId';
+        }
+        field(3; Operation; Option)
+        {
+            Caption = 'Operation';
+            OptionMembers = Insert,Modify,Delete;
+        }
+
+    }
+    keys
+    {
+        key(Key1; "Company Origen", RecordIdDet, Operation)
+        {
+            Clustered = true;
+        }
+    }
 }
