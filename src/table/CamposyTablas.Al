@@ -171,6 +171,12 @@ table 90345 "Synchronize Changes"
             Caption = 'Operation';
             OptionMembers = Insert,Modify,Delete;
         }
+        field(4; FechaHoraCambio; DateTime)
+        {
+            Caption = 'FechaHoraCambio';
+        }
+
+
 
     }
     keys
@@ -178,6 +184,9 @@ table 90345 "Synchronize Changes"
         key(Key1; "Company Origen", RecordIdDet, Operation)
         {
             Clustered = true;
+        }
+        key(Key2; FechaHoraCambio)
+        {
         }
     }
 }

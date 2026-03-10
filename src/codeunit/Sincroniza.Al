@@ -16,30 +16,25 @@ codeunit 90302 Synchronize
         ErrorEmpresa: Boolean;
         ErrorSubsidiarie: Label 'This is not master company';
         Rename: Label 'Rename is not allowed';
+        EmpresaOrigen: Text[30];
 
     trigger OnRun()
     var
         SynchronizeChanges: Record "Synchronize Changes";
     begin
-        SynchronizeChanges.SetRange(Operation, SynchronizeChanges.Operation::Insert);
-        if SynchronizeChanges.FindFirst() then begin
+        SynchronizeChanges.SetCurrentKey(FechaHoraCambio);
+        if SynchronizeChanges.FindSet() then
             repeat
-                InsertSynchronizeChanges(SynchronizeChanges);
+                case SynchronizeChanges.Operation of
+                    SynchronizeChanges.Operation::Insert:
+                        InsertSynchronizeChanges(SynchronizeChanges);
+                    SynchronizeChanges.Operation::Modify:
+                        ModifySynchronizeChanges(SynchronizeChanges);
+                    SynchronizeChanges.Operation::Delete:
+                        DeleteSynchronizeChanges(SynchronizeChanges);
+                end;
             until SynchronizeChanges.Next() = 0;
-        end;
-        SynchronizeChanges.SetRange(Operation, SynchronizeChanges.Operation::Modify);
-        if SynchronizeChanges.FindFirst() then begin
-            repeat
-                ModifySynchronizeChanges(SynchronizeChanges);
-            until SynchronizeChanges.Next() = 0;
-        end;
-
-        SynchronizeChanges.SetRange(Operation, SynchronizeChanges.Operation::Delete);
-        if SynchronizeChanges.FindFirst() then begin
-            repeat
-                DeleteSynchronizeChanges(SynchronizeChanges);
-            until SynchronizeChanges.Next() = 0;
-        end;
+        SynchronizeChanges.DeleteAll();
     end;
 
 
@@ -118,11 +113,12 @@ codeunit 90302 Synchronize
                 SynchronizeChanges."Company Origen" := CompanyName;
                 SynchronizeChanges.RecordIdDet := RecRef.RecordId;
                 SynchronizeChanges.Operation := SynchronizeChanges.Operation::Insert;
-                SynchronizeChanges.Insert();
-                Commit();
-
-                enuso := false;
+                SynchronizeChanges.FechaHoraCambio := CurrentDateTime();
+                if rInf."Cambio en Cola" then SynchronizeChanges.Insert();
             end;
+            if not rInf."Cambio en Cola" then
+                InsertSynchronizeChanges(RecRef);
+            enuso := false;
 
         end;
     end;
@@ -151,23 +147,62 @@ codeunit 90302 Synchronize
             if enuso Then exit;
             if CopiandoEmpresa then exit;
 
-            If Not SynchronizeChanges.Get(CompanyName, RecRef.RecordId, SynchronizeChanges.Operation::Insert) then begin
+            If Not SynchronizeChanges.Get(CompanyName, RecRef.RecordId, SynchronizeChanges.Operation::Modify) then begin
                 enuso := true;
                 SynchronizeChanges.Init();
                 SynchronizeChanges."Company Origen" := CompanyName;
                 SynchronizeChanges.RecordIdDet := RecRef.RecordId;
-                SynchronizeChanges.Operation := SynchronizeChanges.Operation::Insert;
-                SynchronizeChanges.Insert();
-                Commit();
-
-                enuso := false;
-
-
-
-
+                SynchronizeChanges.Operation := SynchronizeChanges.Operation::Modify;
+                SynchronizeChanges.FechaHoraCambio := CurrentDateTime();
+                if rInf."Cambio en Cola" then SynchronizeChanges.Insert();
             end;
+            if not rInf."Cambio en Cola" then
+                ModifySynchronizeChanges(RecRef);
+            enuso := false;
+
+
+
+
+
+
+
+        end;
+
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::GlobalTriggerManagement, OnAfterOnDatabaseDelete, '', false, false)]
+    local procedure OnDatabaseDelete(RecRef: RecordRef)
+    var
+        Company: Record Company;
+        rInf: Record "Company Information";
+        SynchronizeChanges: Record "Synchronize Changes";
+        Sincroniza: Codeunit "Synchronize";
+    begin
+        // We don't want to allow anyone to disable change log management in normal execution context
+        if GetExecutionContext() = ExecutionContext::Normal then begin
+            rInf.Get();
+            if rInf.Subsidiarie then
+                rInf.ChangeCompany(rInf."Master Company Name");
+            if Not rInf.Subsidiarie then
+                if not rInf."Master Company" then exit;
+            if enuso Then exit;
+            if CopiandoEmpresa then exit;
+            If Not SynchronizeChanges.Get(CompanyName, RecRef.RecordId, SynchronizeChanges.Operation::Delete) then begin
+                enuso := true;
+                SynchronizeChanges.Init();
+                SynchronizeChanges."Company Origen" := CompanyName;
+                SynchronizeChanges.RecordIdDet := RecRef.RecordId;
+                SynchronizeChanges.Operation := SynchronizeChanges.Operation::Delete;
+                SynchronizeChanges.FechaHoraCambio := CurrentDateTime();
+                if rInf."Cambio en Cola" then SynchronizeChanges.Insert();
+            end;
+            if not rInf."Cambio en Cola" then
+                DeleteSynchronizeChanges(RecRef);
+            enuso := false;
+
         end;
     end;
+
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Graph Mgt - General Tools", 'OnGetIsAPIEnabled', '', false, false)]
     local procedure OnGetIsAPIEnabled(var Handled: Boolean; var IsAPIEnabled: Boolean)
@@ -176,6 +211,84 @@ codeunit 90302 Synchronize
             Handled := true;
             IsAPIEnabled := false;
         end;
+    end;
+
+    procedure PasarRegistroaOtraEmpresa(RecRefOrigen: RecordRef; NewCompany: Text)
+    var
+        RecRefDestino: RecordRef;
+        i: Integer;
+        FldOrig: FieldRef;
+        FldDest: FieldRef;
+        TempBlob: Codeunit "Temp Blob";
+        IsNewRecord: Boolean;
+    begin
+        RecRefDestino.Open(RecRefOrigen.Number, false, NewCompany);
+        IsNewRecord := RecRefDestino.Get(RecRefOrigen.RecordId);
+
+        // ... Open, Get origen, Init destino ...
+        for i := 1 to RecRefOrigen.FieldCount do begin
+
+            FldOrig := RecRefOrigen.FieldIndex(i);
+            if FldOrig.Class() in [FieldClass::FlowField, FieldClass::FlowFilter] then
+                continue;
+            if Not FldOrig.Active then
+                continue;
+            FldDest := RecRefDestino.Field(FldOrig.Number);
+            if FldOrig.Type() = FieldType::Blob then begin
+                // Blob: usar Temp Blob en lugar de Value := Value
+                TempBlob.FromFieldRef(FldOrig);
+                TempBlob.ToFieldRef(FldDest);
+            end else
+                FldDest.Value := FldOrig.Value;
+        end;
+        if IsNewRecord then
+            RecRefDestino.Modify(false)
+        else
+            RecRefDestino.Insert(false);
+    end;
+
+    procedure InsertarRegistroEnMaster(RecRef: RecordRef; MasterCompany: Text)
+    var
+        rInf: Record "Company Information";
+        RecRef2: RecordRef;
+        RecRefTemp: RecordRef;
+        Company: Record Company;
+    begin
+        rInf.ChangeCompany(MasterCompany);
+        rInf.Get();
+        Tablas.ChangeCompany(MasterCompany);
+        if Tablas.get(RecRef.Number) then begin
+            RecRef2.Open(RecRef.Number, false, MasterCompany);
+            if RecRef2.Get(RecRef.RecordId) Then begin
+                RecRefTemp.Open(RecRef.Number, true, MasterCompany);
+                RecRefTemp := RecRef2.Duplicate();
+                RecRef2.Delete(false);
+                RecRef2 := RecRef.Duplicate();
+                RecRef2.ChangeCompany(MasterCompany);
+                RecRef2.Insert(false);
+                Campos.SetRange("Table No.", RecRef.Number);
+                Campos.SetRange(Exclude, true);
+                if Campos.FindFirst() then begin
+                    repeat
+                        RecRef2.Field(Campos."Field No.").Value := RecRefTemp.Field(Campos."Field No.").Value;
+                    //RecRef2.Field(Campos."Field No.").Validate();
+
+                    until Campos.Next() = 0;
+                    RecRef2.Modify(false);
+                    // Commit();
+                end;
+                RecRef2.Get(RecRef.RecordId);
+                RecRef2.Close();
+                RecRefTemp.Close();
+            end else begin
+                RecRef2 := RecRef.Duplicate();
+                RecRef2.ChangeCompany(MasterCompany);
+                RecRef2.Insert(false);
+                // Commit();
+                RecRef2.Close();
+            end;
+        end;
+
     end;
 
     procedure ModifySynchronizeChanges(VAR SynchronizeChanges: Record "Synchronize Changes")
@@ -208,40 +321,7 @@ codeunit 90302 Synchronize
             if CambioenSubsidiaria then begin
                 rInf.ChangeCompany(SynchronizeChanges."Company Origen");
                 rInf.Get();
-                Tablas.ChangeCompany(rInf."Master Company Name");
-                if Tablas.get(RecRef.Number) then begin
-                    RecRef2.Open(RecRef.Number, false, rInf."Master Company Name");
-                    if RecRef2.Get(RecRef.RecordId) Then begin
-                        RecRefTemp.Open(RecRef.Number, true, rInf."Master Company Name");
-                        RecRefTemp := RecRef2.Duplicate();
-                        RecRef2.Delete(false);
-                        RecRef2 := RecRef.Duplicate();
-                        RecRef2.ChangeCompany(rInf."Master Company Name");
-                        // If RecRef2.Delete(false) then;
-                        RecRef2.Insert(false);
-                        Campos.SetRange("Table No.", RecRef.Number);
-                        Campos.SetRange(Exclude, true);
-                        if Campos.FindFirst() then begin
-                            repeat
-                                RecRef2.Field(Campos."Field No.").Value := RecRefTemp.Field(Campos."Field No.").Value;
-                            //RecRef2.Field(Campos."Field No.").Validate();
-
-                            until Campos.Next() = 0;
-                            RecRef2.Modify(false);
-                            // Commit();
-                        end;
-                        RecRef2.Get(RecRef.RecordId);
-                        RecRef2.Close();
-                        RecRefTemp.Close();
-                    end else begin
-                        RecRef2 := RecRef.Duplicate();
-                        RecRef2.ChangeCompany(rInf."Master Company Name");
-                        RecRef2.Insert(false);
-                        // Commit();
-                        RecRef2.Close();
-                    end;
-
-                end;
+                InsertarRegistroEnMaster(RecRef, rInf."Master Company Name");
             end;
             rInf.Get();
             if rInf.Subsidiarie then begin
@@ -297,8 +377,6 @@ codeunit 90302 Synchronize
 
     end;
 
-
-
     procedure InsertSynchronizeChanges(VAR SynchronizeChanges: Record "Synchronize Changes")
     var
         rInf: Record "Company Information";
@@ -326,25 +404,9 @@ codeunit 90302 Synchronize
             SubsidiarieList := rInf.GetSubsidiarieList();
             ///Aqui
             if CambioenSubsidiaria then begin
+                rInf.ChangeCompany(SynchronizeChanges."Company Origen");
                 rInf.Get();
-                Tablas.ChangeCompany(rInf."Master Company Name");
-                if Tablas.get(RecRef.Number) then begin
-                    RecRef2.Open(RecRef.Number, false, rInf."Master Company Name");
-                    if RecRef2.Get(RecRef.RecordId) Then begin
-                        RecRef2 := RecRef.Duplicate();
-                        RecRef2.ChangeCompany(rInf."Master Company Name");
-                        RecRef2.Modify(false);
-                        Commit();
-                        RecRef2.Close();
-                    end else begin
-                        RecRef2 := RecRef.Duplicate();
-                        RecRef2.ChangeCompany(rInf."Master Company Name");
-                        RecRef2.Insert(false);
-                        Commit();
-                        RecRef2.Close();
-                    end;
-
-                end;
+                InsertarRegistroEnMaster(RecRef, rInf."Master Company Name");
             end;
             //if rInf."Master Company Name" = false then Error('Subsidiarie');
             rinf.ChangeCompany(SynchronizeChanges."Company Origen");
@@ -384,7 +446,6 @@ codeunit 90302 Synchronize
 
                 end;
             end;
-            SynchronizeChanges.Delete(false);
             enuso := false;
 
         end;
@@ -455,7 +516,6 @@ codeunit 90302 Synchronize
                     end;
                 end;
             end;
-            SynchronizeChanges.Delete(false);
             enuso := false;
         end;
 
@@ -484,38 +544,6 @@ codeunit 90302 Synchronize
     local procedure OnBeforeIsContactUpdateNeeded(Customer: Record Customer; xCustomer: Record Customer; var UpdateNeeded: Boolean; ForceUpdateContact: Boolean)
     begin
         UpdateNeeded := false;
-    end;
-
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Global Triggers", 'OnDatabaseDelete', '', false, false)]
-    local procedure OnDatabaseDelete(RecRef: RecordRef)
-    var
-        Company: Record Company;
-        rInf: Record "Company Information";
-        SynchronizeChanges: Record "Synchronize Changes";
-        Sincroniza: Codeunit "Synchronize";
-    begin
-        // We don't want to allow anyone to disable change log management in normal execution context
-        if GetExecutionContext() = ExecutionContext::Normal then begin
-            rInf.Get();
-            if rInf.Subsidiarie then
-                rInf.ChangeCompany(rInf."Master Company Name");
-            if Not rInf.Subsidiarie then
-                if not rInf."Master Company" then exit;
-            if enuso Then exit;
-            if CopiandoEmpresa then exit;
-            If Not SynchronizeChanges.Get(CompanyName, RecRef.RecordId, SynchronizeChanges.Operation::Delete) then begin
-                enuso := true;
-                SynchronizeChanges.Init();
-                SynchronizeChanges."Company Origen" := CompanyName;
-                SynchronizeChanges.RecordIdDet := RecRef.RecordId;
-                SynchronizeChanges.Operation := SynchronizeChanges.Operation::Delete;
-                SynchronizeChanges.Insert();
-                Commit();
-
-                enuso := false;
-            end;
-
-        end;
     end;
 
     local procedure CompararEmpresa(Empresa: Text; Maestra: Text; Company: Text): Boolean
@@ -727,6 +755,182 @@ codeunit 90302 Synchronize
 
         Message('Se han copiado %1 ofertas de venta desde la empresa %2.', ContadorOfertas, EmpresaOrigen);
     end;
+
+    procedure ModifySynchronizeChanges(RecRef: RecordRef)
+    var
+        rInf: Record "Company Information";
+
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
+        Maestra: Text;
+        RecRef2: RecordRef;
+        RecRefTemp: RecordRef;
+        Company: Record Company;
+    begin
+        if GetExecutionContext() = ExecutionContext::Normal then begin
+            enuso := true;
+            rInf.ChangeCompany(CompanyName);
+            rInf.Get();
+            if rInf.Subsidiarie then begin
+                rInf.ChangeCompany(rInf."Master Company Name");
+                CambioenSubsidiaria := true;
+            end else
+                CambioenSubsidiaria := false;
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+
+
+
+            if CambioenSubsidiaria then begin
+                rInf.ChangeCompany(CompanyName);
+                rInf.Get();
+                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name");
+            end;
+            rInf.Get();
+            if rInf.Subsidiarie then begin
+                rInf.ChangeCompany(rInf."Master Company Name");
+                Maestra := rInf."Master Company Name";
+            end else
+                Maestra := CompanyName;
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                Company.Get(Subsidiarie);
+                rInf.ChangeCompany(Company.Name);
+                rInf.Get();
+                Tablas.ChangeCompany(Maestra);
+                if Tablas.get(RecRef.Number) then begin
+                    If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
+                        PasarRegistroaOtraEmpresa(RecRef, Company.Name);
+                    end;
+                end;
+            end;
+            enuso := false;
+
+        end;
+
+    end;
+
+    procedure InsertSynchronizeChanges(RecRef: RecordRef)
+    var
+        rInf: Record "Company Information";
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
+        Maestra: Text;
+        Company: Record Company;
+    begin
+        if GetExecutionContext() = ExecutionContext::Normal then begin
+            enuso := true;
+            rInf.ChangeCompany(CompanyName);
+            rInf.Get();
+            if rInf.Subsidiarie then begin
+                rInf.ChangeCompany(rInf."Master Company Name");
+                CambioenSubsidiaria := true;
+            end else
+                CambioenSubsidiaria := false;
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+
+
+
+            if CambioenSubsidiaria then begin
+                rInf.ChangeCompany(CompanyName);
+                rInf.Get();
+                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name");
+            end;
+            rInf.Get();
+            if rInf.Subsidiarie then begin
+                rInf.ChangeCompany(rInf."Master Company Name");
+                Maestra := rInf."Master Company Name";
+            end else
+                Maestra := CompanyName;
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                Company.Get(Subsidiarie);
+                rInf.ChangeCompany(Company.Name);
+                rInf.Get();
+                Tablas.ChangeCompany(Maestra);
+                if Tablas.get(RecRef.Number) then begin
+                    If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
+                        PasarRegistroaOtraEmpresa(RecRef, Company.Name);
+                    end;
+                end;
+            end;
+            enuso := false;
+
+        end;
+
+    end;
+
+    procedure DeleteSynchronizeChanges(RecRef: RecordRef)
+    var
+        rInf: Record "Company Information";
+        SubsidiarieList: List of [Text];
+        Subsidiarie: Text;
+        Maestra: Text;
+        RecRef2: RecordRef;
+        RecRefTemp: RecordRef;
+        Company: Record Company;
+    begin
+        if GetExecutionContext() = ExecutionContext::Normal then begin
+            enuso := true;
+            if CopiandoEmpresa then exit;
+            rInf.ChangeCompany(CompanyName);
+            rInf.Get();
+            if rInf.Subsidiarie then begin
+                rInf.ChangeCompany(rInf."Master Company Name");
+                CambioenSubsidiaria := true;
+            end else
+                CambioenSubsidiaria := false;
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+            if CopiandoEmpresa then exit;
+            if CambioenSubsidiaria then begin
+                rInf.Get();
+                Tablas.ChangeCompany(rInf."Master Company Name");
+                if Tablas.get(RecRef.Number) then begin
+                    enuso := true;
+                    RecRef2.Open(RecRef.Number, false, rInf."Master Company Name");
+                    if RecRef2.Get(RecRef.RecordId) Then begin
+                        RecRef2.Delete(false);
+                    end;
+                    RecRef2.Close();
+                end;
+            end;
+            rinf.ChangeCompany(CompanyName);
+            rInf.Get();
+            if rInf.Subsidiarie then begin
+                rInf.ChangeCompany(rInf."Master Company Name");
+                Maestra := rInf."Master Company Name";
+            end else
+                Maestra := CompanyName;
+            rInf.Get();
+            SubsidiarieList := rInf.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                enuso := true;
+                Company.Get(Subsidiarie);
+                rInf.ChangeCompany(Company.Name);
+                rInf.Get();
+                Tablas.ChangeCompany(Maestra);
+                if Tablas.get(RecRef.Number) then begin
+                    If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
+                        RecRef2.Open(RecRef.Number, false, Company.Name);
+                        if RecRef2.Get(RecRef.RecordId) Then begin
+                            RecRef2.Delete(false);
+
+                        end;
+                        RecRef2.Close();
+                    end;
+                end;
+            end;
+            enuso := false;
+        end;
+
+    end;
+
+
+
 
 
 }

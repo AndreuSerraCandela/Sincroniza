@@ -99,6 +99,11 @@ tableextension 90324 CompanyInfo extends "Company Information"
             Caption = 'Subsidiarie List';
             DataClassification = ToBeClassified;
         }
+        field(80106; "Cambio en Cola"; Boolean)
+        {
+            Caption = 'Cambio en Cola';
+            DataClassification = ToBeClassified;
+        }
     }
     procedure SetSubsidiarieList(NewSubsidiarieList: List of [Text])
     var

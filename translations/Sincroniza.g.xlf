@@ -13,6 +13,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Changes - Field Company Origen - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 749877745 - Field 4049174986 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>FechaHoraCambio</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Changes - Field FechaHoraCambio - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 749877745 - Field 3108107879 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Operation</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -297,6 +302,11 @@
           <source>Synchronize Company</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Empresas - Action Synchronize Company - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3877399259 - Field 3286410923 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
+          <source>Cambio en Cola</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CompanyInfo - Field Cambio en Cola - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 3877399259 - Field 3260569077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Master Company</source>
