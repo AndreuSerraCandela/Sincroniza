@@ -9,6 +9,7 @@ tableextension 90324 CompanyInfo extends "Company Information"
         field(80100; "Master Company"; Boolean)
         {
 
+
             Caption = 'Master Company';
             DataClassification = ToBeClassified;
 
@@ -44,7 +45,7 @@ tableextension 90324 CompanyInfo extends "Company Information"
             begin
 
                 if xRec."Master Company Name" <> "Master Company Name" then begin
-                    If xRec."Master Company Name" <> '' then begin
+                    If (xRec."Master Company Name" <> '') and ("Master Company Name" = '') then begin
                         rInf.ChangeCompany(xRec."Master Company Name");
                         if Companies.Get(xRec."Master Company Name") then begin
                             SubsidiarieList := rInf.GetSubsidiarieList();

@@ -213,7 +213,7 @@ codeunit 90302 Synchronize
         end;
     end;
 
-    procedure PasarRegistroaOtraEmpresa(RecRefOrigen: RecordRef; NewCompany: Text)
+    procedure PasarRegistroaOtraEmpresa(RecRefOrigen: RecordRef; NewCompany: Text; MasterCompany: Text)
     var
         RecRefDestino: RecordRef;
         i: Integer;
@@ -221,9 +221,11 @@ codeunit 90302 Synchronize
         FldDest: FieldRef;
         TempBlob: Codeunit "Temp Blob";
         IsNewRecord: Boolean;
+
     begin
         RecRefDestino.Open(RecRefOrigen.Number, false, NewCompany);
         IsNewRecord := RecRefDestino.Get(RecRefOrigen.RecordId);
+        Campos.ChangeCompany(MasterCompany);
 
         // ... Open, Get origen, Init destino ...
         for i := 1 to RecRefOrigen.FieldCount do begin
@@ -233,6 +235,8 @@ codeunit 90302 Synchronize
                 continue;
             if Not FldOrig.Active then
                 continue;
+            if Campos.Get(RecRefOrigen.Number, FldOrig.Number) then
+                if Campos.Exclude then continue;
             FldDest := RecRefDestino.Field(FldOrig.Number);
             if FldOrig.Type() = FieldType::Blob then begin
                 // Blob: usar Temp Blob en lugar de Value := Value
@@ -784,7 +788,7 @@ codeunit 90302 Synchronize
             if CambioenSubsidiaria then begin
                 rInf.ChangeCompany(CompanyName);
                 rInf.Get();
-                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name");
+                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name", rInf."Master Company Name");
             end;
             rInf.Get();
             if rInf.Subsidiarie then begin
@@ -801,7 +805,7 @@ codeunit 90302 Synchronize
                 Tablas.ChangeCompany(Maestra);
                 if Tablas.get(RecRef.Number) then begin
                     If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
-                        PasarRegistroaOtraEmpresa(RecRef, Company.Name);
+                        PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
                     end;
                 end;
             end;
@@ -836,7 +840,7 @@ codeunit 90302 Synchronize
             if CambioenSubsidiaria then begin
                 rInf.ChangeCompany(CompanyName);
                 rInf.Get();
-                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name");
+                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name", rInf."Master Company Name");
             end;
             rInf.Get();
             if rInf.Subsidiarie then begin
@@ -853,7 +857,7 @@ codeunit 90302 Synchronize
                 Tablas.ChangeCompany(Maestra);
                 if Tablas.get(RecRef.Number) then begin
                     If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
-                        PasarRegistroaOtraEmpresa(RecRef, Company.Name);
+                        PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
                     end;
                 end;
             end;
