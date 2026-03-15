@@ -270,6 +270,14 @@ page 90393 "Sincr. Log Setup (Table) List"
                         ChangeLogSetupTableLogModifica;
                     end;
                 }
+                field(Delete; ChangeLogSetupTable.Borrar)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Delete';
+                    Editable = PageIsEditable;
+                    Enabled = PageIsEditable;
+                    ToolTip = 'Specifies that any deletion of data is logged.';
+                }
                 // field(LogDeletion; ChangeLogSetupTable."Log Deletion")
                 // {
                 //     ApplicationArea = Basic, Suite;

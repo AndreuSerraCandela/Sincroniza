@@ -47,11 +47,13 @@ tableextension 90324 CompanyInfo extends "Company Information"
                 if xRec."Master Company Name" <> "Master Company Name" then begin
                     If (xRec."Master Company Name" <> '') and ("Master Company Name" = '') then begin
                         rInf.ChangeCompany(xRec."Master Company Name");
-                        if Companies.Get(xRec."Master Company Name") then begin
-                            SubsidiarieList := rInf.GetSubsidiarieList();
-                            SubsidiarieList.Remove(CompanyName);
-                            rInf.SetSubsidiarieList(SubsidiarieList);
-                            commit();
+                        if rInf.FindFirst() then begin
+                            if Companies.Get(xRec."Master Company Name") then begin
+                                SubsidiarieList := rInf.GetSubsidiarieList();
+                                SubsidiarieList.Remove(CompanyName);
+                                rInf.SetSubsidiarieList(SubsidiarieList);
+                                commit();
+                            end;
                         end;
                     end;
                 end;
@@ -63,10 +65,12 @@ tableextension 90324 CompanyInfo extends "Company Information"
                 end else
                     if Companies.Get("Master Company Name") then begin
                         rInf.ChangeCompany("Master Company Name");
-                        SubsidiarieList := rInf.GetSubsidiarieList();
-                        SubsidiarieList.Add(CompanyName);
-                        rInf.SetSubsidiarieList(SubsidiarieList);
-                        commit();
+                        if rInf.Get() then begin
+                            SubsidiarieList := rInf.GetSubsidiarieList();
+                            SubsidiarieList.Add(CompanyName);
+                            rInf.SetSubsidiarieList(SubsidiarieList);
+                            commit();
+                        end;
                     end;
 
             end;
@@ -130,9 +134,12 @@ tableextension 90324 CompanyInfo extends "Company Information"
         SubsidiarieList2: List of [Text];
         Company: Record Company;
         CommpanyTemp: Record Company temporary;
+        rInf: Record "Company Information";
+        rInfCurrent: Record "Company Information";
         Empresa: Text;
     begin
         CalcFields("Subsidiarie List");
+
         "Subsidiarie List".CreateInStream(InStream, TEXTENCODING::UTF8);
         SubsidiarieText := (TypeHelper.TryReadAsTextWithSepAndFieldErrMsg(InStream, TypeHelper.LFSeparator(), FieldName("Subsidiarie List")));
         SubsidiarieList := SubsidiarieText.Split(TypeHelper.LFSeparator());
@@ -140,7 +147,8 @@ tableextension 90324 CompanyInfo extends "Company Information"
             If Company.Get(Empresa) then begin
                 If not CommpanyTemp.Get(Empresa) then begin
                     CommpanyTemp := Company;
-                    CommpanyTemp.Insert()
+                    If CommpanyTemp.Insert() Then;
+
                 end;
             end;
         end;

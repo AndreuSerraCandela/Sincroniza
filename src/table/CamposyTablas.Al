@@ -100,25 +100,14 @@ table 90343 "Synchronize Setup (Table)"
                 DelChangeLogFields(1);
             end;
         }
-        // field(5; "Log Deletion"; Option)
-        // {
-        //     Caption = 'Log Deletion';
-        //     OptionCaption = ' ,Some Fields,All Fields';
-        //     OptionMembers = " ","Some Fields","All Fields";
+        field(5; "Borrar"; Option)
+        {
+            Caption = 'Delete';
+            OptionCaption = 'No,Yes';
+            OptionMembers = No,Yes;
 
-        //     trigger OnValidate()
-        //     var
-        //         ConfirmManagement: Codeunit "Confirm Management";
-        //     begin
-        //         if (xRec."Log Deletion" = xRec."Log Deletion"::"Some Fields") and (xRec."Log Deletion" <> "Log Deletion") then
-        //             if ConfirmManagement.GetResponseOrDefault(
-        //                  StrSubstNo(
-        //                    Text001, xRec.FieldCaption("Log Deletion"), xRec."Log Deletion"),
-        //                  true)
-        //             then
-        //                 DelChangeLogFields(2);
-        //     end;
-        // }
+
+        }
         // field(6; "Monitor Sensitive Field"; Boolean)
         // {
         //     DataClassification = SystemMetadata;

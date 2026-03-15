@@ -57,7 +57,7 @@ codeunit 90302 Synchronize
     begin
         //Companies.SetRange("Table No.", TableId);
         //Companies.SetRange("Company Name", Empresa());
-
+        //error('prueba');
         if enuso then exit;
         ErrorEmpresa := false;
         CambioenSubsidiaria := false;
@@ -69,7 +69,7 @@ codeunit 90302 Synchronize
         rInf.Get();
         if (not rInf."Subsidiarie") and (not rInf."Master Company") then exit;
         //ErrorEmpresa := false;
-        if rInf."Master Company" then rInf."Master Company Name" := CompanyName;
+        if (rInf."Master Company") and (rInf.Subsidiarie) then rInf."Master Company Name" := CompanyName;
         If Companies.Get(rInf."Master Company Name") then begin
 
             if GetExecutionContext() = ExecutionContext::Normal then
@@ -101,7 +101,7 @@ codeunit 90302 Synchronize
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
             rInf.Get();
-            if rInf.Subsidiarie then
+            if (rInf.Subsidiarie) and (Not rInf."Master Company") then
                 rInf.ChangeCompany(rInf."Master Company Name");
             if Not rInf.Subsidiarie then
                 if not rInf."Master Company" then exit;
@@ -140,7 +140,7 @@ codeunit 90302 Synchronize
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if enuso then exit;
             rInf.Get();
-            if rInf.Subsidiarie then
+            if (rInf.Subsidiarie) and (Not rInf."Master Company") then
                 rInf.ChangeCompany(rInf."Master Company Name");
             if Not rInf.Subsidiarie then
                 if not rInf."Master Company" then exit;
@@ -181,7 +181,7 @@ codeunit 90302 Synchronize
         // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
             rInf.Get();
-            if rInf.Subsidiarie then
+            if (rInf.Subsidiarie) and (Not rInf."Master Company") then
                 rInf.ChangeCompany(rInf."Master Company Name");
             if Not rInf.Subsidiarie then
                 if not rInf."Master Company" then exit;
@@ -762,175 +762,230 @@ codeunit 90302 Synchronize
 
     procedure ModifySynchronizeChanges(RecRef: RecordRef)
     var
+        rInfCurrent: Record "Company Information";
         rInf: Record "Company Information";
-
         SubsidiarieList: List of [Text];
         Subsidiarie: Text;
         Maestra: Text;
-        RecRef2: RecordRef;
-        RecRefTemp: RecordRef;
         Company: Record Company;
     begin
-        if GetExecutionContext() = ExecutionContext::Normal then begin
-            enuso := true;
-            rInf.ChangeCompany(CompanyName);
-            rInf.Get();
-            if rInf.Subsidiarie then begin
-                rInf.ChangeCompany(rInf."Master Company Name");
-                CambioenSubsidiaria := true;
-            end else
-                CambioenSubsidiaria := false;
-            rInf.Get();
-            SubsidiarieList := rInf.GetSubsidiarieList();
+        if GetExecutionContext() <> ExecutionContext::Normal then
+            exit;
 
-
-
-            if CambioenSubsidiaria then begin
-                rInf.ChangeCompany(CompanyName);
-                rInf.Get();
-                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name", rInf."Master Company Name");
-            end;
-            rInf.Get();
-            if rInf.Subsidiarie then begin
-                rInf.ChangeCompany(rInf."Master Company Name");
-                Maestra := rInf."Master Company Name";
-            end else
-                Maestra := CompanyName;
-            rInf.Get();
-            SubsidiarieList := rInf.GetSubsidiarieList();
-            foreach Subsidiarie in SubsidiarieList do begin
-                Company.Get(Subsidiarie);
-                rInf.ChangeCompany(Company.Name);
-                rInf.Get();
-                Tablas.ChangeCompany(Maestra);
-                if Tablas.get(RecRef.Number) then begin
-                    If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
-                        PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
-                    end;
-                end;
-            end;
+        enuso := true;
+        rInfCurrent.ChangeCompany(CompanyName);
+        if not rInfCurrent.Get() then begin
             enuso := false;
-
+            exit;
         end;
 
+        // Tablas y campos siempre se leen de la empresa que es master (la que define la configuración).
+        // Si estoy en una master no tengo "Master Company Name" porque ya soy la master.
+
+        // Caso 1: Soy Master → los cambios solo van hacia mis subsidiarias.
+        if rInfCurrent."Master Company" then begin
+            Maestra := CompanyName;
+            SubsidiarieList := rInfCurrent.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                if not Company.Get(Subsidiarie) then
+                    continue;
+                Tablas.ChangeCompany(Maestra);
+                if not Tablas.get(RecRef.Number) then
+                    continue;
+                if CompararEmpresa(CompanyName, Maestra, Company.Name) then
+                    PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
+            end;
+        end;
+
+        // Caso 2: Soy Subsidiaria → los cambios van hacia mi master (si es bidireccional).
+        if rInfCurrent.Subsidiarie then
+            if rInfCurrent."Sincornizacion Bidireccional" then begin
+                Maestra := rInfCurrent."Master Company Name";
+                Tablas.ChangeCompany(Maestra);
+                if Tablas.get(RecRef.Number) then
+                    PasarRegistroaOtraEmpresa(RecRef, Maestra, Maestra);
+            end;
+        //Caso 3 Soy Subsidiaria y bidirecciol, los cambios van hacia las subsidiarias de mi master, excepto a mi misma
+        if rInfCurrent.Subsidiarie then
+            if rInfCurrent."Sincornizacion Bidireccional" then begin
+                Maestra := rInfCurrent."Master Company Name";
+                rInf.ChangeCompany(Maestra);
+                rInf.Get();
+                SubsidiarieList := rInf.GetSubsidiarieList();
+                foreach Subsidiarie in SubsidiarieList do begin
+                    if not Company.Get(Subsidiarie) then
+                        continue;
+                    rInfCurrent.ChangeCompany(Company.Name);
+                    rInfCurrent.Get();
+                    if (rInfCurrent."Master Company Name" <> Maestra) then
+                        continue;
+                    if Subsidiarie <> CompanyName then
+                        if CompararEmpresa(CompanyName, Maestra, Company.Name) then
+                            PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
+                end;
+            end;
+
+        enuso := false;
     end;
 
     procedure InsertSynchronizeChanges(RecRef: RecordRef)
     var
+        rInfCurrent: Record "Company Information";
         rInf: Record "Company Information";
         SubsidiarieList: List of [Text];
         Subsidiarie: Text;
         Maestra: Text;
         Company: Record Company;
     begin
-        if GetExecutionContext() = ExecutionContext::Normal then begin
-            enuso := true;
-            rInf.ChangeCompany(CompanyName);
-            rInf.Get();
-            if rInf.Subsidiarie then begin
-                rInf.ChangeCompany(rInf."Master Company Name");
-                CambioenSubsidiaria := true;
-            end else
-                CambioenSubsidiaria := false;
-            rInf.Get();
-            SubsidiarieList := rInf.GetSubsidiarieList();
+        if GetExecutionContext() <> ExecutionContext::Normal then
+            exit;
 
-
-
-            if CambioenSubsidiaria then begin
-                rInf.ChangeCompany(CompanyName);
-                rInf.Get();
-                PasarRegistroaOtraEmpresa(RecRef, rInf."Master Company Name", rInf."Master Company Name");
-            end;
-            rInf.Get();
-            if rInf.Subsidiarie then begin
-                rInf.ChangeCompany(rInf."Master Company Name");
-                Maestra := rInf."Master Company Name";
-            end else
-                Maestra := CompanyName;
-            rInf.Get();
-            SubsidiarieList := rInf.GetSubsidiarieList();
-            foreach Subsidiarie in SubsidiarieList do begin
-                Company.Get(Subsidiarie);
-                rInf.ChangeCompany(Company.Name);
-                rInf.Get();
-                Tablas.ChangeCompany(Maestra);
-                if Tablas.get(RecRef.Number) then begin
-                    If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
-                        PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
-                    end;
-                end;
-            end;
+        enuso := true;
+        rInfCurrent.ChangeCompany(CompanyName);
+        if not rInfCurrent.Get() then begin
             enuso := false;
-
+            exit;
         end;
 
+        // Caso 1: Soy Master → insertar en mis subsidiarias.
+        if rInfCurrent."Master Company" then begin
+            Maestra := CompanyName;
+            SubsidiarieList := rInfCurrent.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                if not Company.Get(Subsidiarie) then
+                    continue;
+                Tablas.ChangeCompany(Maestra);
+                if not Tablas.get(RecRef.Number) then
+                    continue;
+                if CompararEmpresa(CompanyName, Maestra, Company.Name) then
+                    PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
+            end;
+        end;
+
+        // Caso 2: Soy Subsidiaria → insertar en mi master (si bidireccional).
+        if rInfCurrent.Subsidiarie then
+            if rInfCurrent."Sincornizacion Bidireccional" then begin
+                Maestra := rInfCurrent."Master Company Name";
+                Tablas.ChangeCompany(Maestra);
+                if Tablas.get(RecRef.Number) then
+                    PasarRegistroaOtraEmpresa(RecRef, Maestra, Maestra);
+            end;
+
+        // Caso 3: Soy Subsidiaria y bidireccional → insertar en las subsidiarias de mi master, excepto en mí.
+        if rInfCurrent.Subsidiarie then
+            if rInfCurrent."Sincornizacion Bidireccional" then begin
+                Maestra := rInfCurrent."Master Company Name";
+                rInf.ChangeCompany(Maestra);
+                rInf.Get();
+                SubsidiarieList := rInf.GetSubsidiarieList();
+                foreach Subsidiarie in SubsidiarieList do begin
+                    if not Company.Get(Subsidiarie) then
+                        continue;
+                    if Subsidiarie = CompanyName then
+                        continue;
+                    rInfCurrent.ChangeCompany(Company.Name);
+                    rInfCurrent.Get();
+                    if rInfCurrent."Master Company Name" <> Maestra then
+                        continue;
+                    Tablas.ChangeCompany(Maestra);
+                    if not Tablas.get(RecRef.Number) then
+                        continue;
+                    if CompararEmpresa(CompanyName, Maestra, Company.Name) then
+                        PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
+                end;
+            end;
+
+        enuso := false;
     end;
 
     procedure DeleteSynchronizeChanges(RecRef: RecordRef)
     var
+        rInfCurrent: Record "Company Information";
         rInf: Record "Company Information";
         SubsidiarieList: List of [Text];
         Subsidiarie: Text;
         Maestra: Text;
         RecRef2: RecordRef;
-        RecRefTemp: RecordRef;
         Company: Record Company;
     begin
-        if GetExecutionContext() = ExecutionContext::Normal then begin
-            enuso := true;
-            if CopiandoEmpresa then exit;
-            rInf.ChangeCompany(CompanyName);
-            rInf.Get();
-            if rInf.Subsidiarie then begin
-                rInf.ChangeCompany(rInf."Master Company Name");
-                CambioenSubsidiaria := true;
-            end else
-                CambioenSubsidiaria := false;
-            rInf.Get();
-            SubsidiarieList := rInf.GetSubsidiarieList();
-            if CopiandoEmpresa then exit;
-            if CambioenSubsidiaria then begin
-                rInf.Get();
-                Tablas.ChangeCompany(rInf."Master Company Name");
-                if Tablas.get(RecRef.Number) then begin
-                    enuso := true;
-                    RecRef2.Open(RecRef.Number, false, rInf."Master Company Name");
-                    if RecRef2.Get(RecRef.RecordId) Then begin
-                        RecRef2.Delete(false);
+        if GetExecutionContext() <> ExecutionContext::Normal then
+            exit;
+        if CopiandoEmpresa then
+            exit;
+
+        enuso := true;
+        rInfCurrent.ChangeCompany(CompanyName);
+        if not rInfCurrent.Get() then begin
+            enuso := false;
+            exit;
+        end;
+
+        // Caso 1: Soy Master → borrar en mis subsidiarias (si la tabla tiene Borrar = Yes).
+        if rInfCurrent."Master Company" then begin
+            Maestra := CompanyName;
+            SubsidiarieList := rInfCurrent.GetSubsidiarieList();
+            foreach Subsidiarie in SubsidiarieList do begin
+                if not Company.Get(Subsidiarie) then
+                    continue;
+                Tablas.ChangeCompany(Maestra);
+                if not Tablas.get(RecRef.Number) then
+                    continue;
+                if not (Tablas.Borrar = Tablas.Borrar::Yes) then
+                    continue;
+                if not CompararEmpresa(CompanyName, Maestra, Company.Name) then
+                    continue;
+                RecRef2.Open(RecRef.Number, false, Company.Name);
+                if RecRef2.Get(RecRef.RecordId) then
+                    RecRef2.Delete(false);
+                RecRef2.Close();
+            end;
+        end;
+
+        // Caso 2: Soy Subsidiaria → borrar en mi master (si bidireccional y Tablas.Borrar = Yes).
+        if rInfCurrent.Subsidiarie then
+            if rInfCurrent."Sincornizacion Bidireccional" then begin
+                Maestra := rInfCurrent."Master Company Name";
+                Tablas.ChangeCompany(Maestra);
+                if Tablas.get(RecRef.Number) then
+                    if Tablas.Borrar = Tablas.Borrar::Yes then begin
+                        RecRef2.Open(RecRef.Number, false, Maestra);
+                        if RecRef2.Get(RecRef.RecordId) then
+                            RecRef2.Delete(false);
+                        RecRef2.Close();
                     end;
+            end;
+
+        // Caso 3: Soy Subsidiaria y bidireccional → borrar en las subsidiarias de mi master, excepto en mí.
+        if rInfCurrent.Subsidiarie then
+            if rInfCurrent."Sincornizacion Bidireccional" then begin
+                Maestra := rInfCurrent."Master Company Name";
+                rInf.ChangeCompany(Maestra);
+                rInf.Get();
+                SubsidiarieList := rInf.GetSubsidiarieList();
+                foreach Subsidiarie in SubsidiarieList do begin
+                    if not Company.Get(Subsidiarie) then
+                        continue;
+                    if Subsidiarie = CompanyName then
+                        continue;
+                    rInfCurrent.ChangeCompany(Company.Name);
+                    rInfCurrent.Get();
+                    if rInfCurrent."Master Company Name" <> Maestra then
+                        continue;
+                    Tablas.ChangeCompany(Maestra);
+                    if not Tablas.get(RecRef.Number) then
+                        continue;
+                    if Tablas.Borrar <> Tablas.Borrar::Yes then
+                        continue;
+                    if not CompararEmpresa(CompanyName, Maestra, Company.Name) then
+                        continue;
+                    RecRef2.Open(RecRef.Number, false, Company.Name);
+                    if RecRef2.Get(RecRef.RecordId) then
+                        RecRef2.Delete(false);
                     RecRef2.Close();
                 end;
             end;
-            rinf.ChangeCompany(CompanyName);
-            rInf.Get();
-            if rInf.Subsidiarie then begin
-                rInf.ChangeCompany(rInf."Master Company Name");
-                Maestra := rInf."Master Company Name";
-            end else
-                Maestra := CompanyName;
-            rInf.Get();
-            SubsidiarieList := rInf.GetSubsidiarieList();
-            foreach Subsidiarie in SubsidiarieList do begin
-                enuso := true;
-                Company.Get(Subsidiarie);
-                rInf.ChangeCompany(Company.Name);
-                rInf.Get();
-                Tablas.ChangeCompany(Maestra);
-                if Tablas.get(RecRef.Number) then begin
-                    If CompararEmpresa(CompanyName, Maestra, Company.Name) Then begin
-                        RecRef2.Open(RecRef.Number, false, Company.Name);
-                        if RecRef2.Get(RecRef.RecordId) Then begin
-                            RecRef2.Delete(false);
 
-                        end;
-                        RecRef2.Close();
-                    end;
-                end;
-            end;
-            enuso := false;
-        end;
-
+        enuso := false;
     end;
 
 
