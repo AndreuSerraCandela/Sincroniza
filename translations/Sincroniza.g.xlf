@@ -98,6 +98,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType ErrorSubsidiarie</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4166145734 - NamedType 974422734" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No tiene permisos para borrar en esta tabla</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType NoPermisoBorrarLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4166145734 - NamedType 3800101508" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No tiene permisos para insertar en esta tabla</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType NoPermisoInsertarLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4166145734 - NamedType 3132416672" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No tiene permisos para modificar en esta tabla</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType NoPermisoModificarLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4166145734 - NamedType 3194217980" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rename is not allowed</source>
           <note from="Developer" annotates="general" priority="2"></note>

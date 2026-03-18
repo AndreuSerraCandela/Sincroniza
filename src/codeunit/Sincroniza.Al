@@ -17,6 +17,10 @@ codeunit 90302 Synchronize
         ErrorSubsidiarie: Label 'This is not master company';
         Rename: Label 'Rename is not allowed';
         EmpresaOrigen: Text[30];
+        // En minusculas
+        NoPermisoInsertarLbl: Label 'No tiene permisos para insertar en esta tabla';
+        NoPermisoModificarLbl: Label 'No tiene permisos para modificar en esta tabla';
+        NoPermisoBorrarLbl: Label 'No tiene permisos para borrar en esta tabla';
 
     trigger OnRun()
     var
@@ -89,6 +93,26 @@ codeunit 90302 Synchronize
 
     end;
 
+    local procedure DebeBloquearPorNoBidireccional(RecRef: RecordRef): Boolean
+    var
+        rInf: Record "Company Information";
+        Companies: Record Company;
+    begin
+        rInf.ChangeCompany(CompanyName);
+        if not rInf.FindFirst() then
+            exit(false);
+        if not rInf.Subsidiarie then
+            exit(false);
+        if rInf."Master Company" then
+            exit(false);
+        if rInf."Sincornizacion Bidireccional" then
+            exit(false);
+        if not Companies.Get(rInf."Master Company Name") then
+            exit(false);
+        Tablas.ChangeCompany(Companies.Name);
+        exit(Tablas.get(RecRef.Number));
+    end;
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Global Triggers", 'OnDatabaseInsert', '', false, false)]
     local procedure OnDatabaseInsert(RecRef: RecordRef)
     var
@@ -97,8 +121,9 @@ codeunit 90302 Synchronize
         rInf: Record "Company Information";
         Sincroniza: Codeunit "Synchronize";
     begin
-        // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
+            if DebeBloquearPorNoBidireccional(RecRef) then
+                Error(NoPermisoInsertarLbl);
             rInf.Get();
             if (rInf.Subsidiarie) and (Not rInf."Master Company") then
                 rInf.ChangeCompany(rInf."Master Company Name");
@@ -135,8 +160,9 @@ codeunit 90302 Synchronize
         FilldList: Record Field;
 
     begin
-        // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
+            if DebeBloquearPorNoBidireccional(RecRef) then
+                Error(NoPermisoModificarLbl);
             if enuso then exit;
             rInf.Get();
             if (rInf.Subsidiarie) and (Not rInf."Master Company") then
@@ -177,8 +203,9 @@ codeunit 90302 Synchronize
         SynchronizeChanges: Record "Synchronize Changes";
         Sincroniza: Codeunit "Synchronize";
     begin
-        // We don't want to allow anyone to disable change log management in normal execution context
         if GetExecutionContext() = ExecutionContext::Normal then begin
+            if DebeBloquearPorNoBidireccional(RecRef) then
+                Error(NoPermisoBorrarLbl);
             rInf.Get();
             if (rInf.Subsidiarie) and (Not rInf."Master Company") then
                 rInf.ChangeCompany(rInf."Master Company Name");
