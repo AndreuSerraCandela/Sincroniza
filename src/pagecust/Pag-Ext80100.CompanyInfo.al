@@ -44,6 +44,19 @@ pageextension 90302 CompanyInf extends "Company Information"
                     Page.RunModal(Page::"Synchronize Setup");
                 end;
             }
+            //Borrar Cartera
+            action("Delete Cartera Doc.")
+            {
+                Caption = 'Delete Cartera Doc.';
+                Image = Delete;
+                ApplicationArea = All;
+                trigger OnAction()
+                var
+                    Sincroniza: Codeunit Synchronize;
+                begin
+                    Sincroniza.DeleteCarteraDoc();
+                end;
+            }
             // action("Copy Stock to Company")
             // {
             //     Caption = 'Copiar Stock a Empresa';

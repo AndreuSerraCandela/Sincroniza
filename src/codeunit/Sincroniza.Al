@@ -5,7 +5,7 @@ codeunit 90302 Synchronize
 {
     SingleInstance = true;
     Permissions = tabledata "Company Information" = RIMD, tabledata Company = RIMD,
-    tabledata "Synchronize Setup (Table)" = RIMD, tabledata "Synchronize Setup (Field)" = RIMD;
+    tabledata "Synchronize Setup (Table)" = RIMD, tabledata "Synchronize Setup (Field)" = RIMD, tabledata "Cartera Doc." = RIMD;
 
     var
         Tablas: Record "Synchronize Setup (Table)";
@@ -18,9 +18,9 @@ codeunit 90302 Synchronize
         Rename: Label 'Rename is not allowed';
         EmpresaOrigen: Text[30];
         // En minusculas
-        NoPermisoInsertarLbl: Label 'No tiene permisos para insertar en esta tabla';
-        NoPermisoModificarLbl: Label 'No tiene permisos para modificar en esta tabla';
-        NoPermisoBorrarLbl: Label 'No tiene permisos para borrar en esta tabla';
+        NoPermisoInsertarLbl: Label 'No tiene permisos para insertar en esta la tabla %1';
+        NoPermisoModificarLbl: Label 'No tiene permisos para modificar en esta la tabla %1';
+        NoPermisoBorrarLbl: Label 'No tiene permisos para borrar en esta la tabla %1';
 
     trigger OnRun()
     var
@@ -39,6 +39,13 @@ codeunit 90302 Synchronize
                 end;
             until SynchronizeChanges.Next() = 0;
         SynchronizeChanges.DeleteAll();
+    end;
+
+    internal Procedure DeleteCarteraDoc()
+    var
+        CarteraDoc: Record "Cartera Doc.";
+    begin
+        CarteraDoc.DeleteAll();
     end;
 
 
@@ -78,12 +85,15 @@ codeunit 90302 Synchronize
             if GetExecutionContext() = ExecutionContext::Normal then
                 Tablas.ChangeCompany(Companies.Name);
             If Tablas.get(TableId) then begin
-                OnDatabaseDelete := true;
-                OnDatabaseInsert := true;
-                OnDatabaseModify := true;
-                OnDatabaseRename := true;
-                Campos.ChangeCompany(Companies.Name);
-                exit;
+                if Tablas."Log Modification" then begin
+                    OnDatabaseDelete := true;
+                    OnDatabaseInsert := true;
+                    OnDatabaseModify := true;
+                    OnDatabaseRename := true;
+
+                    Campos.ChangeCompany(Companies.Name);
+                    exit;
+                end;
             end;
         end;
         OnDatabaseDelete := false;
@@ -110,7 +120,10 @@ codeunit 90302 Synchronize
         if not Companies.Get(rInf."Master Company Name") then
             exit(false);
         Tablas.ChangeCompany(Companies.Name);
-        exit(Tablas.get(RecRef.Number));
+        if Tablas.get(RecRef.Number) then
+            if Tablas."Log Modification" then
+                exit(true);
+        exit(false);
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Global Triggers", 'OnDatabaseInsert', '', false, false)]
@@ -123,7 +136,7 @@ codeunit 90302 Synchronize
     begin
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
-                Error(NoPermisoInsertarLbl);
+                Error(NoPermisoInsertarLbl, RecRef.Caption);
             rInf.Get();
             if (rInf.Subsidiarie) and (Not rInf."Master Company") then
                 rInf.ChangeCompany(rInf."Master Company Name");
@@ -162,7 +175,7 @@ codeunit 90302 Synchronize
     begin
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
-                Error(NoPermisoModificarLbl);
+                Error(NoPermisoModificarLbl, RecRef.Caption);
             if enuso then exit;
             rInf.Get();
             if (rInf.Subsidiarie) and (Not rInf."Master Company") then
@@ -205,7 +218,7 @@ codeunit 90302 Synchronize
     begin
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
-                Error(NoPermisoBorrarLbl);
+                Error(NoPermisoBorrarLbl, RecRef.Caption);
             rInf.Get();
             if (rInf.Subsidiarie) and (Not rInf."Master Company") then
                 rInf.ChangeCompany(rInf."Master Company Name");
@@ -587,6 +600,8 @@ codeunit 90302 Synchronize
                     continue;
                 if not Tablas.get(RecRef.Number) then
                     continue;
+                if not Tablas."Log Modification" then
+                    continue;
 
                 if CompararEmpresa(EmpresaOrigen, Maestra, Company.Name) then
                     PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
@@ -599,7 +614,8 @@ codeunit 90302 Synchronize
                 Maestra := rInfCurrent."Master Company Name";
                 Tablas.ChangeCompany(Maestra);
                 if Tablas.get(RecRef.Number) then
-                    PasarRegistroaOtraEmpresa(RecRef, Maestra, Maestra);
+                    if Tablas."Log Modification" then
+                        PasarRegistroaOtraEmpresa(RecRef, Maestra, Maestra);
             end;
         // Caso 3: Soy Subsidiaria y bidireccional → repartir al resto de subsidiarias de mi master, excluyéndome.
         if rInfCurrent.Subsidiarie then
@@ -657,6 +673,8 @@ codeunit 90302 Synchronize
                     continue;
                 if not Tablas.get(RecRef.Number) then
                     continue;
+                if not Tablas."Log Modification" then
+                    continue;
                 if CompararEmpresa(EmpresaOrigen, Maestra, Company.Name) then
                     PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
             end;
@@ -668,7 +686,8 @@ codeunit 90302 Synchronize
                 Maestra := rInfCurrent."Master Company Name";
                 Tablas.ChangeCompany(Maestra);
                 if Tablas.get(RecRef.Number) then
-                    PasarRegistroaOtraEmpresa(RecRef, Maestra, Maestra);
+                    if Tablas."Log Modification" then
+                        PasarRegistroaOtraEmpresa(RecRef, Maestra, Maestra);
             end;
 
         // Caso 3: Soy Subsidiaria y bidireccional → repartir al resto de subsidiarias de mi master, excluyéndome.
@@ -689,6 +708,8 @@ codeunit 90302 Synchronize
                         continue;
                     Tablas.ChangeCompany(Maestra);
                     if not Tablas.get(RecRef.Number) then
+                        continue;
+                    if not Tablas."Log Modification" then
                         continue;
                     if CompararEmpresa(EmpresaOrigen, Maestra, Company.Name) then
                         PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);

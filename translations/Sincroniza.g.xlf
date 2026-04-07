@@ -99,17 +99,17 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType ErrorSubsidiarie</note>
         </trans-unit>
         <trans-unit id="Codeunit 4166145734 - NamedType 974422734" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No tiene permisos para borrar en esta tabla</source>
+          <source>No tiene permisos para borrar en esta la tabla %1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType NoPermisoBorrarLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4166145734 - NamedType 3800101508" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No tiene permisos para insertar en esta tabla</source>
+          <source>No tiene permisos para insertar en esta la tabla %1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType NoPermisoInsertarLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4166145734 - NamedType 3132416672" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No tiene permisos para modificar en esta tabla</source>
+          <source>No tiene permisos para modificar en esta la tabla %1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType NoPermisoModificarLbl</note>
         </trans-unit>
@@ -317,6 +317,11 @@
           <source>Tables</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Synchronize Setup - Action Tables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3460046866 - Action 3416237967 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
+          <source>Delete Cartera Doc.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension CompanyInf - Action Delete Cartera Doc. - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 3460046866 - Action 1041655975 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3469146285">
           <source>Synchronize Setup</source>

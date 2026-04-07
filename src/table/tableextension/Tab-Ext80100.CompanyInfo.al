@@ -143,19 +143,22 @@ tableextension 90324 CompanyInfo extends "Company Information"
         "Subsidiarie List".CreateInStream(InStream, TEXTENCODING::UTF8);
         SubsidiarieText := (TypeHelper.TryReadAsTextWithSepAndFieldErrMsg(InStream, TypeHelper.LFSeparator(), FieldName("Subsidiarie List")));
         SubsidiarieList := SubsidiarieText.Split(TypeHelper.LFSeparator());
-        foreach Empresa in SubsidiarieList do begin
-            If Company.Get(Empresa) then begin
-                If not CommpanyTemp.Get(Empresa) then begin
-                    CommpanyTemp := Company;
-                    If CommpanyTemp.Insert() Then;
+        // foreach Empresa in SubsidiarieList do begin
+        //     If Company.Get(Empresa) then begin
+        //         If not CommpanyTemp.Get(Empresa) then begin
+        //             CommpanyTemp := Company;
+        //             If CommpanyTemp.Insert() Then;
 
-                end;
-            end;
-        end;
-        If CommpanyTemp.FindFirst() then begin
+        //         end;
+        //     end;
+        // end;
+        If Company.FindFirst() then begin
             repeat
-                SubsidiarieList2.Add(CommpanyTemp.Name);
-            until CommpanyTemp.Next() = 0;
+                rInf.ChangeCompany(Company.Name);
+                rInf.Get();
+                if rInf."Master Company Name" = CompanyName then
+                    SubsidiarieList2.Add(Company.Name);
+            until Company.Next() = 0;
         end;
         exit(SubsidiarieList2);
     end;
