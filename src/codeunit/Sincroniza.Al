@@ -567,11 +567,16 @@ codeunit 90302 Synchronize
     procedure ModifySynchronizeChanges(RecRef: RecordRef; EmpresaOrigen: Text[30])
     var
         rInfCurrent: Record "Company Information";
-        rInf: Record "Company Information";
+        rInfSubsidiarias: Record "Company Information";
+        rInfMaster: Record "Company Information";
+        rInfSubMaster: Record "Company Information";
         SubsidiarieList: List of [Text];
         Subsidiarie: Text;
         Maestra: Text;
         Company: Record Company;
+        MasterList: List of [Text];
+        Master: Text;
+
     begin
         if GetExecutionContext() <> ExecutionContext::Normal then
             exit;
@@ -594,9 +599,9 @@ codeunit 90302 Synchronize
                 if not Company.Get(Subsidiarie) then
                     continue;
                 Tablas.ChangeCompany(Maestra);
-                rInf.ChangeCompany(Subsidiarie);
-                rInf.Get();
-                if (rInf."Master Company Name" <> Maestra) then
+                rInfSubsidiarias.ChangeCompany(Subsidiarie);
+                rInfSubsidiarias.Get();
+                if (rInfSubsidiarias."Master Company Name" <> Maestra) then
                     continue;
                 if not Tablas.get(RecRef.Number) then
                     continue;
@@ -621,21 +626,53 @@ codeunit 90302 Synchronize
         if rInfCurrent.Subsidiarie then
             if rInfCurrent."Sincornizacion Bidireccional" then begin
                 Maestra := rInfCurrent."Master Company Name";
-                rInf.ChangeCompany(Maestra);
-                rInf.Get();
-                SubsidiarieList := rInf.GetSubsidiarieList();
+                rInfMaster.ChangeCompany(Maestra);
+                rInfMaster.Get();
+                SubsidiarieList := rInfMaster.GetSubsidiarieListMaster(Maestra);
                 foreach Subsidiarie in SubsidiarieList do begin
                     if not Company.Get(Subsidiarie) then
                         continue;
-                    rInf.ChangeCompany(Company.Name);
-                    rInf.Get();
-                    if (rInf."Master Company Name" <> Maestra) then
+                    rInfSubsidiarias.ChangeCompany(Company.Name);
+                    rInfSubsidiarias.Get();
+                    if (rInfSubsidiarias."Master Company Name" <> Maestra) then
                         continue;
                     if Subsidiarie <> EmpresaOrigen then
                         if CompararEmpresa(EmpresaOrigen, Maestra, Company.Name) then
                             PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
                 end;
             end;
+
+        // Caso 4: Master con masters intermedias → si Traspasar a Subsidiaria, propagar a subsidiarias de cada master inferior (en cadena).
+        if rInfCurrent."Master Company" then begin
+            Maestra := EmpresaOrigen;
+            MasterList := rInfCurrent.GetMasterList();
+            foreach Master in MasterList do begin
+                if not Company.Get(Master) then
+                    continue;
+                Tablas.ChangeCompany(Maestra);
+                rInfSubMaster.ChangeCompany(Master);
+                rInfSubMaster.Get();
+                if (rInfSubMaster."Master Company Name" <> Maestra) then
+                    continue;
+                if not Tablas.get(RecRef.Number) then
+                    continue;
+                if not Tablas."Log Modification" then
+                    continue;
+
+                SubsidiarieList := rInfSubMaster.GetSubsidiarieListMaster(Master);
+                foreach Subsidiarie in SubsidiarieList do begin
+                    if not Company.Get(Subsidiarie) then
+                        continue;
+                    Tablas.ChangeCompany(Maestra);
+                    rInfSubsidiarias.ChangeCompany(Subsidiarie);
+                    rInfSubsidiarias.Get();
+                    if (rInfSubsidiarias."Master Company Name" <> Master) then
+                        continue;
+                    if CompararEmpresa(EmpresaOrigen, Master, Company.Name) then
+                        PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
+                end;
+            end;
+        end;
 
         enuso := false;
     end;
@@ -648,6 +685,10 @@ codeunit 90302 Synchronize
         Subsidiarie: Text;
         Maestra: Text;
         Company: Record Company;
+        MasterList: List of [Text];
+        Master: Text;
+        rInfSubMaster: Record "Company Information";
+        rInfSubsidiarias: Record "Company Information";
     begin
         if GetExecutionContext() <> ExecutionContext::Normal then
             exit;
@@ -696,7 +737,7 @@ codeunit 90302 Synchronize
                 Maestra := rInfCurrent."Master Company Name";
                 rInf.ChangeCompany(Maestra);
                 rInf.Get();
-                SubsidiarieList := rInf.GetSubsidiarieList();
+                SubsidiarieList := rInf.GetSubsidiarieListMaster(Maestra);
                 foreach Subsidiarie in SubsidiarieList do begin
                     if not Company.Get(Subsidiarie) then
                         continue;
@@ -716,6 +757,38 @@ codeunit 90302 Synchronize
                 end;
             end;
 
+        // Caso 4: Master con masters intermedias → si Traspasar a Subsidiaria, propagar inserts a subsidiarias de cada master inferior (en cadena).
+        // Caso 4: Master con masters intermedias → si Traspasar a Subsidiaria, propagar a subsidiarias de cada master inferior (en cadena).
+        if rInfCurrent."Master Company" then begin
+            Maestra := EmpresaOrigen;
+            MasterList := rInfCurrent.GetMasterList();
+            foreach Master in MasterList do begin
+                if not Company.Get(Master) then
+                    continue;
+                Tablas.ChangeCompany(Maestra);
+                rInfSubMaster.ChangeCompany(Master);
+                rInfSubMaster.Get();
+                if (rInfSubMaster."Master Company Name" <> Maestra) then
+                    continue;
+                if not Tablas.get(RecRef.Number) then
+                    continue;
+                if not Tablas."Log Modification" then
+                    continue;
+
+                SubsidiarieList := rInfSubMaster.GetSubsidiarieListMaster(Master);
+                foreach Subsidiarie in SubsidiarieList do begin
+                    if not Company.Get(Subsidiarie) then
+                        continue;
+                    rInfSubsidiarias.ChangeCompany(Subsidiarie);
+                    rInfSubsidiarias.Get();
+                    if (rInfSubsidiarias."Master Company Name" <> Master) then
+                        continue;
+                    if CompararEmpresa(EmpresaOrigen, Master, Company.Name) then
+                        PasarRegistroaOtraEmpresa(RecRef, Company.Name, Maestra);
+                end;
+            end;
+        end;
+
         enuso := false;
     end;
 
@@ -728,6 +801,10 @@ codeunit 90302 Synchronize
         Maestra: Text;
         RecRef2: RecordRef;
         Company: Record Company;
+        MasterList: List of [Text];
+        Master: Text;
+        rInfSubMaster: Record "Company Information";
+        rInfSubsidiarias: Record "Company Information";
     begin
         if GetExecutionContext() <> ExecutionContext::Normal then
             exit;
@@ -786,7 +863,7 @@ codeunit 90302 Synchronize
                 Maestra := rInfCurrent."Master Company Name";
                 rInf.ChangeCompany(Maestra);
                 rInf.Get();
-                SubsidiarieList := rInf.GetSubsidiarieList();
+                SubsidiarieList := rInf.GetSubsidiarieListMaster(Maestra);
                 foreach Subsidiarie in SubsidiarieList do begin
                     if not Company.Get(Subsidiarie) then
                         continue;
@@ -810,11 +887,55 @@ codeunit 90302 Synchronize
                 end;
             end;
 
+        // Caso 4: Master con masters intermedias → si Traspasar a Subsidiaria y Borrar, propagar borrados a subsidiarias de cada master inferior (en cadena).
+        // Caso 4: Master con masters intermedias → si Traspasar a Subsidiaria, propagar a subsidiarias de cada master inferior (en cadena).
+        if rInfCurrent."Master Company" then begin
+            Maestra := EmpresaOrigen;
+            MasterList := rInfCurrent.GetMasterList();
+            foreach Master in MasterList do begin
+                if not Company.Get(Master) then
+                    continue;
+                Tablas.ChangeCompany(Maestra);
+                rInfSubMaster.ChangeCompany(Master);
+                rInfSubMaster.Get();
+                if (rInfSubMaster."Master Company Name" <> Maestra) then
+                    continue;
+                if not Tablas.get(RecRef.Number) then
+                    continue;
+                if not Tablas."Log Modification" then
+                    continue;
+
+                SubsidiarieList := rInfSubMaster.GetSubsidiarieListMaster(master);
+                foreach Subsidiarie in SubsidiarieList do begin
+                    if not Company.Get(Subsidiarie) then
+                        continue;
+                    Tablas.ChangeCompany(Maestra);
+                    rInfSubsidiarias.ChangeCompany(Subsidiarie);
+                    rInfSubsidiarias.Get();
+                    if (rInfSubsidiarias."Master Company Name" <> Master) then
+                        continue;
+                    if not Tablas.get(RecRef.Number) then
+                        continue;
+
+                    if Tablas.Borrar <> Tablas.Borrar::Yes then
+                        continue;
+                    if not CompararEmpresa(EmpresaOrigen, Master, Company.Name) then
+                        continue;
+                    RecRef2.Open(RecRef.Number, false, Company.Name);
+                    if RecRef2.Get(RecRef.RecordId) then
+                        RecRef2.Delete(false);
+                    RecRef2.Close();
+
+                end;
+            end;
+        end;
+
         enuso := false;
     end;
 
-
-
+    /// <summary>
+    /// Si en la master raíz la tabla tiene Traspasar a Subsidiaria, recorre masters hijas y replica el cambio a sus subsidiarias (y en profundidad).
+    /// </summary>
 
 
 }

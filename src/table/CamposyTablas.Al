@@ -108,6 +108,11 @@ table 90343 "Synchronize Setup (Table)"
 
 
         }
+        //Añadir Campo para llevar a las subsidiarias de las masters
+        field(6; "Traspasar a Subsidiaria"; Boolean)
+        {
+            Caption = 'Traspasar a Subsidiaria';
+        }
         // field(6; "Monitor Sensitive Field"; Boolean)
         // {
         //     DataClassification = SystemMetadata;

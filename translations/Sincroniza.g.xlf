@@ -93,6 +93,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Table) - Field Table No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1917319910 - Field 3601570168 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Traspasar a Subsidiaria</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Synchronize Setup (Table) - Field Traspasar a Subsidiaria - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4166145734 - NamedType 914548424" size-unit="char" translate="yes" xml:space="preserve">
           <source>This is not master company</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -262,6 +267,16 @@
           <source>ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Object ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 3601570168 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the data is traspasada to the subsidiary.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Traspasar a Subsidiaria - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3633244743 - Control 3601570168 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Traspasar a Subsidiaria</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sincr. Log Setup (Table) List - Control Traspasar a Subsidiaria - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1041655975 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
           <source>New,Process,Reports,Configuration</source>

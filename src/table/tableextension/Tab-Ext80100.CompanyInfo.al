@@ -162,4 +162,80 @@ tableextension 90324 CompanyInfo extends "Company Information"
         end;
         exit(SubsidiarieList2);
     end;
+
+    procedure GetSubsidiarieListMaster(Master: Text): List of [Text]
+    var
+        TypeHelper: Codeunit "Type Helper";
+        InStream: InStream;
+        SubsidiarieText: Text;
+        SubsidiarieList: List of [Text];
+        SubsidiarieList2: List of [Text];
+        Company: Record Company;
+        CommpanyTemp: Record Company temporary;
+        rInf: Record "Company Information";
+        rInfCurrent: Record "Company Information";
+        Empresa: Text;
+    begin
+        CalcFields("Subsidiarie List");
+
+        "Subsidiarie List".CreateInStream(InStream, TEXTENCODING::UTF8);
+        SubsidiarieText := (TypeHelper.TryReadAsTextWithSepAndFieldErrMsg(InStream, TypeHelper.LFSeparator(), FieldName("Subsidiarie List")));
+        SubsidiarieList := SubsidiarieText.Split(TypeHelper.LFSeparator());
+        // foreach Empresa in SubsidiarieList do begin
+        //     If Company.Get(Empresa) then begin
+        //         If not CommpanyTemp.Get(Empresa) then begin
+        //             CommpanyTemp := Company;
+        //             If CommpanyTemp.Insert() Then;
+
+        //         end;
+        //     end;
+        // end;
+        If Company.FindFirst() then begin
+            repeat
+                rInf.ChangeCompany(Company.Name);
+                rInf.Get();
+                if rInf."Master Company Name" = Master then
+                    SubsidiarieList2.Add(Company.Name);
+            until Company.Next() = 0;
+        end;
+        exit(SubsidiarieList2);
+    end;
+
+    procedure GetMasterList(): List of [Text]
+    var
+        TypeHelper: Codeunit "Type Helper";
+        InStream: InStream;
+        SubsidiarieText: Text;
+        SubsidiarieList: List of [Text];
+        SubsidiarieList2: List of [Text];
+        Company: Record Company;
+        CommpanyTemp: Record Company temporary;
+        rInf: Record "Company Information";
+        rInfCurrent: Record "Company Information";
+        Empresa: Text;
+    begin
+        CalcFields("Subsidiarie List");
+
+        "Subsidiarie List".CreateInStream(InStream, TEXTENCODING::UTF8);
+        SubsidiarieText := (TypeHelper.TryReadAsTextWithSepAndFieldErrMsg(InStream, TypeHelper.LFSeparator(), FieldName("Subsidiarie List")));
+        SubsidiarieList := SubsidiarieText.Split(TypeHelper.LFSeparator());
+        // foreach Empresa in SubsidiarieList do begin
+        //     If Company.Get(Empresa) then begin
+        //         If not CommpanyTemp.Get(Empresa) then begin
+        //             CommpanyTemp := Company;
+        //             If CommpanyTemp.Insert() Then;
+
+        //         end;
+        //     end;
+        // end;
+        If Company.FindFirst() then begin
+            repeat
+                rInf.ChangeCompany(Company.Name);
+                rInf.Get();
+                if (rInf."Master Company Name" = CompanyName) and (rInf."Master Company" = true) and (Company.Name <> CompanyName) then
+                    SubsidiarieList2.Add(Company.Name);
+            until Company.Next() = 0;
+        end;
+        exit(SubsidiarieList2);
+    end;
 }

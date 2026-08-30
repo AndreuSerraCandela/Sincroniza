@@ -277,6 +277,38 @@ page 90393 "Sincr. Log Setup (Table) List"
                     Editable = PageIsEditable;
                     Enabled = PageIsEditable;
                     ToolTip = 'Specifies that any deletion of data is logged.';
+                    trigger OnValidate()
+                    var
+                        ConfirmManagement: Codeunit "Confirm Management";
+                        NewValue: Option;
+                    begin
+                        if ChangeLogSetupTable."Table No." <> Rec."Object ID" then begin
+                            NewValue := ChangeLogSetupTable."Borrar";
+                            GetRec;
+                            ChangeLogSetupTable."Borrar" := NewValue;
+                        end;
+                        ChangeLogSetupTableLogDeletion;
+                    end;
+                }
+                field("Traspasar a Subsidiaria"; ChangeLogSetupTable."Traspasar a Subsidiaria")
+                {
+                    ApplicationArea = Basic, Suite;
+                    Caption = 'Traspasar a Subsidiaria';
+                    Editable = PageIsEditable;
+                    Enabled = PageIsEditable;
+                    ToolTip = 'Specifies that the data is traspasada to the subsidiary.';
+                    trigger OnValidate()
+                    var
+                        ConfirmManagement: Codeunit "Confirm Management";
+                        NewValue: Boolean;
+                    begin
+                        if ChangeLogSetupTable."Table No." <> Rec."Object ID" then begin
+                            NewValue := ChangeLogSetupTable."Traspasar a Subsidiaria";
+                            GetRec;
+                            ChangeLogSetupTable."Traspasar a Subsidiaria" := NewValue;
+                        end;
+                        ChangeLogSetupTableLogTraspasar;
+                    end;
                 }
                 // field(LogDeletion; ChangeLogSetupTable."Log Deletion")
                 // {
@@ -437,6 +469,11 @@ page 90393 "Sincr. Log Setup (Table) List"
     end;
 
     local procedure ChangeLogSetupTableLogDeletion()
+    begin
+        UpdateRec;
+    end;
+
+    local procedure ChangeLogSetupTableLogTraspasar()
     begin
         UpdateRec;
     end;
