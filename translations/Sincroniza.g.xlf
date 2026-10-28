@@ -123,6 +123,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - NamedType Rename</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4166145734 - Method 3913774591 - NamedType 1646200528" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No se encuentra el conjunto de dimensiones %1 en la empresa de origen %2.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - Method GetDestinationDimensionSetID - NamedType DimensionSetNotFoundErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4166145734 - Method 3913774591 - NamedType 2846396271" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No existe el valor de dimensión %1 / %2 en la empresa destino %3.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Synchronize - Method GetDestinationDimensionSetID - NamedType DimensionValueNotFoundErr</note>
+        </trans-unit>
         <trans-unit id="Page 1560973654 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Copy Company</source>
           <note from="Developer" annotates="general" priority="2"></note>

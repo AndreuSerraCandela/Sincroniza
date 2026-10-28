@@ -70,6 +70,13 @@ codeunit 90302 Synchronize
         //Companies.SetRange("Company Name", Empresa());
         //error('prueba');
         if enuso then exit;
+        if IsDimensionSetStorageTable(TableId) then begin
+            OnDatabaseDelete := false;
+            OnDatabaseInsert := false;
+            OnDatabaseModify := false;
+            OnDatabaseRename := false;
+            exit;
+        end;
         ErrorEmpresa := false;
         CambioenSubsidiaria := false;
         rInf.Get();
@@ -134,6 +141,8 @@ codeunit 90302 Synchronize
         rInf: Record "Company Information";
         Sincroniza: Codeunit "Synchronize";
     begin
+        if IsDimensionSetStorageTable(RecRef.Number) then
+            exit;
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
                 Error(NoPermisoInsertarLbl, RecRef.Caption);
@@ -173,6 +182,8 @@ codeunit 90302 Synchronize
         FilldList: Record Field;
 
     begin
+        if IsDimensionSetStorageTable(RecRef.Number) then
+            exit;
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
                 Error(NoPermisoModificarLbl, RecRef.Caption);
@@ -216,6 +227,8 @@ codeunit 90302 Synchronize
         SynchronizeChanges: Record "Synchronize Changes";
         Sincroniza: Codeunit "Synchronize";
     begin
+        if IsDimensionSetStorageTable(RecRef.Number) then
+            exit;
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
                 Error(NoPermisoBorrarLbl, RecRef.Caption);
@@ -262,6 +275,9 @@ codeunit 90302 Synchronize
         IsNewRecord: Boolean;
 
     begin
+        if IsDimensionSetStorageTable(RecRefOrigen.Number) then
+            exit;
+
         RecRefDestino.Open(RecRefOrigen.Number, false, NewCompany);
         IsNewRecord := RecRefDestino.Get(RecRefOrigen.RecordId);
         Campos.ChangeCompany(MasterCompany);
@@ -274,9 +290,16 @@ codeunit 90302 Synchronize
                 continue;
             if Not FldOrig.Active then
                 continue;
+            if IsInternalDimensionValueIdField(RecRefOrigen.Number, FldOrig.Number) then
+                continue;
             if Campos.Get(RecRefOrigen.Number, FldOrig.Number) then
                 if Campos.Exclude then continue;
             FldDest := RecRefDestino.Field(FldOrig.Number);
+            if IsDimensionSetIdField(FldOrig) then begin
+                FldDest.Value := GetDestinationDimensionSetID(
+                    FldOrig.Value, RecRefOrigen.CurrentCompany(), NewCompany);
+                continue;
+            end;
             if FldOrig.Type() = FieldType::Blob then begin
                 // Blob: usar Temp Blob en lugar de Value := Value
                 TempBlob.FromFieldRef(FldOrig);
@@ -288,6 +311,110 @@ codeunit 90302 Synchronize
             RecRefDestino.Modify(false)
         else
             RecRefDestino.Insert(false);
+    end;
+
+    local procedure IsDimensionSetStorageTable(TableNo: Integer): Boolean
+    begin
+        exit(TableNo in [Database::"Dimension Set Entry", Database::"Dimension Set Tree Node"]);
+    end;
+
+    local procedure IsInternalDimensionValueIdField(TableNo: Integer; FieldNo: Integer): Boolean
+    begin
+        exit((TableNo = Database::"Dimension Value") and (FieldNo = 12));
+    end;
+
+    local procedure IsDimensionSetIdField(FieldReference: FieldRef): Boolean
+    begin
+        exit(FieldReference.Name() = 'Dimension Set ID');
+    end;
+
+    local procedure GetDestinationDimensionSetID(SourceDimensionSetID: Integer; SourceCompany: Text; DestinationCompany: Text): Integer
+    var
+        SourceDimensionSetEntry: Record "Dimension Set Entry";
+        DestinationDimensionSetEntry: Record "Dimension Set Entry";
+        TempDestinationDimensionSetEntry: Record "Dimension Set Entry" temporary;
+        DestinationDimensionValue: Record "Dimension Value";
+        DimensionSetTreeNode: Record "Dimension Set Tree Node";
+        ParentDimensionSetID: Integer;
+        DestinationDimensionSetID: Integer;
+        DimensionSetNotFoundErr: Label 'No se encuentra el conjunto de dimensiones %1 en la empresa de origen %2.';
+        DimensionValueNotFoundErr: Label 'No existe el valor de dimensión %1 / %2 en la empresa destino %3.';
+    begin
+        if SourceDimensionSetID = 0 then
+            exit(0);
+
+        SourceDimensionSetEntry.ChangeCompany(SourceCompany);
+        SourceDimensionSetEntry.SetRange("Dimension Set ID", SourceDimensionSetID);
+        if not SourceDimensionSetEntry.FindSet() then
+            Error(DimensionSetNotFoundErr, SourceDimensionSetID, SourceCompany);
+
+        DestinationDimensionValue.ChangeCompany(DestinationCompany);
+        repeat
+            if not DestinationDimensionValue.Get(
+                SourceDimensionSetEntry."Dimension Code",
+                SourceDimensionSetEntry."Dimension Value Code")
+            then
+                Error(
+                    DimensionValueNotFoundErr,
+                    SourceDimensionSetEntry."Dimension Code",
+                    SourceDimensionSetEntry."Dimension Value Code",
+                    DestinationCompany);
+
+            TempDestinationDimensionSetEntry.Init();
+            TempDestinationDimensionSetEntry."Dimension Set ID" := 0;
+            TempDestinationDimensionSetEntry."Dimension Code" := SourceDimensionSetEntry."Dimension Code";
+            TempDestinationDimensionSetEntry."Dimension Value Code" := SourceDimensionSetEntry."Dimension Value Code";
+            TempDestinationDimensionSetEntry."Dimension Value ID" := DestinationDimensionValue."Dimension Value ID";
+            TempDestinationDimensionSetEntry."Dimension Name" := SourceDimensionSetEntry."Dimension Name";
+            TempDestinationDimensionSetEntry."Dimension Value Name" := SourceDimensionSetEntry."Dimension Value Name";
+            TempDestinationDimensionSetEntry.Insert();
+        until SourceDimensionSetEntry.Next() = 0;
+
+        TempDestinationDimensionSetEntry.SetCurrentKey("Dimension Value ID");
+        DimensionSetTreeNode.ChangeCompany(DestinationCompany);
+        DimensionSetTreeNode.LockTable();
+        DestinationDimensionSetID := 0;
+        if TempDestinationDimensionSetEntry.FindSet() then
+            repeat
+                ParentDimensionSetID := DestinationDimensionSetID;
+                if not DimensionSetTreeNode.Get(
+                    ParentDimensionSetID,
+                    TempDestinationDimensionSetEntry."Dimension Value ID")
+                then begin
+                    DimensionSetTreeNode.Init();
+                    DimensionSetTreeNode."Parent Dimension Set ID" := ParentDimensionSetID;
+                    DimensionSetTreeNode."Dimension Value ID" :=
+                        TempDestinationDimensionSetEntry."Dimension Value ID";
+                    DimensionSetTreeNode.Insert(true);
+                end;
+                DestinationDimensionSetID := DimensionSetTreeNode."Dimension Set ID";
+            until TempDestinationDimensionSetEntry.Next() = 0;
+
+        DestinationDimensionSetEntry.ChangeCompany(DestinationCompany);
+        TempDestinationDimensionSetEntry.Reset();
+        if TempDestinationDimensionSetEntry.FindSet() then
+            repeat
+                if not DestinationDimensionSetEntry.Get(
+                    DestinationDimensionSetID,
+                    TempDestinationDimensionSetEntry."Dimension Code")
+                then begin
+                    DestinationDimensionSetEntry.Init();
+                    DestinationDimensionSetEntry."Dimension Set ID" := DestinationDimensionSetID;
+                    DestinationDimensionSetEntry."Dimension Code" :=
+                        TempDestinationDimensionSetEntry."Dimension Code";
+                    DestinationDimensionSetEntry."Dimension Value Code" :=
+                        TempDestinationDimensionSetEntry."Dimension Value Code";
+                    DestinationDimensionSetEntry."Dimension Value ID" :=
+                        TempDestinationDimensionSetEntry."Dimension Value ID";
+                    DestinationDimensionSetEntry."Dimension Name" :=
+                        TempDestinationDimensionSetEntry."Dimension Name";
+                    DestinationDimensionSetEntry."Dimension Value Name" :=
+                        TempDestinationDimensionSetEntry."Dimension Value Name";
+                    DestinationDimensionSetEntry.Insert(false);
+                end;
+            until TempDestinationDimensionSetEntry.Next() = 0;
+
+        exit(DestinationDimensionSetID);
     end;
 
 
@@ -379,32 +506,17 @@ codeunit 90302 Synchronize
 
     internal procedure CopiaEmpresa(TableNo: Integer; NuevaEmpresa: Text[30])
     var
-        RecRef2: RecordRef;
-        //RecRefTemp: RecordRef;
         RecRef: RecordRef;
     begin
         CopiandoEmpresa := true;
         If NuevaEmpresa = '' Then Error('No se puede dejar la empresa em blanco');
         If CompanyName = NuevaEmpresa Then Error('La empresa origen y la destino no puede ser la misma. No tiene ningún sentido');
+        if IsDimensionSetStorageTable(TableNo) then
+            exit;
         RecRef.Open(TableNo, false, CompanyName);
         If RecRef.FindFirst() Then
             repeat
-                RecRef2.Open(RecRef.Number, false, NuevaEmpresa);
-                if RecRef2.Get(RecRef.RecordId) Then begin
-                    RecRef2.Delete();
-                    RecRef2 := RecRef.Duplicate();
-                    RecRef2.ChangeCompany(NuevaEmpresa);
-                    RecRef2.Insert();
-                    RecRef2.Close();
-
-                end else begin
-                    RecRef2 := RecRef.Duplicate();
-                    RecRef2.ChangeCompany(NuevaEmpresa);
-                    RecRef2.Insert();
-                    RecRef2.Close();
-
-                end;
-
+                PasarRegistroaOtraEmpresa(RecRef, NuevaEmpresa, CompanyName);
             until RecRef.Next() = 0;
     end;
 
@@ -580,6 +692,8 @@ codeunit 90302 Synchronize
     begin
         if GetExecutionContext() <> ExecutionContext::Normal then
             exit;
+        if IsDimensionSetStorageTable(RecRef.Number) then
+            exit;
 
         enuso := true;
         rInfCurrent.ChangeCompany(EmpresaOrigen);
@@ -691,6 +805,8 @@ codeunit 90302 Synchronize
         rInfSubsidiarias: Record "Company Information";
     begin
         if GetExecutionContext() <> ExecutionContext::Normal then
+            exit;
+        if IsDimensionSetStorageTable(RecRef.Number) then
             exit;
 
         enuso := true;
@@ -807,6 +923,8 @@ codeunit 90302 Synchronize
         rInfSubsidiarias: Record "Company Information";
     begin
         if GetExecutionContext() <> ExecutionContext::Normal then
+            exit;
+        if IsDimensionSetStorageTable(RecRef.Number) then
             exit;
         if CopiandoEmpresa then
             exit;
