@@ -70,13 +70,18 @@ codeunit 90302 Synchronize
         //Companies.SetRange("Company Name", Empresa());
         //error('prueba');
         if enuso then exit;
+        // LOG-ESTANDAR-BC INICIO
+        // No poner estos flags a false: son compartidos con el Registro de cambios estándar.
+        // Sincroniza filtra sus propias tablas en los manejadores OnDatabase*.
         if IsDimensionSetStorageTable(TableId) then begin
-            OnDatabaseDelete := false;
-            OnDatabaseInsert := false;
-            OnDatabaseModify := false;
-            OnDatabaseRename := false;
+            // Código anterior, conservado para facilitar la reversión:
+            // OnDatabaseDelete := false;
+            // OnDatabaseInsert := false;
+            // OnDatabaseModify := false;
+            // OnDatabaseRename := false;
             exit;
         end;
+        // LOG-ESTANDAR-BC FIN
         ErrorEmpresa := false;
         CambioenSubsidiaria := false;
         rInf.Get();
@@ -103,12 +108,52 @@ codeunit 90302 Synchronize
                 end;
             end;
         end;
-        OnDatabaseDelete := false;
-        OnDatabaseInsert := false;
-        OnDatabaseModify := false;
-        OnDatabaseRename := false;
+        // LOG-ESTANDAR-BC INICIO
+        // Antes se asignaban los cuatro flags a false en este punto. Eso filtraba las
+        // tablas de Sincroniza, pero podía anular flags activados por el log estándar.
+        // El filtrado equivalente se realiza ahora con IsSynchronizationTable().
+        // Código anterior, conservado para facilitar la reversión:
+        // OnDatabaseDelete := false;
+        // OnDatabaseInsert := false;
+        // OnDatabaseModify := false;
+        // OnDatabaseRename := false;
+        // LOG-ESTANDAR-BC FIN
 
     end;
+
+    // LOG-ESTANDAR-BC INICIO
+    // Filtro propio de Sincroniza. Es necesario porque un trigger global puede estar
+    // activo exclusivamente por petición del Registro de cambios estándar.
+    local procedure IsSynchronizationTable(TableId: Integer; SourceCompany: Text): Boolean
+    var
+        SourceCompanyInformation: Record "Company Information";
+        SynchronizeSetupTable: Record "Synchronize Setup (Table)";
+        MasterCompanyName: Text[30];
+    begin
+        if IsDimensionSetStorageTable(TableId) then
+            exit(false);
+
+        SourceCompanyInformation.ChangeCompany(SourceCompany);
+        if not SourceCompanyInformation.Get() then
+            exit(false);
+        if (not SourceCompanyInformation.Subsidiarie) and
+           (not SourceCompanyInformation."Master Company")
+        then
+            exit(false);
+
+        MasterCompanyName := SourceCompanyInformation."Master Company Name";
+        if SourceCompanyInformation."Master Company" and SourceCompanyInformation.Subsidiarie then
+            MasterCompanyName := SourceCompany;
+        if MasterCompanyName = '' then
+            exit(false);
+
+        SynchronizeSetupTable.ChangeCompany(MasterCompanyName);
+        if not SynchronizeSetupTable.Get(TableId) then
+            exit(false);
+
+        exit(SynchronizeSetupTable."Log Modification");
+    end;
+    // LOG-ESTANDAR-BC FIN
 
     local procedure DebeBloquearPorNoBidireccional(RecRef: RecordRef): Boolean
     var
@@ -142,6 +187,9 @@ codeunit 90302 Synchronize
         Sincroniza: Codeunit "Synchronize";
     begin
         if IsDimensionSetStorageTable(RecRef.Number) then
+            exit;
+        // LOG-ESTANDAR-BC: ignorar triggers activados solo por el log estándar.
+        if not IsSynchronizationTable(RecRef.Number, CompanyName) then
             exit;
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
@@ -183,6 +231,9 @@ codeunit 90302 Synchronize
 
     begin
         if IsDimensionSetStorageTable(RecRef.Number) then
+            exit;
+        // LOG-ESTANDAR-BC: ignorar triggers activados solo por el log estándar.
+        if not IsSynchronizationTable(RecRef.Number, CompanyName) then
             exit;
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
@@ -228,6 +279,9 @@ codeunit 90302 Synchronize
         Sincroniza: Codeunit "Synchronize";
     begin
         if IsDimensionSetStorageTable(RecRef.Number) then
+            exit;
+        // LOG-ESTANDAR-BC: ignorar triggers activados solo por el log estándar.
+        if not IsSynchronizationTable(RecRef.Number, CompanyName) then
             exit;
         if GetExecutionContext() = ExecutionContext::Normal then begin
             if DebeBloquearPorNoBidireccional(RecRef) then
@@ -447,15 +501,11 @@ codeunit 90302 Synchronize
     end;
 
     procedure DeleteSynchronizeChanges(VAR SynchronizeChanges: Record "Synchronize Changes")
-    var
-        RecRef: RecordRef;
-
     begin
         if GetExecutionContext() = ExecutionContext::Normal then begin
-            RecRef.open(SynchronizeChanges.RecordIdDet.TableNo, false, SynchronizeChanges."Company Origen");
-            RecRef.Get(SynchronizeChanges.RecordIdDet);
-            DeleteSynchronizeChanges(RecRef, SynchronizeChanges."Company Origen");
-
+            DeleteSynchronizeChanges(
+                SynchronizeChanges.RecordIdDet,
+                SynchronizeChanges."Company Origen");
         end;
 
     end;
@@ -909,6 +959,11 @@ codeunit 90302 Synchronize
     end;
 
     procedure DeleteSynchronizeChanges(RecRef: RecordRef; EmpresaOrigen: Text[30])
+    begin
+        DeleteSynchronizeChanges(RecRef.RecordId, EmpresaOrigen);
+    end;
+
+    local procedure DeleteSynchronizeChanges(SourceRecordId: RecordId; EmpresaOrigen: Text[30])
     var
         rInfCurrent: Record "Company Information";
         rInf: Record "Company Information";
@@ -924,7 +979,7 @@ codeunit 90302 Synchronize
     begin
         if GetExecutionContext() <> ExecutionContext::Normal then
             exit;
-        if IsDimensionSetStorageTable(RecRef.Number) then
+        if IsDimensionSetStorageTable(SourceRecordId.TableNo) then
             exit;
         if CopiandoEmpresa then
             exit;
@@ -948,14 +1003,14 @@ codeunit 90302 Synchronize
                 rInf.Get();
                 if (rInf."Master Company Name" <> Maestra) then
                     continue;
-                if not Tablas.get(RecRef.Number) then
+                if not Tablas.get(SourceRecordId.TableNo) then
                     continue;
                 if not (Tablas.Borrar = Tablas.Borrar::Yes) then
                     continue;
                 if not CompararEmpresa(EmpresaOrigen, Maestra, Company.Name) then
                     continue;
-                RecRef2.Open(RecRef.Number, false, Company.Name);
-                if RecRef2.Get(RecRef.RecordId) then
+                RecRef2.Open(SourceRecordId.TableNo, false, Company.Name);
+                if RecRef2.Get(SourceRecordId) then
                     RecRef2.Delete(false);
                 RecRef2.Close();
             end;
@@ -966,10 +1021,10 @@ codeunit 90302 Synchronize
             if rInfCurrent."Sincornizacion Bidireccional" then begin
                 Maestra := rInfCurrent."Master Company Name";
                 Tablas.ChangeCompany(Maestra);
-                if Tablas.get(RecRef.Number) then
+                if Tablas.get(SourceRecordId.TableNo) then
                     if Tablas.Borrar = Tablas.Borrar::Yes then begin
-                        RecRef2.Open(RecRef.Number, false, Maestra);
-                        if RecRef2.Get(RecRef.RecordId) then
+                        RecRef2.Open(SourceRecordId.TableNo, false, Maestra);
+                        if RecRef2.Get(SourceRecordId) then
                             RecRef2.Delete(false);
                         RecRef2.Close();
                     end;
@@ -992,14 +1047,14 @@ codeunit 90302 Synchronize
                     if rInf."Master Company Name" <> Maestra then
                         continue;
                     Tablas.ChangeCompany(Maestra);
-                    if not Tablas.get(RecRef.Number) then
+                    if not Tablas.get(SourceRecordId.TableNo) then
                         continue;
                     if Tablas.Borrar <> Tablas.Borrar::Yes then
                         continue;
                     if not CompararEmpresa(EmpresaOrigen, Maestra, Company.Name) then
                         continue;
-                    RecRef2.Open(RecRef.Number, false, Company.Name);
-                    if RecRef2.Get(RecRef.RecordId) then
+                    RecRef2.Open(SourceRecordId.TableNo, false, Company.Name);
+                    if RecRef2.Get(SourceRecordId) then
                         RecRef2.Delete(false);
                     RecRef2.Close();
                 end;
@@ -1018,9 +1073,9 @@ codeunit 90302 Synchronize
                 rInfSubMaster.Get();
                 if (rInfSubMaster."Master Company Name" <> Maestra) then
                     continue;
-                if not Tablas.get(RecRef.Number) then
+                if not Tablas.get(SourceRecordId.TableNo) then
                     continue;
-                if not Tablas."Log Modification" then
+                if Tablas.Borrar <> Tablas.Borrar::Yes then
                     continue;
 
                 SubsidiarieList := rInfSubMaster.GetSubsidiarieListMaster(master);
@@ -1032,15 +1087,15 @@ codeunit 90302 Synchronize
                     rInfSubsidiarias.Get();
                     if (rInfSubsidiarias."Master Company Name" <> Master) then
                         continue;
-                    if not Tablas.get(RecRef.Number) then
+                    if not Tablas.get(SourceRecordId.TableNo) then
                         continue;
 
                     if Tablas.Borrar <> Tablas.Borrar::Yes then
                         continue;
                     if not CompararEmpresa(EmpresaOrigen, Master, Company.Name) then
                         continue;
-                    RecRef2.Open(RecRef.Number, false, Company.Name);
-                    if RecRef2.Get(RecRef.RecordId) then
+                    RecRef2.Open(SourceRecordId.TableNo, false, Company.Name);
+                    if RecRef2.Get(SourceRecordId) then
                         RecRef2.Delete(false);
                     RecRef2.Close();
 

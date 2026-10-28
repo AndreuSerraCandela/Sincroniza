@@ -1,0 +1,24 @@
+PRESTIGE;43200;;;;contracts@hotelbeds.com;Hotelbeds Product S.L.U;;;Baleares;971 461904;B38877676
+PRESTIGE;43217;;;;vgonzalezvidal@expedia.com;Travelscape LLC dba Expedia Travel;;;Nevada;;880392667
+PRESTIGE;43235;049705;20 Cecil Street Equity Plaza 14-01;;eva.emody@agoda.com;Agoda Company Pte. LTD;SGP;Singapore;;3614347985;200506877R
+PRESTIGE;43242;;;;marta.miracle@atrapalo.com;Atrápalo S.L.;;;Barcelona;+34 93 319 30 01 Ext. 663;B62288568
+PRESTIGE;43243;32701;220 East Central Parkway, Suite 4000;;sofia.grinan@touricoholidays.com;Tourico Holidays, Inc.;USA;Altamonte Springs;Florida;+34 620 61 24 13;59-3260171
+PRESTIGE;43240;38009;Fernando Beautell;;;Globalia Travel Club Spain SLU;ESP;Tenerife;Santa Cruz de Tenerife;971258322;B 38991279
+PRESTIGE;43237;61440;Thomas Cook Platz 1;;;Thomas Cook GMBH;DEU;Oberursel;Hessen;;DE192729324
+PRESTIGE;43250;07006;Calle Jose Rover Motta 27;Islas Baleares;;Travelsens S.L.;ESP;Palma de Mallorca;Baleares;;B-57727901
+PRESTIGE;43245;;Suite 1714 - 1715 Al Shatha Tower;Dubai Media City;;WebBeds FZ LLC t/a SunHotels;ARE;Dubai;;;91277
+PRESTIGE;43249;38005;Avda. Tres de Mayo 77;Islas Canarias;;Alisios Tours S.L.U;ESP;Santa Cruz de Tenerife;Santa Cruz de Tenerife;;B-76599620
+PRESTIGE;55501;07829;Hotel Nereida;;;Marju S.A;ESP;Port des Torrent;Baleares;;A-08198244
+PRESTIGE;232038;;;;;Hotusa Hotels S.A. - Dir;;;Barcelona;;A60156502
+PRESTIGE;43239;08013;Calle Mallorca 351 Pral.;;;Hotusa Hotels S.A.;ESP;Barcelona;Barcelona;;A-60156502
+PRESTIGE;43229;07181;Calle Las Sirenas 17;Cala Viñas;;Altura Destination Services;ESP;Palma de Mallorca;Baleares;971130805;B-57255036
+PRESTIGE;43244;JLP-PH1-E3A;Saba Tower 1, Cluster E, Office 502;Jumeirah Lakes Towers;;Hotelspro DMCC;ARE;Dubai;;;97970
+PRESTIGE;43227;43840;C/Terrer nº 2 Edificio Cancún Bajos;;;Olympia Mediterraneo S.A.;ESP;Salou;Tarragona;902500673;A43110337
+PRESTIGE;43201;07009;C/ Gremi Fusters, 11;;;Viajes Urbis S.A.;ESP;Palma;Baleares;971314412;A07011539
+PRESTIGE;43153;07009;Gran Via Asima, 4B;Pol. Son Castelló;;Jumbo Tours España S.L.U;ESP;Palma;Baleares;;B07893365
+PRESTIGE;43246;SK3 OXN;Park Square - Bird Hall Lane;;;On The Beach Beds Limited;GBR;Cheadle;;441614918467;118328225
+PRESTIGE;43151;07012;Calle Juan de Cremona, 5-1;;;Viajes Euromar S.A.;ESP;Palma;Baleares;;A-07031008
+PRESTIGE;43228;07820;C/Llauradors 29;Urbanización Montecristo;;Sidetours Incoming Services S.A.;ESP;San Antonio;Baleares;971307363;A07013907
+PRESTIGE;43171;50001;C/Coso 89-91 1ª;;;Viajes Rhodasol S.A.;ESP;Zaragoza;Zaragoza;;A50075092
+PRESTIGE;43209;38660;Avda.Ernesto Sarti 10;Edf.Parque Royale II;;Viajes Lider Canarias S.A.;ESP;Adeje;Santa Cruz de Tenerife;;A38063798
+PRESTIGE;43218;08397;C/Garbi 88-90;;;Serhs Tourism S.A.;ESP;Pineda de Mar;Barcelona;937032728;A08818254

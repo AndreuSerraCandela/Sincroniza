@@ -1,0 +1,121 @@
+;20220622;;;;Alojamiento;125,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;11;;;;
+;20220622;;;;Alojamiento;50,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;11;;;;
+;20220622;;;;Alojamiento;125,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;11;;;;
+;20220622;;;;Alojamiento;50,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;11;;;;
+;20220622;;;;Alojamiento;24,00;;;;CHG-;;;;;;;;10,00;26;;;;;;;;0;;;;1;;;;
+;20220622;;;;Alojamiento;160,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220622;;;;Alojamiento;160,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220622;;;;Alojamiento;52,00;;;;CHG-;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220622;;;;Alojamiento;165,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;1;;;;
+;20220622;;;;Alojamiento;100,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;67;;;;
+;20220622;;;;Alojamiento;123,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;67;;;;
+;20220622;;;;Alojamiento;100,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;67;;;;
+;20220622;;;;Alojamiento;123,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;67;;;;
+;20220622;;;;Alojamiento;100,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;67;;;;
+;20220622;;;;Alojamiento;23,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;67;;;;
+;20220622;;;;Alojamiento;100,00;;;;CHG-;;;;;;;;10,00;26;;;;;;;;0;;;;1;;;;
+;20220622;;;;Alojamiento;100,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;86;;;;
+;20220622;;;;Alojamiento y Desayuno;98,00;;;;CHG+;;;;;;;;10,00;30;;;;;;;;0;;;;7;;;;
+;20220622;;;;Alojamiento y Desayuno;98,00;;;;CHG+;;;;;;;;10,00;30;;;;;;;;0;;;;82;;;;
+;20220622;;;;Alojamiento y Media Pensión;52,00;;;;CHG-;;;;;;;;10,00;31;;;;;;;;0;;;;81;;;;
+;20220622;;;;Depósito 10%;20,00;;;;CHG+;;;;;;;;10,00;33;;;;;;;;0;;;;1;;;;
+;20220622;;;;Depósito 10%;20,00;;;;CHG-;;;;;;;;10,00;33;;;;;;;;0;;;;86;;;;
+;20220622;;;;Desayuno Inc;24,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;1;;;;
+;20220622;;;;Desayuno Inc;12,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220622;;;;Desayuno Inc;16,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220622;;;;Desayuno Inc;12,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220622;;;;Desayuno Inc;16,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220622;;;;Desayuno Inc;12,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;67;;;;
+;20220622;;;;Desayuno Inc;12,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;67;;;;
+;20220622;;;;Desayuno Inc;12,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;67;;;;
+;20220622;;;;Cena Inc;24,00;;;;CHG+;;;;;;;;10,00;37;;;;;;;;0;;;;81;;;;
+;20220622;;;;Cena Inc;24,00;;;;CHG+;;;;;;;;10,00;37;;;;;;;;0;;;;81;;;;
+;20220622;;;;Masaje facial;35,00;;;;CHG+;;;;;;;;10,00;50;;;;;;;;0;;;;85;;;;
+;20220622;;;;Parking;15,00;;;;CHG+;;;;;;;;10,00;51;;;;;;;;0;;;;85;;;;
+;20220622;;;;Agua 50 cl;3,00;;;;CHG+;;;;;;;;10,00;52;;;;;;;;0;;;;85;;;;
+;20220622;12200078;;;Covadonga;20,00;;;;PAY+;;;;;;;;;;;;;12;;;1;0;;;;7;;1;;
+;20220622;12200079;;;Suarez Llorente;605,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;67;;1;;
+;20220622;12200080;;;Ayala Soto;300,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;74;;1;;
+;20220622;12200081;;;La Caixa;294,00;;;;PAY+;;;;;;;;;;;;;12;;;1;0;;;;82;;1;;
+;20220622;12200082;;;La Caixa;294,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;82;;1;;
+;20220622;12200083;;;Llobet Baxarias;795,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;81;;1;;
+;20220622;12200084;;;Alvarez Alonso;80,00;;;;PAY+;;;;;;;;;;;;;12;;;1;0;;;;1;;1;;
+;20220622;12200086;;;Viajes El Corte Inglés, S.A;80,00;;;;PAY+;;;;;;;;;;;;;12;;;1;0;;;;86;;1;;
+;20220622;22200002;;;Alvarez Alonso;80,00;;;;PAY-;;;;;;;;;;;;;12;;;1;0;;;;1;;1;;
+2;Factura Fiscal.;12200078;1;10,00;20,00;18,18;1,82;20220622;;CORR;Covadonga;;;;Av. de Brasil, 17 - piso 7;Av. de Brasil, 17 - ;28020;Madrid;0;7;ES;1;;;;;;0;0;;;;;;
+2;Factura Fiscal.;12200079;1;10,00;605,00;550,00;55,00;20220622;;CORR;Suarez;Andrés;;;;;;;0;67;;0;;;;;;0;150;;;;;;
+2;Factura Fiscal.;12200080;1;10,00;425,00;386,36;38,64;20220622;;CORR;Ayala;Carlos;;;;;;;0;74;;0;;;;;;0;147;;;;;;
+2;Factura Fiscal.;12200081;1;10,00;294,00;267,27;26,73;20220622;;CORR;La Caixa;;;;;;;;0;82;;1;;;;;;0;184;;;;;;
+2;Factura Fiscal.;12200082;1;10,00;294,00;267,27;26,73;20220622;;CORR;La Caixa;;;;;;;;0;82;;1;;;;;;0;185;;;;;;
+2;Factura Fiscal.;12200083;1;10,00;795,00;722,73;72,27;20220622;;CORR;Llobet;Marc;;;;;;;0;81;;0;;;;;;0;186;;;;;;
+2;Factura Fiscal.;12200084;1;10,00;80,00;72,73;7,27;20220622;;CORR;Alvarez;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;1;ES;0;;20010429;;;;0;151;;;;;;
+2;Factura Fiscal.;12200085;1;0,00;0,00;0,00;0,00;20220622;;CORR;Alvarez;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;1;ES;0;;20010429;;;;0;191;;;;;;
+2;Factura Fiscal.;12200086;1;10,00;80,00;72,73;7,27;20220622;;CORR;Viajes El Corte Inglés, S.A;;A-28229813;;Calle Hermosilla, 112;Calle Hermosilla, 11;28009;Madrid;0;86;ES;2;;;;;;0;151;;;;;22200002;20220622
+1;Abono Factura Fiscal;22200002;1;10,00;-80,00;-72,73;-7,27;20220622;;CORR;Alvarez;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;1;ES;0;;20010429;;;;0;151;;;;;12200084;20220622
+2;Factura Fiscal.;12200078;1;10,00;20,00;18,18;1,82;20220622;;RID+;38;;;0;;7;ES;1;Covadonga;0;;;;Desayuno Extra;;20220619;0;Covadonga;;;;Av. de Brasil, 17 - piso 7;Av. de Brasil, 17 - ;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200078;;;20,00;20,00;0,00;20220622;;PAD+;12;;;0;;7;ES;1;Covadonga;0;;;;Mastercard;;20220622;0;Covadonga;;;;Av. de Brasil, 17 - piso 7;Av. de Brasil, 17 - ;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200079;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Alojamiento;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200079;1;10,00;12,00;10,91;1,09;20220622;;RID+;35;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Desayuno Inc;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200079;1;10,00;123,00;111,82;11,18;20220622;;RID+;26;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Alojamiento;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200079;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Alojamiento;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;23.06.22;0;;
+2;Factura Fiscal.;12200079;1;10,00;12,00;10,91;1,09;20220622;;RID+;35;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Desayuno Inc;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;23.06.22;0;;
+2;Factura Fiscal.;12200079;1;10,00;123,00;111,82;11,18;20220622;;RID+;26;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Alojamiento;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;23.06.22;0;;
+2;Factura Fiscal.;12200079;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Alojamiento;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;24.06.22;0;;
+2;Factura Fiscal.;12200079;1;10,00;12,00;10,91;1,09;20220622;;RID+;35;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Desayuno Inc;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;24.06.22;0;;
+2;Factura Fiscal.;12200079;1;10,00;23,00;20,91;2,09;20220622;;RID+;26;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;Alojamiento;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;24.06.22;0;;
+2;Factura Fiscal.;12200079;;;605,00;605,00;0,00;20220622;;PAD+;13;20220622;20220625;150;Suarez;67;;0;Andrés Suarez Llorente;67;;0;Andrés Suarez Llorente;VISA;;20220622;0;Suarez Llorente;Andrés;;;;;;;;;;;;1;;
+2;Factura Fiscal.;12200080;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;Alojamiento;;20220619;0;Ayala Soto;Carlos;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200080;1;10,00;25,00;22,73;2,27;20220622;;RID+;26;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;Alojamiento;;20220619;0;Ayala Soto;Carlos;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200080;0;;50,00;50,00;0,00;20220622;;PAD+;12;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;Mastercard;;20220619;0;Ayala Soto;Carlos;;;;;;;;;;;;1;;
+2;Factura Fiscal.;12200080;0;;75,00;75,00;0,00;20220622;;PAD+;13;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;VISA;;20220619;0;Ayala Soto;Carlos;;;;;;;;;;;;1;;
+2;Factura Fiscal.;12200080;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;Alojamiento;;20220620;0;Ayala Soto;Carlos;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200080;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;Alojamiento;;20220621;0;Ayala Soto;Carlos;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200080;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;Alojamiento;;20220621;0;Ayala Soto;Carlos;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200080;;;300,00;300,00;0,00;20220622;;PAD+;13;20220619;20220622;147;Ayala;74;;0;Carlos Ayala Soto;74;;0;Carlos Ayala Soto;VISA;;20220622;0;Ayala Soto;Carlos;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200081;1;10,00;98,00;89,09;8,91;20220622;;RID+;30;20220619;20220622;184;La Caixa;82;;1;La Caixa;82;;1;La Caixa;Alojamiento y Desayuno;;20220619;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200081;1;10,00;98,00;89,09;8,91;20220622;;RID+;30;20220619;20220622;184;La Caixa;82;;1;La Caixa;82;;1;La Caixa;Alojamiento y Desayuno;;20220620;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200081;1;10,00;98,00;89,09;8,91;20220622;;RID+;30;20220619;20220622;184;La Caixa;82;;1;La Caixa;82;;1;La Caixa;Alojamiento y Desayuno;;20220621;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200081;;;294,00;294,00;0,00;20220622;;PAD+;12;20220619;20220622;184;La Caixa;82;;1;La Caixa;82;;1;La Caixa;Mastercard;;20220622;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200082;1;10,00;98,00;89,09;8,91;20220622;;RID+;30;20220619;20220622;185;La Caixa;82;;1;La Caixa;82;;1;La Caixa;Alojamiento y Desayuno;;20220619;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200082;1;10,00;98,00;89,09;8,91;20220622;;RID+;30;20220619;20220622;185;La Caixa;82;;1;La Caixa;82;;1;La Caixa;Alojamiento y Desayuno;;20220620;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200082;1;10,00;98,00;89,09;8,91;20220622;;RID+;30;20220619;20220622;185;La Caixa;82;;1;La Caixa;82;;1;La Caixa;Alojamiento y Desayuno;;20220621;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200082;;;294,00;294,00;0,00;20220622;;PAD+;13;20220619;20220622;185;La Caixa;82;;1;La Caixa;82;;1;La Caixa;VISA;;20220622;0;La Caixa;;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;230,00;209,09;20,91;20220622;;RID+;26;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;24,00;21,82;2,18;20220622;;RID+;35;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Desayuno Inc;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;11,00;10,00;1,00;20220622;;RID+;26;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;230,00;209,09;20,91;20220622;;RID+;26;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;24,00;21,82;2,18;20220622;;RID+;35;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Desayuno Inc;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;11,00;10,00;1,00;20220622;;RID+;26;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;230,00;209,09;20,91;20220622;;RID+;26;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220621;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;24,00;21,82;2,18;20220622;;RID+;35;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Desayuno Inc;;20220621;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;1;10,00;11,00;10,00;1,00;20220622;;RID+;26;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220621;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200083;;;795,00;795,00;0,00;20220622;;PAD+;13;20220619;20220622;186;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;VISA;;20220622;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200084;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220621;20220622;151;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Alojamiento;;20220621;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200084;1;10,00;20,00;18,18;1,82;20220622;;RID-;33;20220621;20220622;151;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Depósito 10%;;20220621;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200084;;;80,00;80,00;0,00;20220622;;PAD+;12;20220621;20220622;151;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Mastercard;;20220622;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200085;1;10,00;24,00;21,82;2,18;20220622;;RID+;35;20220623;20220624;191;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Desayuno Inc;;20220622;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;23.06.22;0;;
+2;Factura Fiscal.;12200085;1;10,00;24,00;21,82;2,18;20220622;;RID-;26;20220623;20220624;191;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Alojamiento;;20220622;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;23.06.22;0;;
+2;Factura Fiscal.;12200085;;;0,00;0,00;0,00;20220622;;PAD+;24;20220623;20220624;191;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Crédito;;20220622;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;-1;;1;;
+2;Factura Fiscal.;12200086;1;10,00;100,00;90,91;9,09;20220622;;RID+;26;20220621;20220622;151;Alvarez;86;ES;2;Viajes El Corte Inglés, S.A;1;ES;0;Covadonga Alvarez Alonso;Alojamiento;;20220622;0;Viajes El Corte Inglés, S.A;;A-28229813;;Calle Hermosilla, 112;Calle Hermosilla, 11;28009;Madrid;;22200002;;;;0;20220622;
+2;Factura Fiscal.;12200086;1;10,00;20,00;18,18;1,82;20220622;;RID-;33;20220621;20220622;151;Alvarez;86;ES;2;Viajes El Corte Inglés, S.A;1;ES;0;Covadonga Alvarez Alonso;Depósito 10%;;20220622;0;Viajes El Corte Inglés, S.A;;A-28229813;;Calle Hermosilla, 112;Calle Hermosilla, 11;28009;Madrid;;22200002;;;;0;20220622;
+2;Factura Fiscal.;12200086;;;80,00;80,00;0,00;20220622;;PAD+;12;20220621;20220622;151;Alvarez;86;ES;2;Viajes El Corte Inglés, S.A;1;ES;0;Covadonga Alvarez Alonso;Mastercard;;20220622;0;Viajes El Corte Inglés, S.A;;A-28229813;;Calle Hermosilla, 112;Calle Hermosilla, 11;28009;Madrid;;22200002;;;;0;20220622;
+1;Abono Factura Fiscal;22200002;1;10,00;100,00;90,91;9,09;20220622;;RID-;26;20220621;20220622;151;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Alojamiento;;20220622;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;12200084;;;;0;20220622;
+1;Abono Factura Fiscal;22200002;1;10,00;20,00;18,18;1,82;20220622;;RID+;33;20220621;20220622;151;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Depósito 10%;;20220622;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;12200084;;;;0;20220622;
+1;Abono Factura Fiscal;22200002;;;80,00;80,00;0,00;20220622;;PAD-;12;20220621;20220622;151;Alvarez;1;ES;0;Covadonga Alvarez Alonso;1;ES;0;Covadonga Alvarez Alonso;Mastercard;;20220622;0;Alvarez Alonso;Covadonga;10825470P;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;12200084;;;;0;20220622;
+DEP2;13;VISA;;;605,00;20220622;Suarez Llorente;Andrés;;STAT;20220622;20220625;150;0;150;67;
+DEP2;24;Crédito;;;0,00;20220622;Alvarez Alonso;Covadonga;;STAT;20220623;20220624;191;0;191;1;
+DEP3;13;VISA;;;605,00;20220622;Suarez Llorente;Andrés;20220622;STAT;20220622;20220625;150;0;150;67;
+DEP4;12;Mastercard;;;50,00;20220622;Ayala Soto;Carlos;20220619;STAT;20220619;20220622;147;0;147;74;12200080
+DEP4;13;VISA;;;75,00;20220622;Ayala Soto;Carlos;20220619;STAT;20220619;20220622;147;0;147;74;12200080
+DEP4;13;VISA;;;605,00;20220622;Suarez Llorente;Andrés;20220622;STAT;20220622;20220625;150;0;150;67;12200079
+DEP4;24;Crédito;;;0,00;20220622;Alvarez Alonso;Covadonga;20220622;STAT;20220623;20220624;191;0;191;1;12200085
+RSL;176;DIRECTOS;;;3;20220622;;;;STAT
+RSL;189;GRUPOS;;;6;20220622;;;;STAT
+RSL;191;DESVIOS;;;13;20220622;;;;STAT
+RSH;176;DIRECTOS;;;3;20220622;;;;STAT
+RSH;189;GRUPOS;;;4;20220622;;;;STAT
+RSH;191;DESVIOS;;;4;20220622;;;;STAT
+RS5;191;DESVIOS;;;309,09;20220622;;;;STAT
+RS5;176;DIRECTOS;;;709,09;20220622;;;;STAT
+RS5;189;GRUPOS;;;469,09;20220622;;;;STAT
+RS5;;;;;48,18;20220622;;;;STAT

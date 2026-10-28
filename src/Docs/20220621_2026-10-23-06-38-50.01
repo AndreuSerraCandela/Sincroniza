@@ -1,0 +1,74 @@
+;20220621;;;;Alojamiento;100,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;1;;;;
+;20220621;;;;Alojamiento;160,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220621;;;;Alojamiento;160,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220621;;;;Alojamiento;52,00;;;;CHG-;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220621;;;;Alojamiento;145,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;1;;;;
+;20220621;;;;Alojamiento;100,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;74;;;;
+;20220621;;;;Alojamiento;100,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;74;;;;
+;20220621;;;;Alojamiento;230,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220621;;;;Alojamiento;11,00;;;;CHG+;;;;;;;;10,00;26;;;;;;;;0;;;;81;;;;
+;20220621;;;;Alojamiento y Desayuno;98,00;;;;CHG+;;;;;;;;10,00;30;;;;;;;;0;;;;82;;;;
+;20220621;;;;Alojamiento y Desayuno;98,00;;;;CHG+;;;;;;;;10,00;30;;;;;;;;0;;;;82;;;;
+;20220621;;;;Alojamiento y Desayuno;98,00;;;;CHG+;;;;;;;;10,00;30;;;;;;;;0;;;;82;;;;
+;20220621;;;;Alojamiento y Media Pensión;52,00;;;;CHG-;;;;;;;;10,00;31;;;;;;;;0;;;;81;;;;
+;20220621;;;;Depósito 10%;20,00;;;;CHG-;;;;;;;;10,00;33;;;;;;;;0;;;;1;;;;
+;20220621;;;;Desayuno Inc;12,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220621;;;;Desayuno Inc;16,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220621;;;;Desayuno Inc;12,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220621;;;;Desayuno Inc;16,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220621;;;;Desayuno Inc;24,00;;;;CHG+;;;;;;;;10,00;35;;;;;;;;0;;;;81;;;;
+;20220621;;;;Cena Inc;24,00;;;;CHG+;;;;;;;;10,00;37;;;;;;;;0;;;;81;;;;
+;20220621;;;;Cena Inc;24,00;;;;CHG+;;;;;;;;10,00;37;;;;;;;;0;;;;81;;;;
+;20220621;12200071;;;Gomez;280,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;75;;1;;
+;20220621;12200072;;;Gomez;280,00;;;;PAY+;;;;;;;;;;;;;12;;;1;0;;;;75;;1;;
+;20220621;12200073;;;Gomez;280,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;75;;1;;
+;20220621;12200074;;;Gomez;280,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;75;;1;;
+;20220621;12200075;;;Gomez;280,00;;;;PAY+;;;;;;;;;;;;;12;;;1;0;;;;75;;1;;
+;20220621;12200076;;;Gomez;280,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;75;;1;;
+;20220621;12200077;;;Llobet Baxarias;336,00;;;;PAY+;;;;;;;;;;;;;13;;;1;0;;;;81;;1;;
+2;Factura Fiscal.;12200071;1;10,00;280,00;254,55;25,45;20220621;;CORR;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;75;ES;0;;19990105;;;;0;152;;;;;;
+2;Factura Fiscal.;12200072;1;10,00;280,00;254,55;25,45;20220621;;CORR;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;75;ES;0;;19990105;;;;0;153;;;;;;
+2;Factura Fiscal.;12200073;1;10,00;280,00;254,55;25,45;20220621;;CORR;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;75;ES;0;;19990105;;;;0;154;;;;;;
+2;Factura Fiscal.;12200074;1;10,00;280,00;254,55;25,45;20220621;;CORR;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;75;ES;0;;19990105;;;;0;155;;;;;;
+2;Factura Fiscal.;12200075;1;10,00;280,00;254,55;25,45;20220621;;CORR;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;75;ES;0;;19990105;;;;0;156;;;;;;
+2;Factura Fiscal.;12200076;1;10,00;280,00;254,55;25,45;20220621;;CORR;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;0;75;ES;0;;19990105;;;;0;157;;;;;;
+2;Factura Fiscal.;12200077;1;10,00;336,00;305,45;30,55;20220621;;CORR;Llobet;Marc;;;;;;;0;81;;0;;;;;;0;187;;;;;;
+2;Factura Fiscal.;12200071;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;152;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220619;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200071;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;152;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220620;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200071;;;280,00;280,00;0,00;20220621;;PAD+;13;20220619;20220621;152;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;VISA;;20220621;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200072;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;153;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220619;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200072;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;153;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220620;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200072;;;280,00;280,00;0,00;20220621;;PAD+;12;20220619;20220621;153;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Mastercard;;20220621;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200073;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;154;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220619;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200073;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;154;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220620;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200073;;;280,00;280,00;0,00;20220621;;PAD+;13;20220619;20220621;154;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;VISA;;20220621;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200074;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;155;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220619;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200074;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;155;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220620;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200074;;;280,00;280,00;0,00;20220621;;PAD+;13;20220619;20220621;155;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;VISA;;20220621;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200075;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;156;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220619;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200075;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;156;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220620;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200075;;;280,00;280,00;0,00;20220621;;PAD+;12;20220619;20220621;156;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Mastercard;;20220621;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200076;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;157;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220619;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200076;1;10,00;140,00;127,27;12,73;20220621;;RID+;26;20220619;20220621;157;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;Alojamiento;;20220620;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200076;;;280,00;280,00;0,00;20220621;;PAD+;13;20220619;20220621;157;Gomez;75;ES;0;Julian Gomez;75;ES;0;Julian Gomez;VISA;;20220621;0;Gomez;Julian;;;Av. Brasil, 17 - piso 7;Av. Brasil, 17 - pis;28020;Madrid;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;100,00;90,91;9,09;20220621;;RID+;26;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;6,00;5,45;0,55;20220621;;RID+;35;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Desayuno Inc;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;7,00;6,36;0,64;20220621;;RID+;36;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Comida Inc;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;12,00;10,91;1,09;20220621;;RID+;37;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Cena Inc;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;28,00;25,45;2,55;20220621;;RID+;26;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;100,00;90,91;9,09;20220621;;RID+;26;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;6,00;5,45;0,55;20220621;;RID+;35;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Desayuno Inc;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;7,00;6,36;0,64;20220621;;RID+;36;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Comida Inc;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;12,00;10,91;1,09;20220621;;RID+;37;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Cena Inc;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;28,00;25,45;2,55;20220621;;RID+;26;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Alojamiento;;20220620;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+2;Factura Fiscal.;12200077;1;10,00;30,00;27,27;2,73;20220621;;RID+;56;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;Botella de Cava;;20220619;0;Llobet Baxarias;Marc;;;;;;;;;;;Botella de Cava;0;;
+2;Factura Fiscal.;12200077;;;336,00;336,00;0,00;20220621;;PAD+;13;20220619;20220621;187;Llobet;81;;0;Marc Llobet Baxarias;81;;0;Marc Llobet Baxarias;VISA;;20220621;0;Llobet Baxarias;Marc;;;;;;;;;;;;0;;
+RSL;176;DIRECTOS;;;3;20220621;;;;STAT
+RSL;189;GRUPOS;;;8;20220621;;;;STAT
+RSL;191;DESVIOS;;;18;20220621;;;;STAT
+RSH;176;DIRECTOS;;;2;20220621;;;;STAT
+RSH;189;GRUPOS;;;6;20220621;;;;STAT
+RSH;191;DESVIOS;;;6;20220621;;;;STAT
+RS5;191;DESVIOS;;;404,55;20220621;;;;STAT
+RS5;189;GRUPOS;;;558,18;20220621;;;;STAT
+RS5;176;DIRECTOS;;;240,91;20220621;;;;STAT

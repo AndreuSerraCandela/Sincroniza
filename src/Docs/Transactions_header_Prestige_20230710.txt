@@ -1,0 +1,52 @@
+PRESTIGE;;Stejar, Alexandru;6;10/07/23;Número de Factura;412302783;058599591;RO;Stejar, Alexandru;;Solo Alojamiento,Impuesto Turistico,IVA 10%,Efectivo,Anticipo 10 %;
+PRESTIGE;;Micros Visa;71;10/07/23;Número de Factura;412302784;;;Micros Visa;0024017/0047053;Restaurante Comidas,Restaurante Bebidas,Micros Visa,IVA 10%;
+PRESTIGE;;Micros Visa;83;10/07/23;Número de Factura;412302785;;;Micros Visa;0024000/0047065;Restaurante Comidas,Restaurante Bebidas,Micros Visa,IVA 10%;
+PRESTIGE;;Micros Visa;62;10/07/23;Número de Factura;412302786;;;Micros Visa;0024012/0047051;Restaurante Comidas,Restaurante Bebidas,Micros Visa,IVA 10%;
+PRESTIGE;;Micros Efectivo;31;10/07/23;Número de Factura;412302787;;;Micros Efectivo;0024011/0047044;Restaurante Comidas,Restaurante Bebidas,Micros Contado,IVA 10%;
+PRESTIGE;;Micros Efectivo;67;10/07/23;Número de Factura;412302788;;;Micros Efectivo;0024003/0047059;Restaurante Comidas,Restaurante Bebidas,Micros Contado,IVA 10%;
+PRESTIGE;;Micros Efectivo;59;10/07/23;Número de Factura;412302789;;;Micros Efectivo;0024004/0047050;Tips,Restaurante Comidas,Restaurante Bebidas,Micros Contado,IVA 10%;
+PRESTIGE;;Micros Amex;3;10/07/23;Número de Factura;412302790;;;Micros Amex;0024039/0024039;Restaurante Comidas,Restaurante Bebidas,Micros American Express,IVA 10%;
+PRESTIGE;;Lima, Janaina;9;10/07/23;Número de Factura;412302791;GA758400;BR;Lima, Janaina;;Visa,Restaurante Comidas,Restaurante Bebidas,Parking,IVA 10%;
+PRESTIGE;;Micros Amex;3;10/07/23;Número de Factura;412302792;;;Micros Amex;0024070/0024070;Restaurante Comidas,Restaurante Bebidas,Micros American Express,IVA 10%;
+PRESTIGE;;Dodaj, Julia;21;10/07/23;Número de Factura;412302793;CA01391NJ;IT;Dodaj, Julia;;Visa,Impuesto Turistico,IVA 10%,Desyuno Inlcuido,Desayuno,Anticipo 10 %,Alquiler Toallas;
+PRESTIGE;;Dodaj, Julia;18;10/07/23;Número de Factura;412302794;CA01391NJ;IT;Dodaj, Julia;;Visa,Restaurante Comidas,Restaurante Bebidas,IVA 10%;
+PRESTIGE;;Kleyman, Victoria;19;10/07/23;Número de Factura;412302795;23248957;IL;Kleyman, Victoria;;Visa Reservas,Media Pension Inlcuida,Impuesto Turistico,IVA 10%,Half Board,Efectivo;
+PRESTIGE;;Kleyman, Victoria;10;10/07/23;Número de Factura;412302796;23248957;IL;Kleyman, Victoria;;Visa,Restaurante Bebidas,IVA 10%,Efectivo;
+PRESTIGE;;Kleyman, Victoria;14;10/07/23;Número de Factura;412302797;23248957;IL;Kleyman, Victoria;;IVA 10%,Alquiler Toallas;
+PRESTIGE;;Laing, Maddie;8;10/07/23;Número de Factura;412302798;527216016;GB;Laing, Maddie;;Visa Reservas,Visa,Solo Alojamiento,Restaurante Bebidas,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Vreeden; De, Rene;16;10/07/23;Número de Factura;412302799;NYR4D6FF3;NL;Vreeden; De, Rene;;Visa Reservas,Visa,Solo Alojamiento,Restaurante Comidas,Restaurante Bebidas,Parking,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Guerreiro, Paloma;9;10/07/23;Número de Factura;412302800;CA342544;PT;Guerreiro, Paloma;;Visa Reservas,Visa,Solo Alojamiento,Parking,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Lima, Janaina;16;10/07/23;Número de Factura;412302801;GA758400;BR;Lima, Janaina;;Visa Reservas,Solo Alojamiento,Impuesto Turistico,IVA 10%,Efectivo,Alquiler Toallas;
+PRESTIGE;;Llaya, Raquel;12;10/07/23;Número de Factura;412302802;ca12301mq;IT;Llaya, Raquel;;Solo Alojamiento,IVA 10%,Anticipo 10 %;
+PRESTIGE;;Llaya, Raquel;6;10/07/23;Número de Factura;412302803;ca12301mq;IT;Llaya, Raquel;;Visa,Parking,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Massol, Adam;8;10/07/23;Número de Factura;412302804;16CF55159;FR;Massol, Adam;;Visa Reservas,Visa,Solo Alojamiento,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Lima, Janaina;10;10/07/23;Número de Factura;412302805;GA758400;BR;Lima, Janaina;;Visa Reservas,Solo Alojamiento,Parking,Impuesto Turistico,IVA 10%,Efectivo;
+PRESTIGE;;Masini, Alessandro;7;10/07/23;Número de Factura;412302806;AY8410315;IT;Masini, Alessandro;;Visa Reservas,Solo Alojamiento,IVA 10%;
+PRESTIGE;;Masini, Alessandro;3;10/07/23;Número de Factura;412302807;AY8410315;IT;Masini, Alessandro;;Parking,Impuesto Turistico,IVA 10%,Efectivo;
+PRESTIGE;;Romanus, Precious;19;10/07/23;Número de Factura;412302808;L4YMWH368;DE;Romanus, Precious;;Media Pension Inlcuida,IVA 10%,Half Board,Cena Incluida,Alojamiento;
+PRESTIGE;;Loewert, Sandrine;21;10/07/23;Número de Factura;412302809;16CY90234;FR;Loewert, Sandrine;;Visa Reservas,Visa,Restaurante Bebidas,Parking,Media Pension Inlcuida,Impuesto Turistico,IVA 10%,Half Board,Alquiler Toallas;
+PRESTIGE;;Fontaine, Gregory;3;10/07/23;Número de Factura;412302810;190391253195;FR;Fontaine, Gregory;;Visa Reservas,Solo Alojamiento,IVA 10%;
+PRESTIGE;;Fontaine, Gregory;4;10/07/23;Número de Factura;412302811;190391253195;FR;Fontaine, Gregory;;Visa,Parking,Impuesto Turistico,IVA 10%,Desayuno Incluido;
+PRESTIGE;;Lejarre, Guillaume;6;10/07/23;Número de Factura;412302812;15AF74244;FR;Lejarre, Guillaume;;Solo Alojamiento,IVA 10%,Anticipo 10 %;
+PRESTIGE;;Lejarre, Guillaume;2;10/07/23;Número de Factura;412302813;15AF74244;FR;Lejarre, Guillaume;;Visa,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Michel, Yoann;8;10/07/23;Número de Factura;412302814;22CE89903;FR;Michel, Yoann;;Visa Reservas,Solo Alojamiento,IVA 10%;
+PRESTIGE;;Michel, Yoann;3;10/07/23;Número de Factura;412302815;22CE89903;FR;Michel, Yoann;;Visa,Parking,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Kaya, Musha;10;10/07/23;Número de Factura;412302816;OP0754923;CD;Kaya, Musha;;Visa,Solo Alojamiento,Impuesto Turistico,IVA 10%,Anticipo 10 %;
+PRESTIGE;;Kaya, Musha;15;10/07/23;Número de Factura;412302817;OP0754923;CD;Kaya, Musha;;Visa,Restaurante Comidas,Restaurante Bebidas,Parking,IVA 10%;
+PRESTIGE;;D Prospect SRL;31;10/07/23;Número de Factura;412302818;;;D Prospect SRL;;Visa,Restaurante Comidas,Restaurante Bebidas,Minibar,Impuesto Turistico,IVA 10%,Desayuno Incluido,Desayuno,Anticipo 10 %;
+PRESTIGE;;Wupperman, Wolfgang Alexander;26;10/07/23;Número de Factura;412302819;C4X05MZXY;DE;Wupperman, Wolfgang Alexander;;Visa,Restaurante Comidas,Restaurante Bebidas,Parking,Minibar,Impuesto Turistico,IVA 10%;
+PRESTIGE;;Wupperman, Wolfgang Alexander;7;10/07/23;Número de Factura;412302820;C4X05MZXY;DE;Wupperman, Wolfgang Alexander;;IVA 10%,Anticipo 10 %,Alquiler Toallas;
+PRESTIGE;;CHADEVA SUR 2001 SL.;3;10/07/23;Número de Factura;412302821;;;CHADEVA SUR 2001 SL.;;Varios Recepcion,PayGold VISA,IVA 10%,Alojamiento;
+PRESTIGE;;Romanus, Precious;2;10/07/23;Número de Factura;412302822;L4YMWH368;DE;Romanus, Precious;;Impuesto Turistico,IVA 10%;
+PRESTIGE;;Stejar, Alexandru;2;10/07/23;Número de Factura;412302823;058599591;RO;Stejar, Alexandru;;IVA 10%,Alquiler Toallas;
+PRESTIGE;;CHADEVA SUR 2001 SL.;7;10/07/23;Número de Factura;412302824;;;CHADEVA SUR 2001 SL.;;Varios Recepcion,Solo Alojamiento,IVA 10%,Anticipo 10 %;
+PRESTIGE;;Kaya, Musha;2;10/07/23;Número de Factura;412302825;OP0754923;CD;Kaya, Musha;;IVA 10%,Alquiler Toallas;
+PRESTIGE;;Verdone, Domenico;7;10/07/23;Número de Factura;412302826;ca97933ce;IT;Verdone, Domenico;;IVA 10%,Alquiler Toallas;
+PRESTIGE;;Lejarre, Guillaume;2;10/07/23;Número de Factura;412302827;15AF74244;FR;Lejarre, Guillaume;;IVA 10%,Alquiler Toallas;
+PRESTIGE;;Guerreiro, Paloma;2;10/07/23;Número de Factura;412302828;CA342544;PT;Guerreiro, Paloma;;IVA 10%,Alquiler Toallas;
+PRESTIGE;;Vreeden; De, Rene;2;10/07/23;Número de Factura;412302829;NYR4D6FF3;NL;Vreeden; De, Rene;;IVA 10%,Alquiler Toallas;
+PRESTIGE;;Wupperman, Wolfgang Alexander;2;10/07/23;Número Fra. Rectificativa;422300012;C4X05MZXY;DE;Wupperman, Wolfgang Alexander;;PayGold VISA,IVA 10%,Anticipo 10 %;
+PRESTIGE;;Kostecki, Robert;2;10/07/23;Factura Depósito;432300775;CFY935077;PL;Kostecki, Robert;;Anticipo
+PRESTIGE;;Nelissen, Mark;2;10/07/23;Factura Depósito;432300776;;;Nelissen, Mark;;Anticipo
+PRESTIGE;;Temmim, Sofian;2;10/07/23;Factura Depósito;432300777;15DE28546;FR;Temmim, Sofian;;Anticipo
+PRESTIGE;;Amiel, Valentin;2;10/07/23;Factura Depósito;432300778;KETVJFHC8;FR;Amiel, Valentin;;Anticipo
